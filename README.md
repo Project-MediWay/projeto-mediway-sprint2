@@ -1,4 +1,4 @@
-Projeto MediWay - Sprint 1
+Projeto MediWay - Sprint 2
 
 Sobre o projeto
 
