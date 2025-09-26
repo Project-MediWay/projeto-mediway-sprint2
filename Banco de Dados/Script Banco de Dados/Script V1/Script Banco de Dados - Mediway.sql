@@ -1,9 +1,19 @@
 /*
 Nome - RA
 */
-
 CREATE DATABASE Mediway;
 USE Mediway;
+
+SHOW TABLES;
+
+-- CRIAÇÃO DA TABELA CONTATO
+CREATE TABLE contato(
+idContato INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(45) NOT NULL,
+telefone CHAR (11),
+email VARCHAR(45) NOT NULL,
+descricao VARCHAR(500) NOT NULL
+);
 
 -- CRIAÇÃO DA TABELA EMPRESA
 CREATE TABLE empresa(
@@ -57,12 +67,19 @@ CONSTRAINT fkSensorVeiculo FOREIGN KEY (fkVeiculo) REFERENCES veiculo(idVeiculo)
 CREATE TABLE registroSensor(
 idResgistroSensor INT PRIMARY KEY AUTO_INCREMENT,
 dtRegistro DATETIME ,
-tempAtual DECIMAL (4,2),
+temperatua_atual DECIMAL (4,2),
 fkSensor INT,
 CONSTRAINT fkSensorRegistroSensor FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor)
 );
 
 ALTER TABLE registroSensor MODIFY COLUMN dtRegistro DATETIME DEFAULT CURRENT_TIMESTAMP;
+
+-- INSERÇÃO DE DADOS NA TABELA CONTATO
+INSERT INTO contato (nome, telefone, email, descricao) VALUES
+	('Vinícius de Santana Gama','11986379200','vinicius@gmail.com','Olá, gostaria de contratar os serviços da empresa Mediway'),
+	('Paulo Afonso dos Santos','11986549200','paulo@gmail.com','Olá, gostaria de saber mais sobre os serviços da empresa Mediway'),
+	('João Tobin Almeida','1198668790','joao@gmail.com','Olá, gostaria de saber como funcionas os serviços da empresa Mediway'),
+	('Maria Almeida Veríssimo','11986347632','maria@gmail.com','Olá, gostaria de contratar os serviços da empresa Mediway');
 
 -- INSERÇÃO DE DADOS NA TABELA EMPRESA
 INSERT INTO empresa (nome, CNPJ, token) VALUES 
@@ -111,7 +128,7 @@ INSERT INTO sensor (nome, fkVeiculo) VALUES
 	('sensor_008', 8),
 	('sensor_009', 9);
     
-INSERT INTO registroSensor (dtRegistro, tempAtual, fkSensor) VALUES
+INSERT INTO registroSensor (dtRegistro, temperatura_atual, fkSensor) VALUES
 	('2025-08-26 10:00:00', 05.02, 1),
 	('2025-08-26 10:15:00', 06.05, 2),
 	('2025-08-26 11:00:00', 08.00, 3),
@@ -121,7 +138,8 @@ INSERT INTO registroSensor (dtRegistro, tempAtual, fkSensor) VALUES
 	('2025-03-22 15:00:00', 08.00, 7),
 	('2025-07-20 08:00:00', 08.00, 8),
 	('2025-05-26 11:00:00', 08.00, 9);
-
+    
+-- COMANDOS:
 -- SELECIONANDO TODOS OS DADOS DA TABELA USUARIO E EMPRESA
 SELECT * FROM usuario JOIN empresa ON fkEmpresa = idEmpresa;
 
@@ -141,7 +159,7 @@ SELECT empresa.nome AS Nome_Empresa,
 -- SENSOR, REGISTROSENSOR
 SELECT sensor.nome AS Nome_Sensor,
 		registroSensor.dtRegistro AS Data_e_Hora_Sensor,
-        registroSensor.tempAtual AS Temperatura_Atual_Sensor
+        registroSensor.temperatura_atual AS Temperatura_Atual_Sensor
         FROM sensor JOIN registroSensor ON fkSensor = idSensor;
         
 -- VEICULO, SENSOR, REGISTROSENSOR
@@ -150,7 +168,7 @@ SELECT veiculo.modelo AS Modelo_Veículo,
         veiculo.placa AS Placa_Veículo,
         sensor.nome AS Nome_Sensor,
         registroSensor.dtRegistro AS Data_e_Hora_Sensor,
-        registroSensor.tempAtual AS Temperatura_Atual_Sensor
+        registroSensor.temperatura_atual AS Temperatura_Atual_Sensor
         FROM veiculo JOIN sensor ON fkVeiculo = idVeiculo
         JOIN registroSensor ON fkSensor = idSensor;
         
@@ -162,7 +180,7 @@ SELECT veiculo.modelo AS Modelo_Veículo,
         vacina.temperatura_maxima AS Temperatura_Maxima_Vacina,
         sensor.nome AS Nome_Sensor,
         registroSensor.dtRegistro AS Data_e_Hora_Sensor,
-        registroSensor.tempAtual AS Temperatura_Atual_Sensor
+        registroSensor.temperatura_atual AS Temperatura_Atual_Sensor
         FROM veiculo JOIN vacina ON fkVacina = idVacina JOIN sensor ON fkVeiculo = idVeiculo
         JOIN registroSensor ON fkSensor = idSensor;
         
@@ -173,7 +191,7 @@ SELECT empresa.nome AS Nome_Empresa,
         vacina.nome AS Nome_Vacina,
         sensor.nome AS Nome_Sensor,
         registroSensor.dtRegistro AS Data_e_Hora_Sensor,
-        registroSensor.tempAtual AS Temperatura_Atual_Sensor
+        registroSensor.temperatura_atual AS Temperatura_Atual_Sensor
 		FROM empresa JOIN veiculo ON fkEmpresa = idEmpresa
         JOIN vacina ON fkVacina = idVacina
         JOIN sensor ON fkVeiculo = idVeiculo JOIN registroSensor ON fkSensor = idSensor;
@@ -185,14 +203,11 @@ SELECT empresa.nome AS Nome_Empresa,
         vacina.nome AS Nome_Vacina,
         sensor.nome AS Nome_Sensor,
         registroSensor.dtRegistro AS Data_e_Hora_Sensor,
-        registroSensor.tempAtual AS Temperatura_Atual_Sensor
+        registroSensor.temperatura_atual AS Temperatura_Atual_Sensor
 		FROM empresa JOIN veiculo ON fkEmpresa = idEmpresa
         JOIN vacina ON fkVacina = idVacina
         JOIN sensor ON fkVeiculo = idVeiculo JOIN registroSensor ON fkSensor = idSensor WHERE sensor.nome = 'sensor_001';
         
-
-
--- COMANDOS:
 SELECT * FROM usuario;
 SELECT * FROM empresa;
 SELECT * FROM vacina;
