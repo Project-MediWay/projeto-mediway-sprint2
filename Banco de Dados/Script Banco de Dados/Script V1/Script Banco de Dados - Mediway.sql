@@ -1,10 +1,6 @@
-/*
-Nome - RA
-*/
 CREATE DATABASE Mediway;
 USE Mediway;
-
-SHOW TABLES;
+DROP DATABASE Mediway;
 
 -- CRIAÇÃO DA TABELA CONTATO
 CREATE TABLE contato(
@@ -49,6 +45,7 @@ idVeiculo INT PRIMARY KEY AUTO_INCREMENT,
 modelo VARCHAR(30),
 marca VARCHAR (30),
 placa VARCHAR (7) UNIQUE,
+quantidade_vacina INT,
 fkVacina INT,
 fkEmpresa INT,
 CONSTRAINT FkVeiculoVacina FOREIGN KEY (fkVacina) REFERENCES vacina(idVacina),
@@ -67,7 +64,7 @@ CONSTRAINT fkSensorVeiculo FOREIGN KEY (fkVeiculo) REFERENCES veiculo(idVeiculo)
 CREATE TABLE registroSensor(
 idResgistroSensor INT PRIMARY KEY AUTO_INCREMENT,
 dtRegistro DATETIME ,
-temperatua_atual DECIMAL (4,2),
+temperatura_atual DECIMAL (4,2),
 fkSensor INT,
 CONSTRAINT fkSensorRegistroSensor FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor)
 );
@@ -105,16 +102,16 @@ INSERT INTO usuario(nome, cpf, email, senha, telefone, fkEmpresa) VALUES
     ('Carlos Souza', '98765432100', 'carlos.souza@email.com', 'minhaSenha', '21999887766', 3);
 
 -- INSERÇÃO DE DADOS NA TABELA VEICULO
-INSERT INTO veiculo (modelo, marca, placa, fkVacina, fkEmpresa) VALUES
-	('Accelo 1016', 'Mercedes-Benz', 'PQR3456',1 ,1),
-	('VM 270', 'Volvo', 'STU7890', 2, 2),
-	('Daily 35S14', 'Iveco', 'VWX1234', 3, 3),
-    ('Constellation 24.280', 'Volkswagen', 'XYZ5678', 1, 2),
-	('Cargo 1723', 'Ford', 'JKL9012', 2, 3),
-	('FH 460', 'Volvo', 'MNO3456', 7, 1),
-	('Actros 2651', 'Mercedes-Benz', 'DEF6789', 6, 3),
-	('Stralis 440', 'Iveco', 'GHI2345', 5, 1),
-	('Atego 2426', 'Mercedes-Benz', 'LMN4567', 4, 2);
+INSERT INTO veiculo (modelo, marca, placa, quantidade_vacina, fkVacina, fkEmpresa) VALUES
+	('Accelo 1016', 'Mercedes-Benz', 'PQR3456', 140, 1 ,1),
+	('VM 270', 'Volvo', 'STU7890', 80, 2, 2),
+	('Daily 35S14', 'Iveco', 'VWX1234',200, 3, 3),
+    ('Constellation 24.280', 'Volkswagen', 'XYZ5678',130 , 1, 2),
+	('Cargo 1723', 'Ford', 'JKL9012', 180, 2, 3),
+	('FH 460', 'Volvo', 'MNO3456',230, 7, 1),
+	('Actros 2651', 'Mercedes-Benz', 'DEF6789', 500, 6, 3),
+	('Stralis 440', 'Iveco', 'GHI2345', 600, 5, 1),
+	('Atego 2426', 'Mercedes-Benz', 'LMN4567',1000, 4, 2);
 
 -- INSERÇÃO DE DADOS NA TABELA SENSOR
 INSERT INTO sensor (nome, fkVeiculo) VALUES
@@ -148,10 +145,11 @@ SELECT usuario.nome AS Nome_Usuario,
 		empresa.nome AS Nome_Empresa
 		FROM usuario JOIN empresa ON fkEmpresa = idEmpresa;
         
--- EMPRESA, VEICULO, VACINA - (SUGESTÃO, ADD MAIS VEICULOS PARA CASA EMPRESA E MAIS VACINAS PARA VEICULO)
+-- EMPRESA, VEICULO, VACINA
 SELECT empresa.nome AS Nome_Empresa,
 		veiculo.modelo AS Modelo_Veículo,
         veiculo.placa AS Placa_Veículo,
+        veiculo.quantidade_vacina AS Quantidade_vacina,
         vacina.nome AS Nome_Vacina
 		FROM empresa JOIN veiculo ON fkEmpresa = idEmpresa
         JOIN vacina ON fkVacina = idVacina;
@@ -163,8 +161,8 @@ SELECT sensor.nome AS Nome_Sensor,
         FROM sensor JOIN registroSensor ON fkSensor = idSensor;
         
 -- VEICULO, SENSOR, REGISTROSENSOR
-
 SELECT veiculo.modelo AS Modelo_Veículo,
+		veiculo.quantidade_vacina AS Quantidade_vacina,
         veiculo.placa AS Placa_Veículo,
         sensor.nome AS Nome_Sensor,
         registroSensor.dtRegistro AS Data_e_Hora_Sensor,
@@ -176,6 +174,7 @@ SELECT veiculo.modelo AS Modelo_Veículo,
 SELECT veiculo.modelo AS Modelo_Veículo,
         veiculo.placa AS Placa_Veículo,
         vacina.nome AS Nome_Vacina,
+        veiculo.quantidade_vacina AS Quantidade_vacina,
         vacina.temperatura_minima AS Temperatura_Minima_Vacina,
         vacina.temperatura_maxima AS Temperatura_Maxima_Vacina,
         sensor.nome AS Nome_Sensor,
@@ -188,6 +187,7 @@ SELECT veiculo.modelo AS Modelo_Veículo,
 SELECT empresa.nome AS Nome_Empresa,
 		veiculo.modelo AS Modelo_Veículo,
         veiculo.placa AS Placa_Veículo,
+        veiculo.quantidade_vacina AS Quantidade_vacina,
         vacina.nome AS Nome_Vacina,
         sensor.nome AS Nome_Sensor,
         registroSensor.dtRegistro AS Data_e_Hora_Sensor,
@@ -200,6 +200,7 @@ SELECT empresa.nome AS Nome_Empresa,
 SELECT empresa.nome AS Nome_Empresa,
 		veiculo.modelo AS Modelo_Veículo,
         veiculo.placa AS Placa_Veículo,
+        veiculo.quantidade_vacina AS Quantidade_vacina,
         vacina.nome AS Nome_Vacina,
         sensor.nome AS Nome_Sensor,
         registroSensor.dtRegistro AS Data_e_Hora_Sensor,
