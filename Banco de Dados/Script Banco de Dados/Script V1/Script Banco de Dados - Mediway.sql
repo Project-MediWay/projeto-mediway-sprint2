@@ -1,6 +1,9 @@
 CREATE DATABASE Mediway;
 USE Mediway;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 54477074ba46f5b8001061626d0503bc429fa9cb
 
 -- CRIAÇÃO DA TABELA CONTATO
 CREATE TABLE contato(
@@ -63,7 +66,11 @@ CONSTRAINT fkSensorVeiculo FOREIGN KEY (fkVeiculo) REFERENCES veiculo(idVeiculo)
 -- CRIAÇÃO DA TABELA REGISTROSENSOR
 CREATE TABLE registroSensor(
 idResgistroSensor INT PRIMARY KEY AUTO_INCREMENT,
+<<<<<<< HEAD
 dtRegistro DATETIME DEFAULT CURRENT_TIMESTAMP ,
+=======
+dtRegistro DATETIME DEFAULT CURRENT_TIMESTAMP,
+>>>>>>> 54477074ba46f5b8001061626d0503bc429fa9cb
 temperatura_atual DECIMAL (4,2),
 fkSensor INT,
 CONSTRAINT fkSensorRegistroSensor FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor)
