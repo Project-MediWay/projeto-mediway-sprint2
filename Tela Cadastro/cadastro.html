@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+<div class="header">
+    <div class="img"><a href="#"><img src="assets/logo2.PNG" alt="Logo Mediway"></div></a>
+</div>
+<div class="titulo">
+    <h1>Bem vindo!</h1>
+</div>
+<div class="container">
+    <div class="form">
+        <form action="#">
+            <div class="input-group">
+                <div class="input-box esquerda" >
+                    Nome Completo:
+                    <input placeholder="Nome Completo" type="text" id="input_nomeCompleto">
+                </div>
+
+                <div class="input-box direita">
+                    CPF: 
+                    <input placeholder="000.000.000-00" type="text" id="input_cpf">
+                </div>
+
+                <div class="input-box esquerda">
+                    Email: 
+                    <input placeholder="Insira seu email" type="email" id="input_email">
+                </div>
+
+                <div class="input-box direita">
+                    Telefone: 
+                    <input placeholder="(00) 00000-0000" type="tel" id="input_telefone">
+                </div>
+
+                <div class="input-box esquerda">
+                    Senha
+                    <input oninput="validarSenha()" placeholder="Insira sua senha" type="password" id="input_senha">
+                    <div class="validarSenha" id="div_senha"></div>
+                </div>
+
+                <div class="input-box direita">
+                    Confirmar Senha: 
+                    <input oninput="confirmarSenha()" placeholder="Confirme sua senha" type="password" id="input_confirmSenha">
+                    <div id="div_confSenha"></div>
+                </div>
+
+                <div class="input-box">
+
+                    Token da Empresa:
+                    <input placeholder="Insira o token" type="text" id="input_token"> <br><br>
+                </div>
+            </div>
+            <div class="button">
+                <button onclick="cadastrar()" type="submit">Cadastre-se</button> 
+                <p>Já tem cadastro?<a href="#"> Entre na sua conta</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+<script>
+
+
+    function cadastrar() {
+    // Variável da input
+        var token = input_token.value;
+
+    // Validação de tokens cadastrados no Banco de Dados
+        if (token == 'OEXL2RBY6mYaSTbPoF22xLK6m8TIk8kRcAQgRkJCSGZQDJIiik6YteYyY7reo7CR' || 
+        token == 'UqFbqaEGsPzrSIuc6mQxKUqib2qqGfgWjg0YHar98b1C2B9dixxWBQVIptiVCOLf' || 
+        token ==  'ZYRJDOVgpacZOwKhxjtTOECcMOiKdPVTuzmsMPmBKslXalYklDakZhZxcuULmHcd' ) {
+            alert('Cadastro Efetuado!');
+        } else {
+            alert('Token Inválido');
+        }
+    }
+
+    function validarSenha () {
+    // Variáveis das inputs
+        var senha = input_senha.value;
+        var confSenha = input_confirmSenha.value;
+
+    // Variáveis de configuração
+        var tamanhoSenha = senha.length;
+
+
+    // Mínimo 8 caracteres
+        if (tamanhoSenha < 8) {
+            div_senha.innerHTML = `<span style="color:red"> 8 caracteres </span>, `;
+        } else {
+            div_senha.innerHTML ='';
+        } 
+        
+    // Mínimo um caractere especial
+        if (senha.includes('!') || senha.includes('@') || senha.includes('#') || senha.includes('$') ||
+        senha.includes('%') || senha.includes('¨') || senha.includes('&') || senha.includes('*')) {
+            div_senha.innerHTML += '';
+        } else {
+            div_senha.innerHTML += `<span style="color:red"> 1 caractere especial </span>, `;
+        }  
+        
+    // Mínimo um número
+        if (senha.includes('1') || senha.includes('2') || senha.includes('3') || senha.includes('4') ||
+        senha.includes('5') || senha.includes('6') || senha.includes('7') || senha.includes('8') ||
+        senha.includes('9') || senha.includes('0')) {
+            div_senha.innerHTML += '';
+        } else {
+            div_senha.innerHTML += `<span style="color:red"> 1 número</span>, `;
+        } 
+
+    // Mínimo uma letra maiúscula
+        if (senha != senha.toLowerCase()) {
+            div_senha.innerHTML += '';
+        } else {
+            div_senha.innerHTML += '<span style="color:red">1 Letra Maiúscula</span>, ';
+        }
+
+    // Mínimo uma letra minúscula
+        if (senha != senha.toUpperCase()) {
+            div_senha.innerHTML += '';
+
+        } else {
+            div_senha.innerHTML += '<span style="color:red">1 Letra Minúscula</span>';
+        }
+
+    }
+
+    function confirmarSenha() {
+    // Variáveis de input
+    var senha = input_senha.value;
+    var confSenha = input_confirmSenha.value;
+
+        if (senha != confSenha) {
+            div_confSenha.innerHTML = '<span style="color:red">Senha Incorreta</span>';
+        } else {
+            div_confSenha.innerHTML = '';
+        }
+    }
+</script>
