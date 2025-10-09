@@ -1,0 +1,392 @@
+
+.navbar {
+    display: flex;
+    list-style: none;
+    width: 300px;
+    justify-content: space-between;
+    color: #62bee3;
+    margin-bottom: 20px;
+}
+.imagem-home{
+    display: flex;
+    background-image: url('imagem1.png');
+    height: 420px;
+    width: 100%;
+    background-position: center;
+
+}
+.imagem-home p{
+   color: white;
+   font-size: large;
+
+}
+
+
+.tela-inicial{
+    margin-bottom: 50px;
+}
+.box-home{
+    display: flex;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(245, 245, 245);
+    width: 96%;
+    margin-bottom: 120px;
+    
+}
+
+
+ .img-social1{
+    display: flex;
+    height: 150px;
+    width: auto;
+    justify-content: left;
+}
+
+.img-social1 .text-social1{
+    justify-content: right;
+}
+
+.img-social2{
+    width: auto;
+    height: 350px;
+    justify-content: right;
+    gap: 30px;
+}
+
+.img-social2 .text-social2{
+    font-size: large;
+    
+}
+
+.boxes{
+    display: flex;
+    flex-direction: row;
+    gap: 120px;
+    margin-bottom: 200px;
+   justify-content: center;
+   
+}
+.box1{
+     display: flex;
+    padding: 25px 12px;
+    border-radius: 7px;
+    background-color: rgb(175, 175, 175);
+    width: 18%;
+    margin-bottom: 10px;
+}
+
+.box2{
+      display: flex;
+    padding: 25px 12px;
+    border-radius: 7px;
+    background-color: rgb(175, 175, 175);
+    width: 18%;
+    margin-bottom: 10px;
+}
+.box3{
+      display: flex;
+    padding: 25px 12px;
+    border-radius: 7px;
+    background-color: rgb(175, 175, 175);
+    width: 18%;
+    margin-bottom: 10px;
+}
+
+
+.img-box1{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.img-box1 img{
+    height: 190px;
+    width: auto;
+}
+
+.img-box2{
+    display: flex;
+    flex-direction: column;
+}
+
+.img-box2 img{
+    height: 190px;
+    width: auto;
+}
+
+.img-box3{
+    display: flex;
+    flex-direction: column;
+}
+
+.img-box3 img{
+    height: 190px;
+    width: auto;
+}
+
+.calculadora{
+    display: flex;
+    margin-bottom: 60px;
+}
+
+.back-calculadora{
+    background-image: url('back\ azul.png');
+    height: 420px;
+    width: 100%;
+}
+
+.img-calculadora img{
+    height: 280px;
+    width: auto;
+}
+
+.text-calculadora{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.calculadora a{
+    display: flex;
+    justify-content: center;
+    color: #0000ff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: white;
+    width: 120px;
+    text-align: center;
+   
+    
+}
+
+    .diagrama1{
+      display: flex;
+    flex-direction: row;
+    gap: 120px;
+    margin-bottom: 20px;
+   justify-content: center;
+    }
+
+.dg1{
+       display: flex;
+    padding: 25px 12px;
+    border-radius: 7px;
+    background-color: rgb(175, 175, 175);
+    width: 18%;
+    margin-bottom: 10px;
+
+}
+.dg2{
+       display: flex;
+    padding: 25px 12px;
+    border-radius: 7px;
+    background-color: rgb(175, 175, 175);
+    width: 18%;
+    margin-bottom: 10px;
+
+}
+
+.dg3{
+       display: flex;
+    padding: 25px 12px;
+    border-radius: 7px;
+    background-color: rgb(175, 175, 175);
+    width: 18%;
+    margin-bottom: 10px;
+
+}
+   .diagrama2{
+      display: flex;
+    flex-direction: row;
+    gap: 120px;
+    margin-bottom: 200px;
+   justify-content: center;
+    }
+
+.dg4{
+    display: flex;
+    padding: 25px 12px;
+    border-radius: 7px;
+    background-color: rgb(175, 175, 175);
+    width: 18%;
+    margin-bottom: 10px;
+
+}
+.dg5{
+       display: flex;
+    padding: 25px 12px;
+    border-radius: 7px;
+    background-color: rgb(175, 175, 175);
+    width: 18%;
+    margin-bottom: 10px;
+
+}
+
+.dg6{
+       display: flex;
+    padding: 25px 12px;
+    border-radius: 7px;
+    background-color: rgb(175, 175, 175);
+    width: 18%;
+    margin-bottom: 10px;
+
+}
+
+.missao{
+    background-color: #5C8CE6;
+    height: 320px;
+    width: auto;
+}
+.visao{
+    background-color: #3961E1;
+    height: 320px;
+    width: auto;
+}
+.valores{
+    background-color: #2246BA;
+    height: 220px;
+    width: auto;
+}
+.bck-v img{
+    display: flex;
+    height: 320px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.txt-eqp{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.txt-eqp p{
+    border-radius: 10px;
+    text-align: center;
+    background-color: #3961E1;
+    color: white;
+    font-size: large;
+    height: 45px;
+    width: 200px;
+}
+
+
+.box-eqp1{
+    display: flex;
+    justify-content: center;
+}
+
+.box-eqp1{
+    display: flex;
+    justify-content: center;
+    padding: 25px 12px;
+    border-radius: 7px;
+    background-color: #EEEEEE;
+    width: 60%;
+    margin-bottom: 10px;
+    gap: 20px;
+}
+
+.ft-eqp img{
+    height: 180px;
+    width: auto;
+}
+
+.back-faleConosco{
+    background-image: url('bck-fale.png');
+    height: 460px;
+    width: 100%;
+}
+.txt-fale{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: large;
+    width: 50%;
+}
+
+.txt-fale p{
+    font-size: x-large;
+}
+
+.box-fale{
+    float: right;
+    margin-right: 80PX;
+    padding: 17px 12px;
+    border-radius: 12px;
+    background-color: #d4d0d0;
+    height: 340px;
+    width: 260px;
+    margin-bottom: 10px;
+}
+
+.footer{
+    background-color: #001B48;
+    height: 220px;
+    width: 100%;
+}
+
+.img-footer{
+     display: flex;
+    align-items: flex-start;
+}
+
+.img-footer img{
+    display: flex;
+    height: 180px;
+    width: auto;
+}
+.footer1 img{
+    display: flex;
+    margin-left: 40px;
+}
+.footer1{
+    display: flex;
+    justify-content: left;
+}
+  .title-footer1{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif   ;
+    margin-left: 50px;
+     color: rgb(6, 134, 240);
+ }
+.txt-footer1 p{
+    font-family: tim;
+    color: white;
+    display: flex;
+    justify-content: left;
+    margin-left: -10px;
+}
+
+.footer2{
+    display: flex;
+    justify-content: left;
+}
+  .title-footer2{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif   ;
+    margin-left: 50px;
+     color: rgb(6, 134, 240);
+ }
+.txt-footer2 p{
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+    display: flex;
+    justify-content: left;
+    margin-left: -20px;
+}
+.line03{
+    display: flex;
+    margin-left: 20px;
+}
+ .title-footer3{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif   ;
+    margin-left: 50px;
+     color: rgb(6, 134, 240);
+ }
+
+
+
+
+
