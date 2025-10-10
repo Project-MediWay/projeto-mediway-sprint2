@@ -53,9 +53,10 @@ CONSTRAINT FkVeiculoEmpresa FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa
 
 -- CRIAÇÃO DA TABELA SENSOR
 CREATE TABLE sensor(
-idSensor INT PRIMARY KEY AUTO_INCREMENT,
+idSensor INT,
 nome CHAR(11),
 fkVeiculo INT UNIQUE,
+CONSTRAINT pkComposta PRIMARY KEY (idSensor, fkVeiculo),
 CONSTRAINT fkSensorVeiculo FOREIGN KEY (fkVeiculo) REFERENCES veiculo(idVeiculo)
 );
 
