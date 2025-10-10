@@ -79,7 +79,7 @@ body {
     height: 100%;
     background-color: rgba(128, 128, 128, 0.151);
     border: 2px solid white ;
-    border-radius: 30px;
+    border-radius: 10px;
     outline: none;
     font-size: 16px;
     color: black;
@@ -102,7 +102,7 @@ body {
     height: 50px;
     background-color: #3961E1;
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
     color: white;
