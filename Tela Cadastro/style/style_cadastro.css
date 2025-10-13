@@ -45,7 +45,8 @@ body {
     justify-content: center;
     width: 50%;
     height: 30%;
-    border-radius: 15px;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .form {
