@@ -12,7 +12,7 @@ Autores
 
 Igor Alexandro Felix Cardoso 01252072
 
-Marina Yuri Okamoto 01252
+Marina Yuri Okamoto 01252051
 
 Rafael Alexandre da Silva 01252
 
