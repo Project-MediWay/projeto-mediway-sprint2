@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="style/style_cadastro.css">
+</head>
+<body>
+<div class="header">
+    <div class="img"><a href="../site.html"><img src="assets/logo2.PNG" alt="Logo Mediway"></div></a>
+</div>
+<div class="titulo">
+    <h1>Bem vindo!</h1>
+</div>
+<div class="container">
+    <div class="form">
+        <form action="#">
+            <div class="input-group">
+                <div class="input-box esquerda" >
+                    Nome Completo:
+                    <input placeholder="Nome Completo" type="text" id="input_nomeCompleto">
+                </div>
+
+                <div class="input-box direita">
+                    CPF: 
+                    <input oninput="analisarCPF()" placeholder="Insira seu CPF" type="text" id="input_cpf">
+                    <div id="div_cpf"></div>
+                </div>
+
+                <div class="input-box esquerda">
+                    Email: 
+                    <input oninput="analisarEmail()" placeholder="Insira seu email" type="email" id="input_email">
+                    <div id="div_email"></div>
+                </div>
+
+                <div class="input-box direita">
+                    Telefone: 
+                    <input oninput="analisarTelefone()" placeholder="(00) 00000-0000" type="tel" id="input_telefone">
+                    <div id="div_telefone"></div>
+                </div>
+
+                <div class="input-box esquerda">
+                    Senha
+                    <input oninput="validarSenha()" placeholder="Insira sua senha" type="password" id="input_senha">
+                    <div class="validarSenha" id="div_senha"></div>
+                </div>
+
+                <div class="input-box direita">
+                    Confirmar Senha: 
+                    <input oninput="confirmarSenha()" placeholder="Confirme sua senha" type="password" id="input_confirmSenha">
+                    <div id="div_confirmSenha"></div>
+                </div>
+
+                <div class="input-box">
+
+                    Token da Empresa:
+                    <input placeholder="Insira o token" type="text" id="input_token"> <br><br>
+                </div>
+            </div>
+            <div class="button">
+                <button onclick="cadastrar()" type="submit">Cadastre-se</button> 
+                <p>Já tem cadastro?<a href="#"> Entre na sua conta</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    // Listas dos parâmetros
+    var listaCaracteres = ['!','@','#','$', '%', '&', '*'];
+    var listaNumeros = ['1','2','3','4','5','6','7','8','9','0'];
+    var listaToken = ['OEXL2RBY6mYaSTbPoF22xLK6m8TIk8kRcAQgRkJCSGZQDJIiik6YteYyY7reo7CR', 
+    'UqFbqaEGsPzrSIuc6mQxKUqib2qqGfgWjg0YHar98b1C2B9dixxWBQVIptiVCOLf', 
+    'ZYRJDOVgpacZOwKhxjtTOECcMOiKdPVTuzmsMPmBKslXalYklDakZhZxcuULmHcd' ];
+
+    // Variáveis de validação de cadastro
+    var cpfValido = false;
+    var emailValido = false;
+    var telefoneValido = false;
+    var senhaValida = false;
+    var confirmValido = false;
+
+        function cadastrar() {
+    // Variavel do campo token
+    var token = input_token.value;
+
+    // Validação dos tokens cadastrados no Banco de Dados + validações dos campos preechidos para efetuar cadastro
+        if ((token == listaToken[0] || token == listaToken[1] || token == listaToken[2]) && 
+        senhaValida && confirmValido && cpfValido && emailValido && telefoneValido) {
+                alert('Cadastro Efetuado!');
+        // Limpando os campos, após o cadastro ser efetuado
+            input_nomeCompleto.value = "";
+            input_cpf.value = "";
+            input_email.value = "";
+            input_telefone.value = "";
+            input_senha.value = "";
+            input_confirmSenha.value = "";
+            input_token.value = "";
+            } else {
+                alert('Cadastro Inválido! Confira os campos');
+            } 
+        } 
+
+    function analisarCPF() {
+    // Variáveis do campo cpf
+        var cpf = input_cpf.value;
+        var tamanhoCPF = cpf.length;
+
+    // Validção da quantidade de dígitos do cpf e se o valor digitado é um número;
+        if (tamanhoCPF != 11 || isNaN(cpf)){
+            div_cpf.innerHTML = '<span style="color:red"> 11 dígitos numéricos</span>';
+        } else {
+            cpfValido = true;
+            div_cpf.innerHTML = '';
+        }
+
+        if (cpf == '') {
+            div_cpf.innerHTML= '';
+        }
+    }
+
+    function analisarEmail() {
+    // Variável do campo email
+        var email = input_email.value;
+        
+        if (!email.includes('@')) {
+            div_email.innerHTML = '<span style="color:red">Incluir @</span>'
+        } else {
+            emailValido = true;
+            div_email.innerHTML = '';
+        }
+
+        if (email == '') {
+            div_email.innerHTML= '';  
+        }
+    }
+
+    function analisarTelefone() {
+    // Variável do campo telefone
+        var tel = input_telefone.value;
+        var tamanhoTel = tel.length;
+
+       if (isNaN(tel) || tamanhoTel > 11) {
+            div_telefone.innerHTML = '<span style="color:red">Digite um telefone válido</span>'
+        } else {
+            telefoneValido = true;
+            div_telefone.innerHTML = '';
+        }
+
+        if (tel == '') {
+            div_telefone.innerHTML= '';  
+        } 
+    }
+
+    function validarSenha () {
+    // Variável do campo senha
+        var senha = input_senha.value;
+
+    // Variáveis de configuração
+        var tamanhoSenha = senha.length;
+        var cont1 = 0;
+        var cont2 = 0;
+        var mensagem = "";
+
+    // Valores booleanos com padrões de senha
+        var tamanhoValido = false;
+        var caractereValido = false;  
+        var numeroValido = false; 
+        var minusculoValido = false;
+        var maiusculoValido = false;
+
+    // Mínimo 8 caracteres - validação quando o padrão é atingido
+        if (tamanhoSenha < 8) {
+            mensagem += `<span style="color:red"> 8 caracteres </span>, `;
+        } else {
+            tamanhoValido = true;
+        }
+        
+    // Mínimo um caractere especial - validação quando o padrão é atingido
+    // Usando while até o includes validar todos os caracteres da Lista de Caracteres Especiais
+        while (cont1 < listaCaracteres.length) {
+            if (senha.includes(listaCaracteres[cont1])) {
+                caractereValido = true;
+            }
+            cont1++;
+        } if (!caractereValido) {
+        mensagem += `<span style="color:red"> 1 caractere especial </span>, `;
+        }
+        
+    // Mínimo um número - validação quando o padrão é atingido
+    // Usando while até o includes validar todos os número da Lista de Números
+        while (cont2 < listaNumeros.length) {
+            if (senha.includes(listaNumeros[cont2])){
+                numeroValido = true;
+            }
+            cont2++;
+        } if (!numeroValido) {
+            mensagem += `<span style="color:red"> 1 número</span>, `;
+        }
+
+    // Mínimo uma letra maiúscula - validação quando o padrão é atingido
+        if (senha == senha.toLowerCase()) {
+           mensagem += '<span style="color:red"> 1 Letra Maiúscula</span>, '; 
+        } else {
+            maiusculoValido = true;
+        }
+
+    // Mínimo uma letra minúscula - validação quando o padrão é atingido
+        if (senha == senha.toUpperCase()) {
+            mensagem += '<span style="color:red">1 Letra Minúscula</span>';
+        } else {
+            minusculoValido = true;
+        }
+        
+        div_senha.innerHTML = mensagem;
+
+    // Validação geral 
+    if (tamanhoValido && caractereValido && numeroValido && maiusculoValido && minusculoValido) {
+        senhaValida = true;
+        }
+    }
+
+    function confirmarSenha() {
+    // Variáveis do campo confirmar senha
+    var senha = input_senha.value;
+    var confirmSenha = input_confirmSenha.value;
+    
+    // Variável de configuração
+    var validacao = "";
+
+        if (senha != confirmSenha) {
+            validacao = '<span style="color:red">Senha Incorreta</span>';
+        } else {
+            confirmValido = true;
+        }
+
+        if (confirmSenha == '') {
+            validacao = "";
+        }
+
+        div_confirmSenha.innerHTML = validacao;
+    }
+
+</script>

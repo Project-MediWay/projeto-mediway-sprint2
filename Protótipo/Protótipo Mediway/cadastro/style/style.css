@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans", sans-serif;
+}
+
+/*Início body*/
+body {
+    background-image: url(../assets/fundocadastro.jpg);
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+/*Final body*/
+
+/*Início header*/
+.header {
+    display: flex;
+    background-color: #fff;
+    width: 100%;
+    height: 70px;
+}
+
+.header img {
+    width: 28%;
+}
+/*Final header*/
+
+.titulo h1 {
+    margin-bottom: 20px;
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+/*Início container*/
+.container {
+    display: flex;
+    width: 50%;
+    height: 30%;
+    border-radius: 15px;
+}
+
+.form {
+    background-color: #fbffff;
+    border-radius: 40px;
+}
+
+.input-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    width: 700px;
+    height: 375px;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 39%;
+}
+
+.esquerda {
+    margin-right: 50px;
+}
+
+.direita {
+    margin-left: 50px;
+}
+
+.input-box input {
+    margin: 5px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 6px #0000001c ;
+    background-color: rgb(240, 240, 240);
+}
+
+::placeholder {
+    color: rgba(156, 154, 154, 0.76) ;
+}
+
+.validarSenha {
+    width: 700px;
+}
+/*Final container*/
+
+/*Início botão*/
+button:hover {
+    cursor: pointer;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.button button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 9px;
+    color: #fff;
+    background-color: #3961E1;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    width: 145px;
+    height: 45px;
+    box-shadow: 0px 4px 4px 0px rgba(156, 154, 154, 0.76);
+}
+
+.button p {
+    color: #333;
+}
+
+.button a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+/*Final botão*/
