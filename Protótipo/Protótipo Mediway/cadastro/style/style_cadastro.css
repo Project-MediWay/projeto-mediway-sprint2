@@ -25,7 +25,7 @@ body {
     display: flex;
     background-color: #fff;
     width: 100%;
-    height: 70px;
+    /* height: 10%; */
 }
 
 .header img {
@@ -42,19 +42,19 @@ body {
 /*Início container*/
 .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 50%;
-    height: 30%;
+    /* height: 30%; */
     border-radius: 30px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-}
-
-.form {
     background-color: #fbffff;
-    border-radius: 40px;
+    
 }
 
 .input-group {
+    /* background-color: red; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -64,6 +64,7 @@ body {
 }
 
 .input-box {
+    background-color: aqua;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
