@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans", sans-serif;
+}
+
+.header {
+    width: 100vw;
+    height: 9vh;
+    display: flex;
+    background-color: #fff;
+}
+
+.container1 {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    height:100%;
+}
+
+.logo {
+    height: 50px;
+}
+
+.user {
+    height: 40px;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    opacity: 1;
+    cursor: pointer;
+}
+
+.btn-sair {
+    margin-left: 85%;
+}
+
+.main {
+    background-color: #e2e2e2;
+    width: 100vw;
+    height: 91vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+
+
+
+/* Titulo da Pagina */
+.title {
+    background: linear-gradient(90deg, rgba(89, 109, 227, 1) 0%, rgba(0, 49, 208, 1) 100%);
+    height: 10%;
+    width: 97%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-main {
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.btn-voltar{
+    height: 40px;
+    cursor: pointer;
+    position: absolute;
+    left: 35px;
+}
+
+/* Titulo da Pagina */
+
+
+
+
+
+/* KPIS da Pagina */
+.kpis {
+    height: 14%;
+    width: 97%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.texto-kpis {
+    color: #fff;
+    font-weight: bold;
+    color: #fff;
+    font-weight: bold;
+}
+
+.metrica {
+    background: linear-gradient(90deg, rgba(89, 109, 227, 1) 0%, rgba(0, 49, 208, 1) 100%);
+    height: 100%;
+    width: 15%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.qtd-veiculos {
+    background: linear-gradient(90deg, rgba(89, 109, 227, 1) 0%, rgba(0, 49, 208, 1) 100%);
+    height: 100%;
+    width: 31.5%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+
+.qtd-normal {
+    background: linear-gradient(90deg, rgba(89, 109, 227, 1) 0%, rgba(0, 49, 208, 1) 100%);
+    height: 100%;
+    width: 15%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+
+.qtd-no-limite {
+    background-color: #FFCC4D;
+    height: 100%;
+    width: 15%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+
+.qtd-alerta {
+    background: linear-gradient(90deg, rgba(253, 0, 0, 1) 0%, rgba(171, 29, 29, 1) 100%);
+    height: 100%;
+    width: 15%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+
+/* KPIS da Pagina */
+
+
+
+
+/* Monitoramento e Historico da Pagina */
+.informacoes {
+    height: 65%;
+    width: 97%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.historico {
+    height: 100%;
+    width: 49%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+
+.titulo-historico {
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    height: 10%;
+    width: 80%;
+    border: 5px solid rgba(0, 49, 208, 1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.tabela-historico {
+    background-color: #fff;
+    height: 56vh;
+    width: 100%;
+    border: 10px solid rgba(0, 49, 208, 1);
+    border-radius: 10px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+table{
+    border-collapse: collapse;
+    width: 98%;
+    height: 95%;
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.cabecalho-tabela {
+    letter-spacing: 1px;
+    
+}
+
+th {
+    padding: 50px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+
+
+
+
+.monitoramento {
+    background-color: #fff;
+    height: 100%;
+    width: 49%;
+    border: 10px solid rgba(0, 49, 208, 1);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+
+.card {
+    color: #fff;
+    background-color: rgb(255, 255, 255);
+    height: 230px;
+    width: 150px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-normal {
+    border: 5px solid rgba(0, 49, 208, 1);
+    border-radius: 10px;
+}
+
+.card-no-limite {
+    border: 5px solid #FFCC4D;
+    border-radius: 10px;
+}
+
+.card-alerta {
+    border: 5px solid rgba(253, 0, 0, 1);
+    border-radius: 10px;
+}
+
+.img-caminhao {
+    height: 60px;
+}
+
+.id-caminhao{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.temp-caminhao {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.texto-card {
+    color: black;
+    font-size: 15px;
+}
+
+.texto-placa {
+    font-weight: bold;
+}
+
+.status-caminhao {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-ok {
+    height: 15px;
+    margin-right: 10px;
+}
+
+.status-atencao {
+    height: 20px;
+    margin-right: 5px;
+}
+
+.status-cuidado{
+    height: 20px;
+    margin-right: 5px;
+}
+/* Monitoramento e Historico da Pagina */
