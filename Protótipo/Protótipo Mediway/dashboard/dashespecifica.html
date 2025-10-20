@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="styles/styleespecifica.css" />
+</head>
+
+<body>
+  <div class="header">
+    <div class="container1">
+      <ul class="navbar">
+        <img src="./src/logo.PNG" alt="" class="logo" />
+      </ul>
+      <ul class="navbar btn-sair">
+        Sair
+      </ul>
+      <ul class="navbar">
+        <img src="src/user.png" alt="" class="user"/>
+      </ul>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="title">
+      <img src="src/voltar.png" height="40px" class="btn-voltar" onclick="voltar()" >
+      <span class="title-main">Monitoramento de Veículo: IDH1233</span>
+    </div>
+
+    <div class="kpis">
+      <div class="metrica">
+        <span class="valor-kpis">Ideal:</span>
+        <span class="valor-kpis">2°C - 8°C</span>
+      </div>
+      <div class="qtd-vacinas">
+        <span class="valor-kpis">140</span>
+        <span class="texto-kpis">Quantidade de Vacinas</span>
+      </div>
+      <div class="total-alertas">
+        <span class="valor-kpis">12</span>
+        <span class="texto-kpis"">Total de Alertas</span>
+        </div>
+        <div class=" temperatura-media">
+          <span class="valor-kpis">12°C</span>
+          <span class="texto-kpis">Temperatura Media</span>
+      </div>
+      <div class="temperatura-atual">
+        <span class="valor-kpis">5°C</span>
+        <span class="texto-kpis">Temperatura atual</span>
+      </div>
+    </div>
+
+    <div class="graficos">
+
+      <div class="grafico-temperatura">
+        <canvas id="grafico_temperatura"></canvas>
+      </div>
+
+      <div class="grafico-alerta">
+        <canvas id="grafico_alerta"></canvas>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  function voltar(){
+    window.location.href='dashgeral.html'
+  }
+
+  const ctxTemp = document.getElementById('grafico_temperatura');
+  const ctxAlerta = document.getElementById('grafico_alerta');
+
+    new Chart(ctxTemp, {
+      type: 'line',
+      data: {
+        labels: ['Hora 1', 'Hora 2', 'Hora 3', 'Hora 4', 'Hora 5', 'Hora 6'],
+        datasets: [{
+          label: 'Temperatura',
+          data: [9, 5, 6, 1, 10, 3],
+          borderWidth: 1,
+         borderColor: '#005c9e',
+         pointBackgroundColor:'#005c9e',
+         backgroundColor: '#005c9e',
+         borderWidth: 3,
+         tension: 0.1,
+
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins:{
+          title: {
+          display: true,
+          text: 'Monitoramento de Temperatura da Viagem',
+          color: '#111',
+          font: {
+            size: 18,
+            weight: 'bold'
+        }
+      },
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    new Chart(ctxAlerta, {
+      type: 'bar',
+      data: {
+        labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
+        datasets: [{
+          label: 'Alertas',
+          data: [10, 15, 6, 20],
+         borderColor: '#e70000',
+         pointBackgroundColor:'#e70000',
+         backgroundColor: '#e70000'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins:{
+          title: {
+          display: true,
+          text: 'Monitoramento de Alertas',
+          color: '#111',
+          font: {
+            size: 28,
+            weight: 'bold'
+        }
+      },
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+</script>
