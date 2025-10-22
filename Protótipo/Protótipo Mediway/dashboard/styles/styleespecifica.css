@@ -35,6 +35,7 @@
 
 .user {
     height: 40px;
+    cursor: pointer;
 }
 
 .logo:hover {
@@ -117,15 +118,19 @@
 .metrica {
     background: linear-gradient(90deg, rgba(89, 109, 227, 1) 0%, rgba(0, 49, 208, 1) 100%);
     height: 90%;
-    width: 15%;
+    width: 22%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+.metrica:hover{
+    scale: 1.01;
+    transition: 0.1s;
+}
 
-.qtd-vacinas {
+/* .qtd-vacinas {
     background: linear-gradient(90deg, rgba(89, 109, 227, 1) 0%, rgba(0, 49, 208, 1) 100%);
    height: 90%;
     width: 20%;
@@ -136,12 +141,12 @@
     justify-content: center;
     align-items: center;
     font-size: 28px;
-}
+} */
 
 .total-alertas {
     background: linear-gradient(90deg, rgba(253, 0, 0, 1) 0%, rgba(171, 29, 29, 1) 100%);
    height: 90%;
-    width: 15%;
+    width: 22%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -149,29 +154,42 @@
     align-items: center;
     font-size: 28px;
 }
+.total-alertas:hover{
+    scale: 1.01;
+    transition: 0.1s;
+}
 
 .temperatura-media {
-    background: linear-gradient(90deg, rgba(253, 0, 0, 1) 0%, rgba(171, 29, 29, 1) 100%);
+    background: linear-gradient(90deg, rgba(89, 109, 227, 1) 0%, rgba(0, 49, 208, 1) 100%);
+    /* background: linear-gradient(90deg, rgba(253, 0, 0, 1) 0%, rgba(171, 29, 29, 1) 100%); */
    height: 90%;
-    width: 20%;
+    width: 22%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 28px;
+}
+.temperatura-media:hover{
+    scale: 1.01;
+    transition: 0.1s;
 }
 
 .temperatura-atual {
     background: linear-gradient(90deg, rgba(89, 109, 227, 1) 0%, rgba(0, 49, 208, 1) 100%);
-   height: 90%;
-    width: 20%;
+    height: 90%;
+    width: 22%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 28px;
+}
+.temperatura-atual:hover{
+    scale: 1.01;
+    transition: 0.1s;
 }
 
 /* KPIS da Pagina */
