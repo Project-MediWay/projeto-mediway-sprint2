@@ -22,27 +22,48 @@
 
     <main class="container">
 
-        <form>
+        <div>
             <h1>Bem-vindo!</h1>
             <div class="input_box">
                 &nbsp;Email:
-                <input type="email" placeholder="   Digite seu email">
+                <input type="email" placeholder="   Digite seu email" id="ipt_email">
                 <i class="bx bxs-user"></i>
             </div>
 
             <div class="input_box">
                 &nbsp;Senha:
-                <input type="password" placeholder="   Insira sua senha">
+                <input type="password" placeholder="   Insira sua senha" id="ipt_senha">
                 <i class="bx bxs-lock-alt"></i>
             </div>
 
-            <button type="submit" class="login">Entrar</button>
+            <button type="submit" class="login" onclick="autenticacao()">Entrar</button>
 
             <div class="registre">
-                <p>Não tem um cadastro? <b><a href=""> Registre-se</a></b></p>
+                <p>Não tem um cadastro? <b><a href="../cadastro/cadastro.html"> Registre-se</a></b></p>
             </div>
-        </form>
+        </div>
     </main>
 </body>
 
 </html>
+
+
+<script>
+       
+    function autenticacao() {
+        var email = ipt_email.value;
+        var senha = ipt_senha.value; 
+
+        if ((email == 'julia.araripe@gmail.com' && senha == '*Juli@1#') ||
+         (email == 'claudio.frizza@gmail.com' && senha == '*Fr1zz@#')) {
+            alert("Usuário autenticado")
+            window.location.href ='../dashboard/dashgeral.html'
+
+        } else {
+            alert("Falha na autenticação")
+           
+        }
+
+    }
+
+</script>
