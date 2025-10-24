@@ -1,0 +1,97 @@
+*{
+    font-family: "Noto Sans", sans-serif;
+}
+
+html,body{
+    height: 99%;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; 
+    background-color: white;
+    padding: 20px 0;
+}
+
+body{
+    background-color: #3ea3f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.containerCalculadora{
+    display: flex;
+    
+    align-items: center;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    width: 55%;
+    height: 39%;
+    border-radius: 30px;
+}
+
+.alinhamentoTextoInput{
+    justify-content: space-between;
+    background-color: blue;
+    display: flex;
+}
+
+.espacoTexto{
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.espacoInput{
+    display: flex;
+    flex-direction: column;
+}
+
+.alinhamentoCamposH{
+    /* background-color: red; */
+    width: 55%;
+}
+
+.alinhamentoCampos{
+    background-color: red;
+    width: 80%;
+}
+
+button{
+    font-weight: bold;
+    background-color: #3961E1;
+    color: white;
+    border-radius: 14px;
+    border: none;
+    width: 100px;
+    height: 30px;
+}
+
+button:hover{
+    background-color: #0d3edf;
+}
+
+h1{
+    color: white;
+}
+
+input{
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: #D9D9D9;
+    outline: none;
+    /* padding: 5px 200px; */
+    width: 90%;
+}
+
+::placeholder{
+    color: #000000;
+}
