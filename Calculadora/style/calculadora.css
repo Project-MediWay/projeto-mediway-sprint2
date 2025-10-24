@@ -1,40 +1,77 @@
 *{
-    font-family: "Noto Sans", sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 html,body{
     height: 99%;
 }
 
-.header {
-    position: fixed;
+.navbar {
     top: 0;
-    left: 0;
-    width: 100%;
+    position: fixed;
     display: flex;
-    justify-content: flex-start; 
+    padding: 5px 20px;
     background-color: white;
-    padding: 20px 0;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;
 }
 
+.botoes {
+    display: flex;
+    gap: 45px ;
+    margin-right: 25px;
+    align-items: center;
+    color: black;   
+}
+
+.botoes .login{
+    background-color:#3961E1;
+    margin-top: 2px;
+    border-radius: 7px;
+    color: white;
+    padding: 5px 20px;
+}
+.botoes .login:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+    cursor: pointer;
+}
+.botoes .cadastro:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+
 body{
-    background-color: #3ea3f7;
+    background: #549BFF;
+    /* background: linear-gradient(180deg, rgba(84, 155, 255, 1) 49%, rgba(255, 255, 255, 1) 91%); */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 10px;
+}
+
+.containerDuasCalculadora{
+    display: flex;
+    width: 55%;
+    height: 70%;
+    justify-content: space-evenly;
+    /* background-color: red; */
 }
 
 .containerCalculadora{
     display: flex;
-    
     align-items: center;
     flex-direction: column;
     background-color: #FFFFFF;
-    width: 55%;
-    height: 39%;
+    width: 45%;
+    height: 100%;
     border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;  
 }
 
 .alinhamentoTextoInput{
@@ -61,7 +98,7 @@ body{
 }
 
 .alinhamentoCampos{
-    background-color: red;
+    /* background-color: red; */
     width: 80%;
 }
 
@@ -86,12 +123,12 @@ h1{
 input{
     border: 2px solid white;
     border-radius: 5px;
-    background-color: #D9D9D9;
+    background-color: #efefef;
     outline: none;
-    /* padding: 5px 200px; */
+    padding: 5px ;
     width: 90%;
 }
 
 ::placeholder{
-    color: #000000;
+    color: #979797;
 }
