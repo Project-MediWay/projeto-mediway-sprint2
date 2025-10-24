@@ -1,5 +1,6 @@
 html {
     overflow-x: hidden;
+     scroll-behavior: smooth;
 }
 
 * {
@@ -17,8 +18,9 @@ a {
     text-decoration: none;
     color: inherit; 
 }
+
 .navbar {
-    /* position: fixed; */
+    position: fixed;
     display: flex;
     padding: 5px 20px;
     background-color: white;
@@ -31,7 +33,7 @@ a {
 .navbar img {
     display: flex;
     justify-content: space-between;
-    height: 120px;
+    height: 100px;
     width: auto;
     
 }
@@ -565,10 +567,12 @@ a {
     padding: 17px 12px;
     border-radius: 12px;
     background-color: #FFFFFF;
-    width: 21%;
+    width: 25%;
+    /* opacity: 0.79; */
 }
 
 .box-fale input {
+    align-self: flex-start;
     border-radius: 7px;
     padding: 7px 12px;
 }
@@ -582,9 +586,9 @@ a {
     justify-content: center;
     background-color: #3961E1;
     color: white;
-    padding: 2px 5px 4px 3px;
-    border-radius: 3px;
-    align-items: center;
+    padding: 5px 12px;
+    border-radius: 10px;
+    align-self: center;
 }
 
 .footer {
@@ -666,7 +670,6 @@ a {
 .container-text a{
     display: flex;
     flex-direction: column;
-    column-gap: 40px;
     color: white;
     width: 100%;
 } 
