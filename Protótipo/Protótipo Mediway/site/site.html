@@ -225,6 +225,7 @@
                         <span>Mensagem:</span> <br>
                         <input type="text" id="input_mensagem" placeholder=" Digite sua Mensagem"> <br>
                         <button onclick="envio()"> Enviar</button>
+                        <div id="div_mensagem"></div>
                     </div>
                 </div>
             </div>
@@ -274,14 +275,29 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
+   
 
 </body>
 
 </html>
+<script>
+
+function envio(){
+ var email = input_email.value
+ var nome = input_nome.value
+ var telefone = Number (input_telefone.value)
+ var mensagem = input_mensagem.value
+
+ if(email.length == "" || nome.length == "" || telefone.length == "" || mensagem.length == "" ){
+    div_mensagem.innerHTML == `  <span style="color: red;"> <b>Erro! Preencha todos os campos <b> </span>`
+ } else {
+    div_mensagem.innerHTML = `  <span style="color: green;"> <b> Mensagem enviada com sucesso! <b> </span>`
+ }
+
+
+}
+
+
+
+
+</script>
