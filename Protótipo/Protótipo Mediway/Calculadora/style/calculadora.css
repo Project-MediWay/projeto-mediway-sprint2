@@ -6,17 +6,28 @@ html,body{
     height: 99%;
 }
 
+a {
+    text-decoration: none;
+    color: inherit; 
+}
+
 .navbar {
-    top: 0;
     position: fixed;
+    top: 0;
     display: flex;
     padding: 5px 20px;
     background-color: white;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
+    height: 80px;
     width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.navbar img {
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    width: auto;
 }
 
 .botoes {
@@ -45,10 +56,9 @@ html,body{
     cursor: pointer;
 }
 
-
 body{
     background: #549BFF;
-    /* background: linear-gradient(180deg, rgba(84, 155, 255, 1) 49%, rgba(255, 255, 255, 1) 91%); */
+    background: linear-gradient(180deg, rgba(84, 155, 255, 1) 49%, rgba(255, 255, 255, 1) 91%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,8 +78,8 @@ body{
     align-items: center;
     flex-direction: column;
     background-color: #FFFFFF;
-    width: 45%;
-    height: 100%;
+    width: 48%;
+    height: 80%;
     border-radius: 30px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;  
 }
@@ -94,7 +104,7 @@ body{
 
 .alinhamentoCamposH{
     /* background-color: red; */
-    width: 55%;
+    width: 53%;
 }
 
 .alinhamentoCampos{
@@ -118,6 +128,10 @@ button:hover{
 
 h1{
     color: white;
+}
+
+h5{
+    color: rgb(198, 198, 198);
 }
 
 input{

@@ -9,8 +9,11 @@
 </head>
 
 <style>
+  #div_mensagem {
+    padding: 0 30px;
+  }
   #div_mensagem_2 {
-    padding: 0 10px;
+    padding: 0 30px;
   }
   .green {
     color: green;
@@ -26,13 +29,15 @@
 </style>
 
 <body>
-  <div class="header">
-    <div class="container1">
-      <a href="../site/site.html">
-        <img src="./logo2.PNG" alt="" class="logo">
-      </a>
+  <div class="navbar">
+        <img src="style/logo_mediway.png" alt="">
+        <div class="botoes">
+            <a href="../site/site.html"> <b> Inicio </b></a>
+            <a href="../Calculadora/calculadora.html">Calculadora</a>
+            <a class="cadastro" href="../cadastro/cadastro.html">Cadastro</a>
+            <a class="login" href="../login/login.html">Login</a>
+        </div>
     </div>
-  </div>
 
   <div class="alinhamentoCamposH">
     <h1>Simulador Financeiro</h1>
@@ -84,7 +89,7 @@
     var precoMediaVacina = Number(input_preco.value);
     var resultadoPrejuizo = qtdVacina * precoMediaVacina * 0.2;
 
-    div_mensagem.innerHTML = `<br>De acordo com a OMS, 50% das vacinas chegam ao destino deterioradas, sendo 46% por conta da quebra da cadeia de frio durante o transporte.<br>Com base no preço médio de <b>${precoMediaVacina.toLocaleString('pt-BR', { style: 'currency', currency: "BRL" })}</b>, na quantidade de <b>${qtdVacina}</b> vacinas e na <b class="red">margem de perda brasileira de 20%</b>, com o nosso sistema, é possível diminuir o prejuízo financeiro <b class="green">EM ATÉ ${resultadoPrejuizo.toLocaleString('pt-BR', { style: 'currency', currency: "BRL" })}</b><h5>*Fonte: ANVISA e OMS<h5>`;
+    div_mensagem.innerHTML = `<br>De acordo com a OMS, 50% das vacinas chegam ao destino deterioradas, sendo 46% por conta da quebra da cadeia de frio durante o transporte.<br>Com base no preço médio de <b>${precoMediaVacina.toLocaleString('pt-BR', { style: 'currency', currency: "BRL" })}</b>, na quantidade de <b>${qtdVacina}</b> vacinas e na <b class="red">margem de perda brasileira de 20%</b>, com o nosso sistema, é possível diminuir o prejuízo financeiro <b class="green">EM ATÉ ${resultadoPrejuizo.toLocaleString('pt-BR', { style: 'currency', currency: "BRL" })}</b><h5>*Fonte: ANVISA e OMS</h5>`;
   }
 
   function calcularMargem() {
@@ -94,11 +99,11 @@
     var margemPerdas = (vacinasPerdidas / qtdVacinas * 100);
 
     if (margemPerdas == 20) {
-      div_mensagem_2.innerHTML = `<br>Com uma margem de <b class="yellow">${margemPerdas}% de perdas</b>, sua empresa está no limite da média de mercado. Ainda que pareça pouco, isso pode gerar um <b class="yellow">prejuízo financeiro significativo!</b><br> Considerar a utilização da <b class="green">nossa solução poderá otimizar seus resultados.</b><h4>*Fonte: ANVISA e OSM</h4>`;
+      div_mensagem_2.innerHTML = `<br>Com uma margem de <b class="yellow">${margemPerdas}% de perdas</b>, sua empresa está no limite da média de mercado. Ainda que pareça pouco, isso pode gerar um <b class="yellow">prejuízo financeiro significativo!</b><br> Considerar a utilização da <b class="green">nossa solução poderá otimizar seus resultados.</b><h5>*Fonte: ANVISA e OSM</h5>`;
     } else if (margemPerdas < 20) {
-      div_mensagem_2.innerHTML = `<br>Com uma margem de <b class="red">${margemPerdas.toFixed(2)}%</b>, as perdas da sua empresa estão <b class="green">${(20 - margemPerdas).toFixed(2)}% abaixo da média de mercado</b>. Ainda que sua empresa esteja melhor posicionada em relação à concorrência, <br> é sempre necessário <b class="green">buscar a melhor performance possível, manter o controle e estar em conformidade com as normas da ANVISA</b>. Nossa empresa pode lhe ajudar com isso! <h4>*Fonte: ANVISA e OSM </h4>`;
+      div_mensagem_2.innerHTML = `<br>Com uma margem de <b class="red">${margemPerdas.toFixed(2)}%</b>, as perdas da sua empresa estão <b class="green">${(20 - margemPerdas).toFixed(2)}% abaixo da média de mercado</b>. Ainda que sua empresa esteja melhor posicionada em relação à concorrência, <br> é sempre necessário <b class="green">buscar a melhor performance possível, manter o controle e estar em conformidade com as normas da ANVISA</b>. Nossa empresa pode lhe ajudar com isso! <h5>*Fonte: ANVISA e OSM </h5>`;
     } else {
-      div_mensagem_2.innerHTML = `<br>Com uma margem de <b class="red">${margemPerdas.toFixed(2)}%</b>, as perdas da sua empresa estão <b class="red">${(margemPerdas - 20).toFixed(2)}% acima da média de mercado</b>.<br> Esse indicador pode significar que sua empresa está tendo </b class="red">grandes prejuízos financeiros<b>. Considerar a utilização da<b class="green"> nossa solução poderá minizar essas perdas!</b>  <h4>*Fonte: ANVISA e OMS </h4>`;
+      div_mensagem_2.innerHTML = `<br>Com uma margem de <b class="red">${margemPerdas.toFixed(2)}%</b>, as perdas da sua empresa estão <b class="red">${(margemPerdas - 20).toFixed(2)}% acima da média de mercado</b>.<br> Esse indicador pode significar que sua empresa está tendo </b class="red">grandes prejuízos financeiros<b>. Considerar a utilização da<b class="green"> nossa solução poderá minizar essas perdas!</b>  <h5>*Fonte: ANVISA e OMS </h5>`;
     }
   }
 </script>
