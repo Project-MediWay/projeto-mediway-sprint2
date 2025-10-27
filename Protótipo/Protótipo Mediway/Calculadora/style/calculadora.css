@@ -1,9 +1,11 @@
-*{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+/* ======= CONFIGURAÇÕES GERAIS ======= */
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-html,body{
-    height: 99%;
+html {
+    height: 100%;
 }
 
 a {
@@ -11,53 +13,24 @@ a {
     color: inherit; 
 }
 
+/* ======= NAVBAR ======= */
 .navbar {
-    position: fixed;
     top: 0;
-    display: flex;
-    padding: 5px 20px;
-    background-color: white;
-    justify-content: space-between;
-    align-items: center;
-    height: 80px;
+    position: fixed;
     width: 100%;
+    height: 8%;
+    background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.navbar img {
-    display: flex;
-    justify-content: space-between;
-    height: 100px;
-    width: auto;
+
+img {
+    height: 60px;
 }
 
-.botoes {
-    display: flex;
-    gap: 45px ;
-    margin-right: 25px;
-    align-items: center;
-    color: black;   
-}
-
-.botoes .login{
-    background-color:#3961E1;
-    margin-top: 2px;
-    border-radius: 7px;
-    color: white;
-    padding: 5px 20px;
-}
-.botoes .login:hover {
-    transform: scale(1.1);
-    opacity: 0.8;
-    cursor: pointer;
-}
-.botoes .cadastro:hover {
-    transform: scale(1.1);
-    opacity: 0.8;
-    cursor: pointer;
-}
-
-body{
-    background: #549BFF;
+/* ======= CORPO DA PÁGINA ======= */
+body {
+    margin: 0;
+    height: 100%;
     background: linear-gradient(180deg, rgba(84, 155, 255, 1) 49%, rgba(255, 255, 255, 1) 91%);
     display: flex;
     align-items: center;
@@ -65,54 +38,60 @@ body{
     flex-direction: column;
 }
 
-.containerDuasCalculadora{
+/* ======= CONTAINER PRINCIPAL (DUAS CALCULADORAS) ======= */
+.containerDuasCalculadora {
+    /* background-color: red; */
     display: flex;
     width: 55%;
     height: 70%;
     justify-content: space-evenly;
-    /* background-color: red; */
 }
 
-.containerCalculadora{
+/* ======= CADA CALCULADORA ======= */
+.containerCalculadora {
     display: flex;
     align-items: center;
     flex-direction: column;
     background-color: #FFFFFF;
     width: 48%;
-    height: 80%;
+    height: 100%;
     border-radius: 30px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;  
 }
 
-.alinhamentoTextoInput{
+/* ======= ALINHAMENTO E ESPAÇAMENTO INTERNO ======= */
+.alinhamentoTextoInput {
     justify-content: space-between;
-    background-color: blue;
     display: flex;
 }
 
-.espacoTexto{
-    background-color: green;
+.espacoTexto {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.espacoInput{
+.espacoInput {
     display: flex;
     flex-direction: column;
 }
 
-.alinhamentoCamposH{
+/* h1, h3{
+    background-color: blue;
+} */
+
+.alinhamentoCamposH {
     /* background-color: red; */
     width: 53%;
+    height: 15%;
 }
 
-.alinhamentoCampos{
-    /* background-color: red; */
+.alinhamentoCampos {
     width: 80%;
 }
 
-button{
+/* ======= BOTÕES ======= */
+button {
     font-weight: bold;
     background-color: #3961E1;
     color: white;
@@ -122,27 +101,50 @@ button{
     height: 30px;
 }
 
-button:hover{
+button:hover {
     background-color: #0d3edf;
 }
 
-h1{
+/* ======= TÍTULOS E TEXTOS ======= */
+h1 {
     color: white;
 }
 
-h5{
+h5 {
     color: rgb(198, 198, 198);
 }
 
-input{
+/* ======= CAMPOS DE ENTRADA (INPUTS) ======= */
+input {
     border: 2px solid white;
     border-radius: 5px;
     background-color: #efefef;
     outline: none;
-    padding: 5px ;
+    padding: 5px;
     width: 90%;
 }
 
-::placeholder{
+::placeholder {
     color: #979797;
+}
+
+/* ======= ESTILOS EXTRAS (cores e espaçamentos de mensagens) ======= */
+
+
+#div_mensagem, #div_mensagem_2 {
+    /* background-color: red; */
+    padding: 0px 30px;
+    font-size: 15px;
+}
+
+.green {
+    color: green;
+}
+
+.yellow {
+    color: orange;
+}
+
+.red {
+    color: red;
 }

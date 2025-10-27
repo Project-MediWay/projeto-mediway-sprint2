@@ -286,14 +286,18 @@
 function envio(){
  var email = input_email.value
  var nome = input_nome.value
- var telefone = Number (input_telefone.value)
+ var telefone = Number(input_telefone.value)
  var mensagem = input_mensagem.value
 
- if(email.length == "" || nome.length == "" || telefone.length == "" || mensagem.length == "" ){
-    div_mensagem.innerHTML == `  <span style="color: red;"> <b>Erro! Preencha todos os campos <b> </span>`
- } else {
-    div_mensagem.innerHTML = `  <span style="color: green;"> <b> Mensagem enviada com sucesso! <b> </span>`
- }
+ if((email.length > 0) && (nome.length > 0) && (telefone != "") && (mensagem.length > 0) ){
+     div_mensagem.innerHTML = `<span style="color: green;"> <b> Mensagem enviada com sucesso! <b> </span>`
+
+        if(!email.includes('@')){
+            div_mensagem.innerHTML = `<span style="color: red;"> <b> E-mail inválido <b> </span>`
+        }
+     } else {
+    div_mensagem.innerHTML = `<span style="color: red;"> <b> Erro! Preencha todos os campos <b> </span>`
+    }
 
 
 }

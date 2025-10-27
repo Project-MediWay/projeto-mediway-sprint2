@@ -6,50 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style/calculadora.css">
   <title>Calculadora</title>
+
 </head>
 
-<style>
-  #div_mensagem {
-    padding: 0 30px;
-  }
-  #div_mensagem_2 {
-    padding: 0 30px;
-  }
-  .green {
-    color: green;
-  }
-
-  .yellow {
-    color: orange;
-  }
-
-  .red {
-    color: red;
-  }
-</style>
-
 <body>
-  <div class="navbar">
-        <img src="style/logo_mediway.png" alt="">
-        <div class="botoes">
-            <a href="../site/site.html"> <b> Inicio </b></a>
-            <a href="../Calculadora/calculadora.html">Calculadora</a>
-            <a class="cadastro" href="../cadastro/cadastro.html">Cadastro</a>
-            <a class="login" href="../login/login.html">Login</a>
-        </div>
-    </div>
 
-  <div class="alinhamentoCamposH">
-    <h1>Simulador Financeiro</h1>
+  <!-- ======= NAVBAR ======= -->
+  <div class="navbar">
+    <img src="style/logo_mediway.png" alt="">
+  </div>
+
+    <!-- ======= TÍTULO E SUBTÍTULO ======= -->
+    <div class="alinhamentoCamposH">
+      <h1>Simulador Financeiro</h1>
     <h3>Descubra agora mesmo a situação do seu negócio!</h3>
   </div>
 
+  <!-- ======= CONTAINER PRINCIPAL (duas calculadoras lado a lado) ======= -->
   <div class="containerDuasCalculadora">
 
+    <!-- ======= PRIMEIRA CALCULADORA (prejuízo financeiro) ======= -->
     <div class="containerCalculadora">
       <div class="alinhamentoCampos">
         <h3>Calcule o impacto do nosso projeto em seu negócio!</h3>
 
+        <!-- Inputs para quantidade e preço médio das vacinas -->
         <div class="espacoInput">
           <label for="input_vacinas">Insira a quantidade de vacinas:</label>
           <input type="text" id="input_vacina" placeholder="Quantidade de vacinas" /><br>
@@ -59,14 +40,18 @@
           <input type="text" id="input_preco" placeholder="Preço médio das vacinas" /><br>
         </div>
       </div>
+
+      <!-- Botão e área da mensagem -->
       <button onclick="calcularPrejuizo()">Calcular</button>
       <div id="div_mensagem"></div>
     </div>
 
+    <!-- ======= SEGUNDA CALCULADORA (margem de perdas) ======= -->
     <div class="containerCalculadora">
       <div class="alinhamentoCampos">
-
         <h3>Descubra sua margem de perdas em relação ao mercado!</h3>
+
+        <!-- Inputs para quantidade e perdas -->
         <div class="espacoInput">
           <label for="input_qtdVacinas">Insira a quantidade de vacinas:</label>
           <input type="text" id="input_qtdVacinas" placeholder="Quantidade de vacinas" /><br>
@@ -76,34 +61,62 @@
           <input type="text" id="input_vacinasPerdidas" placeholder="Quantidade de vacinas perdidas" /><br>
         </div>
       </div>
+      
+      <!-- Botão e área da mensagem -->
       <button onclick="calcularMargem()">Calcular</button>
       <div id="div_mensagem_2"></div>
     </div>
   </div>
+  
 </body>
-
 </html>
+
+<!-- ======= SCRIPT (LÓGICA DAS CALCULADORAS) ======= -->
 <script>
+  /* --- Calcula o prejuízo financeiro estimado --- */
   function calcularPrejuizo() {
     var qtdVacina = Number(input_vacina.value);
     var precoMediaVacina = Number(input_preco.value);
-    var resultadoPrejuizo = qtdVacina * precoMediaVacina * 0.2;
+    var resultadoPrejuizo = qtdVacina * precoMediaVacina * 0.2; // 20% de perda
 
-    div_mensagem.innerHTML = `<br>De acordo com a OMS, 50% das vacinas chegam ao destino deterioradas, sendo 46% por conta da quebra da cadeia de frio durante o transporte.<br>Com base no preço médio de <b>${precoMediaVacina.toLocaleString('pt-BR', { style: 'currency', currency: "BRL" })}</b>, na quantidade de <b>${qtdVacina}</b> vacinas e na <b class="red">margem de perda brasileira de 20%</b>, com o nosso sistema, é possível diminuir o prejuízo financeiro <b class="green">EM ATÉ ${resultadoPrejuizo.toLocaleString('pt-BR', { style: 'currency', currency: "BRL" })}</b><h5>*Fonte: ANVISA e OMS</h5>`;
+    div_mensagem.innerHTML = `
+      <br>De acordo com a OMS, 50% das vacinas chegam ao destino deterioradas, sendo 46% por conta da quebra da cadeia de frio durante o transporte.<br><br>
+      Com base no preço médio de <b>${precoMediaVacina.toLocaleString('pt-BR', { style: 'currency', currency: "BRL" })}</b>,
+      na quantidade de <b>${qtdVacina}</b> vacinas e na <b class="red">margem de perda brasileira de 20%</b>,
+      com o nosso sistema, é possível diminuir o prejuízo financeiro <b class="green">EM ATÉ ${resultadoPrejuizo.toLocaleString('pt-BR', { style: 'currency', currency: "BRL" })}</b>
+      <h5>*Fonte: ANVISA e OMS</h5>`;
   }
 
+  /* --- Calcula a margem de perdas em porcentagem e exibe uma mensagem personalizada --- */
   function calcularMargem() {
-
     var qtdVacinas = Number(input_qtdVacinas.value);
     var vacinasPerdidas = Number(input_vacinasPerdidas.value);
     var margemPerdas = (vacinasPerdidas / qtdVacinas * 100);
 
     if (margemPerdas == 20) {
-      div_mensagem_2.innerHTML = `<br>Com uma margem de <b class="yellow">${margemPerdas}% de perdas</b>, sua empresa está no limite da média de mercado. Ainda que pareça pouco, isso pode gerar um <b class="yellow">prejuízo financeiro significativo!</b><br> Considerar a utilização da <b class="green">nossa solução poderá otimizar seus resultados.</b><h5>*Fonte: ANVISA e OSM</h5>`;
-    } else if (margemPerdas < 20) {
-      div_mensagem_2.innerHTML = `<br>Com uma margem de <b class="red">${margemPerdas.toFixed(2)}%</b>, as perdas da sua empresa estão <b class="green">${(20 - margemPerdas).toFixed(2)}% abaixo da média de mercado</b>. Ainda que sua empresa esteja melhor posicionada em relação à concorrência, <br> é sempre necessário <b class="green">buscar a melhor performance possível, manter o controle e estar em conformidade com as normas da ANVISA</b>. Nossa empresa pode lhe ajudar com isso! <h5>*Fonte: ANVISA e OSM </h5>`;
-    } else {
-      div_mensagem_2.innerHTML = `<br>Com uma margem de <b class="red">${margemPerdas.toFixed(2)}%</b>, as perdas da sua empresa estão <b class="red">${(margemPerdas - 20).toFixed(2)}% acima da média de mercado</b>.<br> Esse indicador pode significar que sua empresa está tendo </b class="red">grandes prejuízos financeiros<b>. Considerar a utilização da<b class="green"> nossa solução poderá minizar essas perdas!</b>  <h5>*Fonte: ANVISA e OMS </h5>`;
+      // Igual à média de mercado
+      div_mensagem_2.innerHTML = `
+        <br>Com uma margem de <b class="yellow">${margemPerdas}% de perdas</b>, sua empresa está no limite da média de mercado.
+        Ainda que pareça pouco, isso pode gerar um <b class="yellow">prejuízo financeiro significativo!</b><br>
+        Considerar a utilização da <b class="green">nossa solução poderá otimizar seus resultados.</b>
+        <h5>*Fonte: ANVISA e OSM</h5>`;
+    } 
+    else if (margemPerdas < 20) {
+      // Melhor que a média de mercado
+      div_mensagem_2.innerHTML = `
+        <br>Com uma margem de <b class="red">${margemPerdas.toFixed(2)}%</b>, as perdas da sua empresa estão 
+        <b class="green">${(20 - margemPerdas).toFixed(2)}% abaixo da média de mercado</b>.
+        Ainda que sua empresa esteja melhor posicionada, é importante continuar <b class="green">buscando performance e controle</b>.
+        <h5>*Fonte: ANVISA e OSM</h5>`;
+    } 
+    else {
+      // Pior que a média de mercado
+      div_mensagem_2.innerHTML = `
+        <br>Com uma margem de <b class="red">${margemPerdas.toFixed(2)}%</b>, as perdas da sua empresa estão 
+        <b class="red">${(margemPerdas - 20).toFixed(2)}% acima da média de mercado</b>.<br>
+        Isso pode indicar <b class="red">grandes prejuízos financeiros</b>. 
+        Considerar a utilização da <b class="green">nossa solução poderá minimizar essas perdas!</b>
+        <h5>*Fonte: ANVISA e OMS</h5>`;
     }
   }
 </script>
