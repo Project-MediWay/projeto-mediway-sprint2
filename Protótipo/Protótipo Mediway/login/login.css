@@ -10,6 +10,7 @@
     position: fixed;
     top: 0;
     left: 0;
+    height: 9vh;
     width: 100%;
     display: flex;
     justify-content: flex-start; 
@@ -31,11 +32,11 @@
 }
 
 .logo {
-    height: 50px; 
+    height: 60px; 
 }
 
 .logo:hover {
-    transform: scale(1.3);
+    transform: scale(1.1);
     opacity: 0.8;
     cursor: pointer;
 }
