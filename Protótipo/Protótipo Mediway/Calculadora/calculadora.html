@@ -17,19 +17,22 @@
   </div>
 
     <!-- ======= TÍTULO E SUBTÍTULO ======= -->
-    <div class="alinhamentoCamposH">
-      <h1>Simulador Financeiro</h1>
+
+<div class="tudao">
+
+  <div class="alinhamentoCamposH">
+    <h1>Simulador Financeiro</h1>
     <h3>Descubra agora mesmo a situação do seu negócio!</h3>
   </div>
-
+  
   <!-- ======= CONTAINER PRINCIPAL (duas calculadoras lado a lado) ======= -->
   <div class="containerDuasCalculadora">
-
+    
     <!-- ======= PRIMEIRA CALCULADORA (prejuízo financeiro) ======= -->
     <div class="containerCalculadora">
       <div class="alinhamentoCampos">
         <h3>Calcule o impacto do nosso projeto em seu negócio!</h3>
-
+        
         <!-- Inputs para quantidade e preço médio das vacinas -->
         <div class="espacoInput">
           <label for="input_vacinas">Insira a quantidade de vacinas:</label>
@@ -40,12 +43,12 @@
           <input type="text" id="input_preco" placeholder="Preço médio das vacinas" /><br>
         </div>
       </div>
-
+      
       <!-- Botão e área da mensagem -->
       <button onclick="calcularPrejuizo()">Calcular</button>
       <div id="div_mensagem"></div>
     </div>
-
+    
     <!-- ======= SEGUNDA CALCULADORA (margem de perdas) ======= -->
     <div class="containerCalculadora">
       <div class="alinhamentoCampos">
@@ -67,6 +70,7 @@
       <div id="div_mensagem_2"></div>
     </div>
   </div>
+</div>
   
 </body>
 </html>
@@ -97,7 +101,7 @@
       // Igual à média de mercado
       div_mensagem_2.innerHTML = `
         <br>Com uma margem de <b class="yellow">${margemPerdas}% de perdas</b>, sua empresa está no limite da média de mercado.
-        Ainda que pareça pouco, isso pode gerar um <b class="yellow">prejuízo financeiro significativo!</b><br>
+        Ainda que pareça pouco, isso pode gerar um <b class="yellow">prejuízo financeiro significativo!</b><br><br>
         Considerar a utilização da <b class="green">nossa solução poderá otimizar seus resultados.</b>
         <h5>*Fonte: ANVISA e OSM</h5>`;
     } 
@@ -105,7 +109,7 @@
       // Melhor que a média de mercado
       div_mensagem_2.innerHTML = `
         <br>Com uma margem de <b class="red">${margemPerdas.toFixed(2)}%</b>, as perdas da sua empresa estão 
-        <b class="green">${(20 - margemPerdas).toFixed(2)}% abaixo da média de mercado</b>.
+        <b class="green">${(20 - margemPerdas).toFixed(2)}% abaixo da média de mercado</b>.<br><br>
         Ainda que sua empresa esteja melhor posicionada, é importante continuar <b class="green">buscando performance e controle</b>.
         <h5>*Fonte: ANVISA e OSM</h5>`;
     } 
@@ -113,7 +117,7 @@
       // Pior que a média de mercado
       div_mensagem_2.innerHTML = `
         <br>Com uma margem de <b class="red">${margemPerdas.toFixed(2)}%</b>, as perdas da sua empresa estão 
-        <b class="red">${(margemPerdas - 20).toFixed(2)}% acima da média de mercado</b>.<br>
+        <b class="red">${(margemPerdas - 20).toFixed(2)}% acima da média de mercado</b>.<br><br>
         Isso pode indicar <b class="red">grandes prejuízos financeiros</b>. 
         Considerar a utilização da <b class="green">nossa solução poderá minimizar essas perdas!</b>
         <h5>*Fonte: ANVISA e OMS</h5>`;
