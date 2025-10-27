@@ -1,367 +1,268 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="styles/stylegeral.css" />
-  </head>
-  <body>
-    <div class="header">
-      <div class="container1">
-        <ul class="navbar">
-          <img src="./src/logo.PNG" alt="" class="logo" />
-        </ul>
-        <ul class="navbar btn-sair">
-           <a href="../login/login.html">Sair</a>
-          </ul>
-        <ul class="navbar">
-          <img src="src/user.png" alt="" class="user" />
-        </ul>
-      </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="styles/stylegeral.css" />
+</head>
+
+<body>
+
+  <div class="overlay-user" id="overlayUser" onclick="esconderModal()">
+  </div>
+  <div class="user-menu" id="userMenu">
+    <div class="titulo-user-menu">
+      <img src="src/user.png" height="70px" alt="">
+      <span>Mediway</span>
     </div>
 
-    <div class="main">
-      <div class="title">
+    <div class="info-user-menu">
+      <span class="nome-user">Julia Araripe</span>
+      <span class="email-user">araripe@email.com</span>
+    </div>
+
+    <div class="btn-sair-user-menu">
+      <a href="../login/login.html">Sair</a>
+    </div>
+  </div>
+
+
+  <div class="header">
+    <div class="container1">
+      <ul class="navbar">
+        <img src="./src/logo.PNG" class="logo" />
+      </ul>
+      <ul class="navbar">
+        <img src="src/user.png" onclick="exibirModal()" class="user" />
+      </ul>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="title">
       <span class="title-main">Monitoramento de Veículos</span>
+    </div>
+
+    <div class="kpis">
+      <div class="metrica">
+        <span class="texto-kpis" style="font-size: 20px">Ideal:</span>
+        <span class="texto-kpis" style="font-size: 30px">2°C - 8°C</span>
       </div>
-
-      <div class="kpis">
-        <div class="metrica">
-          <span class="texto-kpis" style="font-size: 20px">Ideal:</span>
-          <span class="texto-kpis" style="font-size: 30px">2°C - 8°C</span>
-        </div>
-        <div class="qtd-veiculos">
-          <span class="texto-kpis" style="margin-right: 10px"
-            >Quantidade de Veículos:</span
-          >
-          <span class="texto-kpis">12</span>
-        </div>
-        <div class="qtd-normal">
-          <span class="texto-kpis" style="margin-right: 10px">Normal:</span>
-          <span class="texto-kpis">7</span>
-        </div>
-        <div class="qtd-no-limite">
-          <span class="texto-kpis" style="margin-right: 10px">No limite:</span>
-          <span class="texto-kpis">1</span>
-        </div>
-        <div class="qtd-alerta">
-          <span class="texto-kpis" style="margin-right: 10px">Em alerta:</span>
-          <span class="texto-kpis">4</span>
-        </div>
+      <div class="qtd-veiculos">
+        <span class="texto-kpis" style="margin-right: 10px">Quantidade de Veículos:</span>
+        <span class="texto-kpis">5</span>
       </div>
-
-      <div class="informacoes">
-        <div class="historico">
-          <div class="titulo-historico">Historico de Alertas</div>
-          <div class="tabela-historico">
-            <table>
-                <thead>
-                    <tr class="cabecalho-tabela">
-                        <th>Data</th>
-                        <th>Hora</th>
-                        <th>Veículo</th>
-                        <th>Temperatura</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>05/10/2025</td>
-                        <td>21:05</td>
-                        <td>JWI7120</td>
-                        <td>9.5°C</td>
-                    </tr>
-                    <tr>
-                        <td>05/10/2025</td>
-                        <td>21:05</td>
-                        <td>JWI7120</td>
-                        <td>9.5°C</td>
-                    </tr>
-                    <tr>
-                        <td>05/10/2025</td>
-                        <td>21:05</td>
-                        <td>JWI7120</td>
-                        <td>9.5°C</td>
-                    </tr>
-                    <tr>
-                        <td>05/10/2025</td>
-                        <td>21:05</td>
-                        <td>JWI7120</td>
-                        <td>9.5°C</td>
-                    </tr>
-                    <tr>
-                        <td>05/10/2025</td>
-                        <td>21:05</td>
-                        <td>JWI7120</td>
-                        <td>9.5°C</td>
-                    </tr>
-                    <tr>
-                        <td>05/10/2025</td>
-                        <td>21:05</td>
-                        <td>JWI7120</td>
-                        <td>9.5°C</td>
-                    </tr>
-                    <tr>
-                        <td>05/10/2025</td>
-                        <td>21:05</td>
-                        <td>JWI7120</td>
-                        <td>9.5°C</td>
-                    </tr>
-                    <tr>
-                        <td>05/10/2025</td>
-                        <td>21:05</td>
-                        <td>JWI7120</td>
-                        <td>9.5°C</td>
-                    </tr>
-                    <tr>
-                        <td>05/10/2025</td>
-                        <td>21:05</td>
-                        <td>JWI7120</td>
-                        <td>9.5°C</td>
-                    </tr>
-                    <tr>
-                        <td>05/10/2025</td>
-                        <td>21:05</td>
-                        <td>JWI7120</td>
-                        <td>9.5°C</td>
-                    </tr>
-                    <tr>
-                        <td>05/10/2025</td>
-                        <td>21:05</td>
-                        <td>JWI7120</td>
-                        <td>9.5°C</td>
-                    </tr>
-                    <tr>
-                        <td>05/10/2025</td>
-                        <td>21:05</td>
-                        <td>JWI7120</td>
-                        <td>9.5°C</td>
-                    </tr>
-                    <tr>
-                        <td>05/10/2025</td>
-                        <td>21:05</td>
-                        <td>JWI7120</td>
-                        <td>9.5°C</td>
-                    </tr>
-                    <tr>
-                        <td>05/10/2025</td>
-                        <td>21:05</td>
-                        <td>JWI7120</td>
-                        <td>9.5°C</td>
-                    </tr>
-                </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="monitoramento">
-          <div onclick="ir()" id="veiculo_1" class="card card-alerta">
-              <img class="img-caminhao" src="src/caminhao-atencao.png" />
-
-            <div class="id-caminhao">
-              <span class="texto-card texto-placa">Placa:</span>
-              <span class="texto-card">IKS9863</span>
-            </div>
-
-            <div class="temp-caminhao">
-              <span class="texto-card texto-placa">Temperatura:</span>
-              <span class="texto-card">-3°C</span>
-            </div>
-
-            <div class="status-caminhao">
-                <img src="src/atencao.png" class="status-atencao">
-              <span class="texto-card texto-placa">Status:&nbsp;</span>
-              <span class="texto-card">Alerta</span>
-            </div>
-          </div>
-
-          <div onclick="ir()" class="card card-normal">
-            <img class="img-caminhao" src="src/caminhao-ok.png" />
-
-            <div class="id-caminhao">
-              <span class="texto-card texto-placa">Placa:</span>
-              <span class="texto-card">VHU6675</span>
-            </div>
-
-            <div class="temp-caminhao">
-              <span class="texto-card texto-placa">Temperatura:</span>
-              <span class="texto-card">-6°C</span>
-            </div>
-
-            <div class="status-caminhao">
-                <img src="src/ok.png" class="status-ok">
-              <span class="texto-card texto-placa">Status:&nbsp;</span>
-              <span class="texto-card">Ok</span>
-            </div>
-          </div>
-
-          <div onclick="ir()" class="card card-alerta">
-            <img class="img-caminhao" src="src/caminhao-atencao.png" />
-
-            <div class="id-caminhao">
-              <span class="texto-card texto-placa">Placa:</span>
-              <span class="texto-card">IKS9863</span>
-            </div>
-
-            <div class="temp-caminhao">
-              <span class="texto-card texto-placa">Temperatura:</span>
-              <span class="texto-card">-3°C</span>
-            </div>
-
-            <div class="status-caminhao">
-                <img src="src/atencao.png" class="status-atencao">
-              <span class="texto-card texto-placa">Status:&nbsp;</span>
-              <span class="texto-card">Alerta</span>
-            </div>
-          </div>
-
-          <div onclick="ir()" class="card card-normal">
-            <img class="img-caminhao" src="src/caminhao-ok.png" />
-
-            <div class="id-caminhao">
-              <span class="texto-card texto-placa">Placa:</span>
-              <span class="texto-card">VHU6675</span>
-            </div>
-
-            <div class="temp-caminhao">
-              <span class="texto-card texto-placa">Temperatura:</span>
-              <span class="texto-card">-6°C</span>
-            </div>
-
-            <div class="status-caminhao">
-                <img src="src/ok.png" class="status-ok">
-              <span class="texto-card texto-placa">Status:&nbsp;</span>
-              <span class="texto-card">Ok</span>
-            </div>
-          </div>
-
-          <div onclick="ir()" class="card card-no-limite">
-            <img class="img-caminhao" src="src/caminhao-cuidado.png" />
-
-            <div class="id-caminhao">
-              <span class="texto-card texto-placa">Placa:</span>
-              <span class="texto-card">VHU6675</span>
-            </div>
-
-            <div class="temp-caminhao">
-              <span class="texto-card texto-placa">Temperatura:</span>
-              <span class="texto-card">-6°C</span>
-            </div>
-
-            <div class="status-caminhao">
-                <img src="src/cuidado.png" class="status-cuidado">
-              <span class="texto-card texto-placa">Status:&nbsp;</span>
-              <span class="texto-card">Alerta</span>
-            </div>
-          </div>
-
-          <div onclick="ir()" class="card card-alerta">
-                          <img class="img-caminhao" src="src/caminhao-atencao.png" />
-
-            <div class="id-caminhao">
-              <span class="texto-card texto-placa">Placa:</span>
-              <span class="texto-card">IKS9863</span>
-            </div>
-
-            <div class="temp-caminhao">
-              <span class="texto-card texto-placa">Temperatura:</span>
-              <span class="texto-card">-3°C</span>
-            </div>
-
-            <div class="status-caminhao">
-                <img src="src/atencao.png" class="status-atencao">
-              <span class="texto-card texto-placa">Status:&nbsp;</span>
-              <span class="texto-card">Alerta</span>
-            </div>
-          </div>
-
-          <div onclick="ir()" class="card card-normal">
-            <img class="img-caminhao" src="src/caminhao-ok.png" />
-
-            <div class="id-caminhao">
-              <span class="texto-card texto-placa">Placa:</span>
-              <span class="texto-card">VHU6675</span>
-            </div>
-
-            <div class="temp-caminhao">
-              <span class="texto-card texto-placa">Temperatura:</span>
-              <span class="texto-card">-6°C</span>
-            </div>
-
-            <div class="status-caminhao">
-                <img src="src/ok.png" class="status-ok">
-              <span class="texto-card texto-placa">Status:&nbsp;</span>
-              <span class="texto-card">Ok</span>
-            </div>
-          </div>
-
-          <div onclick="ir()" class="card card-alerta">
-                          <img class="img-caminhao" src="src/caminhao-atencao.png" />
-
-            <div class="id-caminhao">
-              <span class="texto-card texto-placa">Placa:</span>
-              <span class="texto-card">IKS9863</span>
-            </div>
-
-            <div class="temp-caminhao">
-              <span class="texto-card texto-placa">Temperatura:</span>
-              <span class="texto-card">-3°C</span>
-            </div>
-
-            <div class="status-caminhao">
-                <img src="src/atencao.png" class="status-atencao">
-              <span class="texto-card texto-placa">Status:&nbsp;</span>
-              <span class="texto-card">Alerta</span>
-            </div>
-          </div>
-
-          <div onclick="ir()" class="card card card-normal">
-            <img class="img-caminhao" src="src/caminhao-ok.png" />
-
-            <div class="id-caminhao">
-              <span class="texto-card texto-placa">Placa:</span>
-              <span class="texto-card">VHU6675</span>
-            </div>
-
-            <div class="temp-caminhao">
-              <span class="texto-card texto-placa">Temperatura:</span>
-              <span class="texto-card">-6°C</span>
-            </div>
-
-            <div class="status-caminhao">
-                <img src="src/ok.png" class="status-ok">
-              <span class="texto-card texto-placa">Status:&nbsp;</span>
-              <span class="texto-card">Ok</span>
-            </div>
-          </div>
-
-          <div onclick="ir()" class="card card-normal">
-            <img class="img-caminhao" src="src/caminhao-ok.png" />
-
-            <div class="id-caminhao">
-              <span class="texto-card texto-placa">Placa:</span>
-              <span class="texto-card">VHU6675</span>
-            </div>
-
-            <div class="temp-caminhao">
-              <span class="texto-card texto-placa">Temperatura:</span>
-              <span class="texto-card">-6°C</span>
-            </div>
-
-            <div class="status-caminhao">
-                <img src="src/ok.png" class="status-ok">
-              <span class="texto-card texto-placa">Status:&nbsp;</span>
-              <span class="texto-card">Ok</span>
-            </div>
-          </div>
-
-        </div>
+      <div class="qtd-normal">
+        <span class="texto-kpis" style="margin-right: 10px">Normal:</span>
+        <span class="texto-kpis">3</span>
+      </div>
+      <div class="qtd-no-limite">
+        <span class="texto-kpis" style="margin-right: 10px">No limite:</span>
+        <span class="texto-kpis">1</span>
+      </div>
+      <div class="qtd-alerta">
+        <span class="texto-kpis" style="margin-right: 10px">Em alerta:</span>
+        <span class="texto-kpis">1</span>
       </div>
     </div>
-  </body>
+
+    <div class="informacoes">
+      <div class="historico">
+        <div class="titulo-historico">Historico de Alertas</div>
+        <div class="tabela-historico">
+          <table>
+            <thead>
+              <tr class="cabecalho-tabela">
+                <th>Data</th>
+                <th>Hora</th>
+                <th>Veículo</th>
+                <th>Temperatura</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>05/10/2025</td>
+                <td>21:05</td>
+                <td>VWX1234</td>
+                <td>-3°C</td>
+              </tr>
+              <tr>
+                <td>05/10/2025</td>
+                <td>21:00</td>
+                <td>VWX1234</td>
+                <td>-1°C</td>
+              </tr>
+              <tr>
+                <td>05/10/2025</td>
+                <td>20:55</td>
+                <td>VWX1234</td>
+                <td>-4°C</td>
+              </tr>
+              <tr>
+                <td>01/10/2025</td>
+                <td>13:39</td>
+                <td>GHI2345</td>
+                <td>9.5°C</td>
+              </tr>
+              <tr>
+                <td>01/10/2025</td>
+                <td>13:34</td>
+                <td>GHI2345</td>
+                <td>11°C</td>
+              </tr>
+              <tr>
+                <td>05/10/2025</td>
+                <td>21:05</td>
+                <td>JWI7120</td>
+                <td>9.5°C</td>
+              </tr>
+              <tr>
+                <td>05/10/2025</td>
+                <td>21:05</td>
+                <td>JWI7120</td>
+                <td>9.5°C</td>
+              </tr>
+              <tr>
+                <td>05/10/2025</td>
+                <td>21:05</td>
+                <td>JWI7120</td>
+                <td>9.5°C</td>
+              </tr>
+              <tr>
+                <td>05/10/2025</td>
+                <td>21:05</td>
+                <td>JWI7120</td>
+                <td>9.5°C</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="monitoramento">
+        <div onclick="ir()" id="veiculo_1" class="card card-alerta">
+          <img class="img-caminhao" src="src/caminhao-atencao.png" />
+
+          <div class="id-caminhao">
+            <span class="texto-card texto-placa">Placa:</span>
+            <span class="texto-card">VWX1234</span>
+          </div>
+
+          <div class="temp-caminhao">
+            <span class="texto-card texto-placa">Temperatura:</span>
+            <span class="texto-card">-3°C</span>
+          </div>
+
+          <div class="status-caminhao">
+            <img src="src/atencao.png" class="status-atencao">
+            <span class="texto-card texto-placa">Status:&nbsp;</span>
+            <span class="texto-card">Alerta</span>
+          </div>
+        </div>
+
+                <div onclick="ir()" class="card card-normal">
+          <img class="img-caminhao" src="src/caminhao-ok.png" />
+
+          <div class="id-caminhao">
+            <span class="texto-card texto-placa">Placa:</span>
+            <span class="texto-card">GHI2345</span>
+          </div>
+
+          <div class="temp-caminhao">
+            <span class="texto-card texto-placa">Temperatura:</span>
+            <span class="texto-card">3°C</span>
+          </div>
+
+          <div class="status-caminhao">
+            <img src="src/ok.png" class="status-ok">
+            <span class="texto-card texto-placa">Status:&nbsp;</span>
+            <span class="texto-card">Ok</span>
+          </div>
+        </div>
+
+        <div onclick="ir()" class="card card-no-limite">
+          <img class="img-caminhao" src="src/caminhao-cuidado.png" />
+
+          <div class="id-caminhao">
+            <span class="texto-card texto-placa">Placa:</span>
+            <span class="texto-card">MNO3456</span>
+          </div>
+
+          <div class="temp-caminhao">
+            <span class="texto-card texto-placa">Temperatura:</span>
+            <span class="texto-card">8°C</span>
+          </div>
+
+          <div class="status-caminhao">
+            <img src="src/cuidado.png" class="status-cuidado">
+            <span class="texto-card texto-placa">Status:&nbsp;</span>
+            <span class="texto-card">Atenção</span>
+          </div>
+        </div>
+
+        <div onclick="ir()" class="card card-normal">
+          <img class="img-caminhao" src="src/caminhao-ok.png" />
+
+          <div class="id-caminhao">
+            <span class="texto-card texto-placa">Placa:</span>
+            <span class="texto-card">GHI2345</span>
+          </div>
+
+          <div class="temp-caminhao">
+            <span class="texto-card texto-placa">Temperatura:</span>
+            <span class="texto-card">6°C</span>
+          </div>
+
+          <div class="status-caminhao">
+            <img src="src/ok.png" class="status-ok">
+            <span class="texto-card texto-placa">Status:&nbsp;</span>
+            <span class="texto-card">Ok</span>
+          </div>
+        </div>
+
+        <div onclick="ir()" class="card card card-normal">
+          <img class="img-caminhao" src="src/caminhao-ok.png" />
+
+          <div class="id-caminhao">
+            <span class="texto-card texto-placa">Placa:</span>
+            <span class="texto-card">LMN4567</span>
+          </div>
+
+          <div class="temp-caminhao">
+            <span class="texto-card texto-placa">Temperatura:</span>
+            <span class="texto-card">5°C</span>
+          </div>
+
+          <div class="status-caminhao">
+            <img src="src/ok.png" class="status-ok">
+            <span class="texto-card texto-placa">Status:&nbsp;</span>
+            <span class="texto-card">Ok</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
 <script>
-  function ir(){
-    window.location.href='dashespecifica.html'
+  overlayUser.style.display = 'none';
+  userMenu.style.display = 'none';
+  
+  function ir() {
+    window.location.href = 'dashespecifica.html'
+  }
+
+  function exibirModal(){
+  overlayUser.style.display = 'block';
+  userMenu.style.display = 'flex';
+  }
+
+  function esconderModal(){
+  overlayUser.style.display = 'none';
+  userMenu.style.display = 'none';
   }
 </script>
