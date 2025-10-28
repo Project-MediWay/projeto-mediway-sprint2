@@ -9,7 +9,7 @@
 
 /*Início body*/
 body {
-    background-image: url(../assets/fundocadastro.jpg);
+    background-image: url(../assets/imagens/fundocadastro.jpg);
     background-size: cover;
     display: flex;
     flex-direction: column;
