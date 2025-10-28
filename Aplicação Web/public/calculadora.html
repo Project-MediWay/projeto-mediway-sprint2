@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style/calculadora.css">
+  <link rel="stylesheet" href="styles/calculadora.css">
   <title>Calculadora</title>
 
 </head>
@@ -13,8 +13,8 @@
 
   <!-- ======= NAVBAR ======= -->
   <div class="navbar">
-    <a href="../site/site.html">
-      <img src="style/logo_mediway.png" alt="">
+    <a href="siteInstitucional.html">
+      <img src="assets/imagens/logo_mediway.png" alt="">
     </a>
   </div>
 
@@ -83,13 +83,13 @@
   function calcularPrejuizo() {
     var qtdVacina = Number(input_vacina.value);
     var precoMediaVacina = Number(input_preco.value);
-    var resultadoPrejuizo = qtdVacina * precoMediaVacina * 0.2; // 20% de perda
+    var resultadoPrejuizo = qtdVacina * precoMediaVacina * 0.08; // 8% de perda
 
     div_mensagem.innerHTML = `
       <br>De acordo com a OMS, 50% das vacinas chegam ao destino deterioradas, sendo 46% por conta da quebra da cadeia de frio durante o transporte.<br><br>
       Com base no preço médio de <b>${precoMediaVacina.toLocaleString('pt-BR', { style: 'currency', currency: "BRL" })}</b>,
       na quantidade de <b>${qtdVacina}</b> vacinas e na <b class="red">margem de perda brasileira de 20%</b>,
-      com o nosso sistema, é possível diminuir o prejuízo financeiro <b class="green">EM ATÉ ${resultadoPrejuizo.toLocaleString('pt-BR', { style: 'currency', currency: "BRL" })}</b>
+      com o nosso sistema, é possível diminuir o prejuízo financeiro <b class="green">EM ATÉ 8% que é o equivalente de ${resultadoPrejuizo.toLocaleString('pt-BR', { style: 'currency', currency: "BRL" })}</b>
       <h5>*Fonte: ANVISA e OMS</h5>`;
   }
 
