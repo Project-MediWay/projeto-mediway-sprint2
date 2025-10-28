@@ -240,7 +240,7 @@ font-weight: 500;
 
 /* Monitoramento e Historico da Pagina */
 .informacoes {
-    height: 65%;
+    height: 70%;
     width: 97%;
     display: flex;
     flex-direction: row;
@@ -277,7 +277,7 @@ font-weight: 500;
 
 .tabela-historico {
     background-color: #fff;
-    height: 56vh;
+    height: 60vh;
     width: 100%;
     border: 10px solid rgba(0, 49, 208, 1);
     border-radius: 10px;

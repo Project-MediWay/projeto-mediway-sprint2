@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
-  <link rel="stylesheet" href="styles/styleespecifica.css" />
+  <link rel="stylesheet" href="styles/dashespecifica.css" />
 </head>
 
 <body>
@@ -13,7 +13,7 @@
   </div>
   <div class="user-menu" id="userMenu">
     <div class="titulo-user-menu">
-      <img src="src/user.png" height="70px">
+      <img src="assets/dashboard/user.png" height="70px">
       <span>Mediway</span>
     </div>
 
@@ -23,24 +23,24 @@
     </div>
 
     <div class="btn-sair-user-menu">
-      <a href="../login/login.html">Sair</a>
+      <a href="login.html">Sair</a>
     </div>
   </div>
 
   <div class="header">
     <div class="container1">
       <ul class="navbar">
-        <img src="./src/logo.PNG" class="logo" />
+        <img src="assets/dashboard/logo.PNG" class="logo" />
       </ul>
       <ul class="navbar">
-        <img src="src/user.png" onclick="exibirModal()" class="user" />
+        <img src="assets/dashboard/user.png" onclick="exibirModal()" class="user" />
       </ul>
     </div>
   </div>
 
   <div class="main">
     <div class="title">
-      <img src="src/voltar.png" height="40px" class="btn-voltar" onclick="voltar()">
+      <img src="assets/dashboard/voltar.png" height="40px" class="btn-voltar" onclick="voltar()">
       <span class="title-main">Monitoramento de Veículo: IDH1233</span>
     </div>
 
@@ -57,12 +57,12 @@
           <span class="valor-kpis">5°C</span>
           <span class="texto-kpis">Temperatura atual</span>
       </div>
-      <div class=" temperatura-media">
+      <div class=" temperatura-minima">
         <span class="valor-kpis">5,6°C</span>
         <span class="texto-kpis">Temperatura Mínima</span>
         <span class="texto-kpis-menor">(Últimas 24 Horas)</span>
       </div>
-      <div class=" temperatura-media">
+      <div class=" temperatura-maxima">
         <span class="valor-kpis">5,6°C</span>
         <span class="texto-kpis">Temperatura Máxima</span>
         <span class="texto-kpis-menor">(Últimas 24 Horas)</span>
@@ -76,32 +76,42 @@
       </div>
 
       <div class="grafico-alerta">
-          <div class="dados-semanais">
-              <div class="grafico-semanal">
-                        <canvas id="grafico_alerta"></canvas>
+        <div class="dados-semanais">
+          <h4>Monitoramento nos Últimos 7 Dias</h4>
+          <div class="graficos-kpis-semanais">
+            <div class="grafico-semanal">
+              <canvas id="grafico_alerta_semanal"></canvas>
+            </div>
+            <div class="kpi-semanal">
+              <div class="kpi-semanal-minimo">
+                <span class="texto-kpi-alertas valor-kpis">5,6°C</span>
+                <span class="texto-kpi-alertas">Temperatura Máxima</span>
               </div>
-              <div class="kpi-semanal">
-                <div class="kpi-semanal-minimo">
-                  oi
-                </div>
-                <div class="kpi-semanal-maximo">
-                  oi
-                </div>
-              </div>
-          </div>
-            <div class="dados-mensais">
-              <div class="grafico-semanal">
-                        <canvas id="grafico_alerta"></canvas>
-              </div>
-              <div class="kpi-semanal">
-                <div class="kpi-semanal-minimo">
-                  oi
-                </div>
-                <div class="kpi-semanal-maximo">
-                  oi
-                </div>
+              <div class="kpi-semanal-maximo">
+                <span class="texto-kpi-alertas valor-kpis">5,6°C</span>
+                <span class="texto-kpi-alertas">Temperatura Máxima</span>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="dados-mensais">
+          <h4>Monitoramento no Último Mês</h4>
+          <div class="graficos-kpis-mensais">
+            <div class="grafico-mensal">
+              <canvas id="grafico_alerta_mensal"></canvas>
+            </div>
+            <div class="kpi-mensal">
+              <div class="kpi-mensal-minimo">
+                <span class="texto-kpi-alertas valor-kpis">5,6°C</span>
+                <span class="texto-kpi-alertas">Temperatura Mínima</span>
+               </div>
+              <div class="kpi-mensal-maximo">
+                <span class="texto-kpi-alertas valor-kpis">5,6°C</span>
+                <span class="texto-kpi-alertas">Temperatura Máxima</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -128,7 +138,8 @@
   }
 
   const ctxTemp = document.getElementById('grafico_temperatura');
-  const ctxAlerta = document.getElementById('grafico_alerta');
+  const ctxAlertaMensal = document.getElementById('grafico_alerta_mensal');
+  const ctxAlertaSemanal = document.getElementById('grafico_alerta_semanal');
 
   new Chart(ctxTemp, {
     type: 'line',
@@ -168,10 +179,10 @@
     }
   });
 
-  new Chart(ctxAlerta, {
+  new Chart(ctxAlertaMensal, {
     type: 'bar',
     data: {
-      labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
+      labels: ['05/10 A 11/10', '12/10 A 18/10', '19/10 A 25/10', '26/01 A 01/11'],
       datasets: [{
         label: 'Alertas',
         data: [10, 15, 6, 20],
@@ -183,17 +194,29 @@
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: {
-        title: {
-          display: true,
-          text: 'Monitoramento de Alertas',
-          color: '#111',
-          font: {
-            size: 16,
-            weight: 'bold'
-          }
-        },
-      },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  new Chart(ctxAlertaSemanal, {
+    type: 'bar',
+    data: {
+      labels: ['22/10', '23/10', '24/10', '25/10', '26/10', '27/10', '28/10'],
+      datasets: [{
+        label: 'Alertas',
+        data: [10, 15, 6, 20, 15, 6, 20, , 15],
+        borderColor: '#e70000',
+        pointBackgroundColor: '#e70000',
+        backgroundColor: '#e70000'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
       scales: {
         y: {
           beginAtZero: true
