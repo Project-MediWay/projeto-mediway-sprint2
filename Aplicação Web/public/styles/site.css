@@ -303,7 +303,23 @@ a {
     cursor: pointer;
 }
 
-.diagrama1, 
+.diagrama{
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.diagrama img{
+    height: 600px;
+}
+
+.diagrama h1{
+    color: #0031D0;
+    font-weight: 600;
+}
+/* .diagrama1, 
 .diagrama2{
     display: flex;
     flex-direction: row;
@@ -389,12 +405,13 @@ a {
     align-self: flex-end;
     margin-bottom: 20px;
 
-}
+} */
+
 
 
 .bck-m img {
     display: flex;
-    height: 420px;
+    height: 200px;
     width: 100%;
 
 }
@@ -484,26 +501,36 @@ a {
 .equipe{
     display: flex;
     justify-content: center;
-    flex-direction: column;
     width: auto;
     margin-bottom: 150px;
+    gap: 80px;
+}
+
+.imagem_equipe img{
+    height: 600px;
+}
+
+.texto_equipe {
+    /* background-color: red; */
+    width: 33%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
     
 }
 
-.txt-eqp {
-    background-color: #3961E1;
-    display: flex;
-    align-self: center;
-    justify-content: center;
-    width: 14%;
-    margin-bottom: 20px;
-    border-radius: 10px;
+.texto_equipe p {
+    /* background-color: blue; */
+    text-align: justify;
+    color: black;
+    font-size: 23px;
 }
 
-.txt-eqp p {
-    color: white;
-    font-size: 19px;
-    font-weight: 500;
+.texto_equipe h1 {
+    /* background-color: gray; */
+    color: #0031D0;
+    font-weight: 600;
+    margin: 0;
 }
 
 
