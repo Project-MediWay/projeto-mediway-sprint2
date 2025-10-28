@@ -45,7 +45,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height:100vh ;
-    background: url(./fundologin.jpg);
+    background: url(../assets/imagens/fundologin.jpg);
     background-size: cover;
     background-position: center;
 } 

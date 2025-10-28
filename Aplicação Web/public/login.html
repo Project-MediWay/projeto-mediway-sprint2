@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-    <link rel="stylesheet" href="../public/styles/login.css">
+    <link rel="stylesheet" href="styles/login.css">
     <title>Mediway Login</title>
 </head>
 
@@ -13,8 +13,8 @@
     <div class="header">
         <div class="container1">
             <ul class="navbar">
-                <a href="../site/site.html">
-                <img src="../public/assets/dashboard/logo.PNG" alt="" class="logo">
+                <a href="siteInstitucional.html">
+                <img src="assets/imagens/logo_mediway.png" alt="" class="logo">
                 </a>
             </ul >
         </div>
@@ -39,7 +39,7 @@
             <button type="submit" class="login" onclick="autenticacao()">Entrar</button>
 
             <div class="registre">
-                <p>Não tem um cadastro? <b><a href="../public/cadastro.html"> Registre-se</a></b></p>
+                <p>Não tem um cadastro? <b><a href="cadastro.html"> Registre-se</a></b></p>
             </div>
         </div>
     </main>
@@ -57,7 +57,7 @@
         if ((email == 'julia.araripe@gmail.com' && senha == '*Juli@1#') ||
          (email == 'claudio.frizza@gmail.com' && senha == '*Fr1zz@#')) {
             alert("Usuário autenticado")
-            window.location.href ='../dashboard/dashgeral.html'
+            window.location.href ='dashgeral.html'
 
         } else {
             alert("Falha na autenticação")
