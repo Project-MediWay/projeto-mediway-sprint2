@@ -86,7 +86,7 @@ INSERT INTO veiculo (modelo, marca, placa, fkEmpresa) VALUES
 	('Daily 35S14', 'Iveco', 'VWX1234', 3),
     ('Constellation 24.280', 'Volkswagen', 'XYZ5678', 2),
 	('Cargo 1723', 'Ford', 'JKL9012', 3),
-	('FH 460', 'Volvo', 'MNO3456',230, 1),
+	('FH 460', 'Volvo', 'MNO3456', 1),
 	('Actros 2651', 'Mercedes-Benz', 'DEF6789', 3),
 	('Stralis 440', 'Iveco', 'GHI2345', 1),
 	('Atego 2426', 'Mercedes-Benz', 'LMN4567', 2);
