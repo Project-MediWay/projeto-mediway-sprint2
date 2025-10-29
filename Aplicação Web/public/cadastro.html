@@ -34,7 +34,7 @@
 
                 <div class="input-box direita">
                     Telefone: 
-                    <input oninput="analisarTelefone()" placeholder="(00) 00000-0000" type="tel" id="input_telefone">
+                    <input oninput="analisarTelefone()" placeholder="Insira seu telefone" type="tel" id="input_telefone">
                     <div id="div_telefone"></div>
                 </div>
 
@@ -87,14 +87,6 @@
         senhaValida && confirmValido && cpfValido && emailValido && telefoneValido) {
                 alert('Cadastro Efetuado!');
                 window.location.href ='login.html';
-        // Limpando os campos, após o cadastro ser efetuado
-            input_nomeCompleto.value = "";
-            input_cpf.value = "";
-            input_email.value = "";
-            input_telefone.value = "";
-            input_senha.value = "";
-            input_confirmSenha.value = "";
-            input_token.value = "";
             } else {
                 alert('Cadastro Inválido! Confira os campos');
             } 
