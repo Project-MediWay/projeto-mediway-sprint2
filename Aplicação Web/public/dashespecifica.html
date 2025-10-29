@@ -25,23 +25,13 @@
     <div class="btn-sair-user-menu">
       <a href="login.html">Sair</a>
     </div>
-  </div>
-
-  <div class="header">
-    <div class="container1">
-      <ul class="navbar">
-        <img src="assets/dashboard/logo.PNG" class="logo" />
-      </ul>
-      <ul class="navbar">
-        <img src="assets/dashboard/user.png" onclick="exibirModal()" class="user" />
-      </ul>
-    </div>
-  </div>
-
-  <div class="main">
-    <div class="title">
-      <img src="assets/dashboard/voltar.png" height="40px" class="btn-voltar" onclick="voltar()">
-      <span class="title-main">Monitoramento de Veículo: IDH1233</span>
+  </div>    
+      
+      <div class="main">
+        <div class="title">
+          <img src="assets/dashboard/voltar.png" height="40px" class="btn-voltar" onclick="voltar()">
+          <span class="title-main">Monitoramento de Veículo: IDH1233</span>
+          <img src="assets/dashboard/user.png" onclick="exibirModal()" class="user" />
     </div>
 
     <div class="kpis">
@@ -50,12 +40,12 @@
         <span class="valor-kpis">2°C - 8°C</span>
       </div>
       <div class="total-alertas">
-        <span class="valor-kpis">12</span>
+        <span class="valor-kpis">1</span>
         <span class="texto-kpis"">Total de Alertas</span>
         <span class="texto-kpis-menor">(Últimas 24 Horas)</span>
       </div>
       <div class=" temperatura-atual">
-          <span class="valor-kpis">4°C</span>
+          <span class="valor-kpis">3°C</span>
           <span class="texto-kpis">Temperatura atual</span>
       </div>
       <div class=" temperatura-minima">
@@ -78,7 +68,7 @@
 
       <div class="grafico-alerta">
         <div class="dados-semanais">
-          <h4>Monitoramento nos Últimos 7 Dias</h4>
+          <h3>Monitoramento nos Últimos 7 Dias</h3>
           <div class="graficos-kpis-semanais">
             <div class="grafico-semanal">
               <canvas id="grafico_alerta_semanal"></canvas>
@@ -96,7 +86,7 @@
           </div>
         </div>
         <div class="dados-mensais">
-          <h4>Monitoramento no Último Mês</h4>
+          <h3>Monitoramento no Último Mês</h3>
           <div class="graficos-kpis-mensais">
             <div class="grafico-mensal">
               <canvas id="grafico_alerta_mensal"></canvas>
