@@ -48,7 +48,6 @@
     align-items: center;
 }
 
-/* Modal */
 .overlay-user {
     position: absolute;
     z-index: 100;
@@ -61,7 +60,7 @@
     box-shadow: rgb(181, 180, 180) -1px 1px 8px;
     position: absolute;
     z-index: 101;
-    height: 200px;
+    height: 160px;
     width: 350px;
     top: 11px;
     right: 30px;
@@ -72,7 +71,7 @@
     justify-content: space-between;
 }
 
-.titulo-user-menu{
+.titulo-user-menu {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -80,8 +79,8 @@
     font-weight: 600;
 }
 
-.titulo-user-menu span{
-margin-left: 30px;
+.titulo-user-menu span {
+    margin-left: 20px;
 }
 
 .info-user-menu {
@@ -92,11 +91,12 @@ margin-left: 30px;
     justify-content: flex-start;
 }
 
-.info-user-menu .nome-user{
+.info-user-menu .nome-user {
     font-size: 15px;
-font-weight: 500;
+    font-weight: 500;
 }
-.info-user-menu .email-user{
+
+.info-user-menu .email-user {
     font-size: 13px;
 }
 
@@ -105,6 +105,12 @@ font-weight: 500;
     display: flex;
     justify-content: flex-end;
 }
+
+.btn-sair-user-menu a {
+    text-decoration: none;
+}
+
+
 /* Fim Modal */
 
 
@@ -184,7 +190,8 @@ font-weight: 500;
     align-items: center;
     font-size: 28px;
 }
-.qtd-veiculos:hover{
+
+.qtd-veiculos:hover {
     scale: 1.01;
     transition: 0.1s;
 }
@@ -199,6 +206,7 @@ font-weight: 500;
     align-items: center;
     font-size: 28px;
 }
+
 .qtd-normal:hover {
     scale: 1.01;
     transition: 0.1s;
@@ -214,6 +222,7 @@ font-weight: 500;
     align-items: center;
     font-size: 28px;
 }
+
 .qtd-no-limite:hover {
     scale: 1.01;
     transition: 0.1s;
@@ -229,10 +238,12 @@ font-weight: 500;
     align-items: center;
     font-size: 28px;
 }
+
 .qtd-alerta:hover {
     scale: 1.01;
     transition: 0.1s;
 }
+
 /* KPIS da Pagina */
 
 
