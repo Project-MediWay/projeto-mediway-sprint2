@@ -18,8 +18,15 @@ a {
 }
 
 img {
+    margin-top: 14px;
     height: 60px;
 }
+.navbar img:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+    cursor: pointer;
+}
+
 
 /* ======= CORPO DA PÁGINA ======= */
 body {
