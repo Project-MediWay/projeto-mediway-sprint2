@@ -12,18 +12,17 @@ const HABILITAR_OPERACAO_INSERIR = true;
 
 // função para comunicação serial
 const serial = async (
-    valoresSensorTemperatura,
-    valoresSensorDigital,
+    valoresSensorTemperatura
 ) => {
 
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
-            user: 'UserAPI',
-            password: 'Urubu100',
-            database: 'testeAPI',
-            port: 3306
+            user: 'UserDAI',
+            password: '@Mediway123',
+            database: 'mediway',
+            port: 3307
         }
     ).promise();
 
@@ -56,7 +55,6 @@ const serial = async (
 
         // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorTemperatura.push(sensorTemperatura);
-       // valoresSensorDigital.push(sensorDigital);
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
@@ -90,8 +88,7 @@ const serial = async (
 
 // função para criar e configurar o servidor web
 const servidor = (
-    valoresSensorTemperatura,
-    valoresSensorDigital
+    valoresSensorTemperatura
 ) => {
     const app = express();
 
@@ -111,26 +108,20 @@ const servidor = (
     app.get('/sensores/analogico', (_, response) => {
         return response.json(valoresSensorTemperatura);
     });
-    app.get('/sensores/digital', (_, response) => {
-        return response.json(valoresSensorDigital);
-    });
 }
 
 // função principal assíncrona para iniciar a comunicação serial e o servidor web
 (async () => {
     // arrays para armazenar os valores dos sensores
     const valoresSensorTemperatura = [];
-    const valoresSensorDigital = [];
 
     // inicia a comunicação serial
     await serial(
-        valoresSensorTemperatura,
-        valoresSensorDigital
+        valoresSensorTemperatura
     );
 
     // inicia o servidor web
     servidor(
-        valoresSensorTemperatura,
-        valoresSensorDigital
+        valoresSensorTemperatura
     );
 })();
