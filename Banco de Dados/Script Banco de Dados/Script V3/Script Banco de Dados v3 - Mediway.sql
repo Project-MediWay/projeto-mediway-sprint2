@@ -15,7 +15,7 @@ CREATE TABLE empresa(
 idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(45) NOT NULL,
 cnpj VARCHAR(14) UNIQUE NOT NULL,
-token VARCHAR(64) UNIQUE
+token VARCHAR(64) UNIQUE NOT NULL
 );
 
 -- CRIAÇÃO DA TABELA USUARIO
@@ -23,7 +23,7 @@ CREATE TABLE usuario(
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(45) NOT NULL,
 cpf CHAR(11) NOT NULL UNIQUE,
-email VARCHAR(60) UNIQUE,
+email VARCHAR(60) UNIQUE NOT NULL,
 senha VARCHAR(45) NOT NULL,
 telefone CHAR(11),
 fkEmpresa INT,
@@ -35,7 +35,7 @@ CREATE TABLE veiculo(
 idVeiculo INT PRIMARY KEY AUTO_INCREMENT,
 modelo VARCHAR(30),
 marca VARCHAR (30),
-placa VARCHAR (7) UNIQUE,
+placa VARCHAR (7) UNIQUE NOT NULL,
 fkEmpresa INT,
 CONSTRAINT FkVeiculoEmpresa FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa)
 );
@@ -43,7 +43,7 @@ CONSTRAINT FkVeiculoEmpresa FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa
 -- CRIAÇÃO DA TABELA SENSOR
 CREATE TABLE sensor(
 idSensor INT PRIMARY KEY AUTO_INCREMENT,
-nome CHAR(11),
+nome CHAR(11) NOT NULL,
 fkVeiculo INT UNIQUE,
 CONSTRAINT fkSensorVeiculo FOREIGN KEY (fkVeiculo) REFERENCES veiculo(idVeiculo)
 );
@@ -57,8 +57,6 @@ fkSensor INT,
 CONSTRAINT pkComposta PRIMARY KEY (idRegistroSensor, fkSensor),
 CONSTRAINT fkSensorRegistroSensor FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor)
 );
-
-ALTER TABLE registroSensor MODIFY COLUMN dtRegistro DATETIME DEFAULT CURRENT_TIMESTAMP;
 
 -- INSERÇÃO DE DADOS NA TABELA CONTATO
 INSERT INTO contato (nome, telefone, email, mensagem) VALUES
