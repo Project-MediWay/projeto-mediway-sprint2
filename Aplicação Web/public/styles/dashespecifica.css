@@ -111,7 +111,7 @@
 
 .title-main {
     color: white;
-    font-size: 35px;
+    font-size: 25px;
     font-weight: bold;
 }
 
@@ -125,20 +125,20 @@
 
 /* KPIS da Pagina */
 .kpis {
-    height: 14%;
+    height: 13%;
     width: 97%;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .valor-kpis {
     color: #fff;
     text-align: center;
     font-weight: bold;
-    font-size: 26px;
+    font-size: 25px;
 }
 
 .texto-kpis {
@@ -192,7 +192,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 28px;
+    font-size: 25px;
 }
 
 .total-alertas:hover {
@@ -209,7 +209,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 26px;
+    font-size: 25px;
     color: black;
 }
 
@@ -227,7 +227,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 26px;
+    font-size: 25px;
 }
 
 .temperatura-maxima:hover {
@@ -244,7 +244,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 28px;
+    font-size: 25px;
 }
 
 .temperatura-atual:hover {
@@ -271,7 +271,7 @@
     height: 100%;
     width: 49%;
     background-color: #fff;
-    border: 6px solid rgba(0, 49, 208, 1);
+    border: 4px solid rgba(0, 49, 208, 1);
     border-radius: 10px;
     border-radius: 10px;
     position: relative;
@@ -307,7 +307,7 @@
     height: 49%;
     width: 100%;
     border-radius: 5px;
-    border: 5px solid rgba(0, 49, 208, 1);
+    border: 4px solid rgba(0, 49, 208, 1);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -332,14 +332,27 @@
 .kpi-semanal, .kpi-mensal {
     display: flex;
     flex-direction: column;
-    width: 40%;
-    height: 95%;
+    width: 33%;
+    height: 85%;
     justify-content: space-around;
     align-items: center;
 }
 
-.kpi-semanal-minimo, .kpi-semanal-maximo, .kpi-mensal-maximo, .kpi-mensal-minimo{
-    background: linear-gradient(90deg, rgba(89, 109, 227, 1) 0%, rgba(0, 49, 208, 1) 100%);
+.kpi-semanal-maximo, .kpi-mensal-maximo, .kpi-mensal-minimo{
+    /* background: linear-gradient(90deg, rgba(89, 109, 227, 1) 0%, rgba(0, 49, 208, 1) 100%); */
+    border: 4px solid rgba(0, 49, 208, 1);
+    height: 47%;
+    width: 85%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.kpi-semanal-minimo{
+    /* background: linear-gradient(90deg, rgba(89, 109, 227, 1) 0%, rgba(0, 49, 208, 1) 100%); */
+    border: 4px solid rgb(208, 0, 0);
     height: 47%;
     width: 85%;
     border-radius: 10px;
@@ -350,7 +363,7 @@
 }
 
 .texto-kpi-alertas{
-    color: #fff;
+    color: #000000;
     font-size: 18px;
 }
 /* Fim dos Graficos Da Pagina */

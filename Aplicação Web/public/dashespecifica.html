@@ -68,7 +68,7 @@
 
       <div class="grafico-alerta">
         <div class="dados-semanais">
-          <h3>Monitoramento nos Últimos 7 Dias</h3>
+          <h3>Indicadores dos Últimos 7 Dias</h3>
           <div class="graficos-kpis-semanais">
             <div class="grafico-semanal">
               <canvas id="grafico_alerta_semanal"></canvas>
@@ -79,14 +79,14 @@
                 <span class="texto-kpi-alertas">Temperatura Mínima</span>
               </div>
               <div class="kpi-semanal-maximo">
-                <span class="texto-kpi-alertas valor-kpis">12°C</span>
+                <span class="texto-kpi-alertas valor-kpis">7°C</span>
                 <span class="texto-kpi-alertas">Temperatura Máxima</span>
               </div>
             </div>
           </div>
         </div>
         <div class="dados-mensais">
-          <h3>Monitoramento no Último Mês</h3>
+          <h3>Indicadores do Último Mês</h3>
           <div class="graficos-kpis-mensais">
             <div class="grafico-mensal">
               <canvas id="grafico_alerta_mensal"></canvas>
@@ -97,7 +97,7 @@
                 <span class="texto-kpi-alertas">Temperatura Mínima</span>
                </div>
               <div class="kpi-mensal-maximo">
-                <span class="texto-kpi-alertas valor-kpis">12°C</span>
+                <span class="texto-kpi-alertas valor-kpis">8°C</span>
                 <span class="texto-kpi-alertas">Temperatura Máxima</span>
               </div>
             </div>
@@ -140,9 +140,9 @@
         label: 'Temperatura no Veículo',
         data: [6, 5, 6, 3, 4, 3, 5, 6, 4, 6, 3, 5, 6, 3, 5, 3, 9, 5, 6, 5, 5, 3, 5, 4],
         borderWidth: 1,
-        borderColor: '#005c9e',
-        pointBackgroundColor: '#005c9e',
-        backgroundColor: '#005c9e',
+        borderColor: '#0031d0',
+        pointBackgroundColor: '#0031d0',
+        backgroundColor: '#0031d0',
         borderWidth: 3,
         tension: 0.1,
 
@@ -176,7 +176,7 @@
       labels: ['05/10 A 11/10', '12/10 A 18/10', '19/10 A 25/10', '26/01 A 01/11'],
       datasets: [{
         label: 'Alertas',
-        data: [10, 15, 6, 20],
+        data: [3, 7, 1, 2],
         borderColor: '#e70000',
         pointBackgroundColor: '#e70000',
         backgroundColor: '#e70000'
@@ -187,7 +187,8 @@
       maintainAspectRatio: false,
       scales: {
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          suggestedMax: 20
         }
       }
     }
@@ -199,7 +200,7 @@
       labels: ['22/10', '23/10', '24/10', '25/10', '26/10', '27/10', '28/10'],
       datasets: [{
         label: 'Alertas',
-        data: [10, 15, 6, 20, 15, 6, 20, , 15],
+        data: [1, 0, 1, 4, 1, 2, 1],
         borderColor: '#e70000',
         pointBackgroundColor: '#e70000',
         backgroundColor: '#e70000'
@@ -210,7 +211,8 @@
       maintainAspectRatio: false,
       scales: {
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          suggestedMax:10
         }
       }
     }

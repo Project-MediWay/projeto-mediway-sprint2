@@ -114,7 +114,7 @@
 
 .title-main {
     color: white;
-    font-size: 35px;
+    font-size: 25px;
     font-weight: bold;
 }
 /* Titulo da Pagina */
@@ -165,7 +165,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 28px;
+    font-size: 25px;
 }
 
 .qtd-veiculos:hover {
@@ -174,14 +174,14 @@
 }
 
 .qtd-normal {
-    background: linear-gradient(90deg, rgba(89, 109, 227, 1) 0%, rgba(0, 49, 208, 1) 100%);
+    background: linear-gradient(90deg, rgb(31, 60, 224) 0%, rgba(0, 49, 208, 1) 100%);
     height: 100%;
     width: 15%;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 28px;
+    font-size: 25px;
 }
 
 .qtd-normal:hover {
@@ -197,7 +197,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 28px;
+    font-size: 25px;
 }
 
 .qtd-no-limite:hover {
@@ -213,7 +213,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 28px;
+    font-size: 25px;
 }
 
 .qtd-alerta:hover {
@@ -267,7 +267,7 @@
     background-color: #fff;
     height: 67vh;
     width: 100%;
-    border: 6px solid rgba(0, 49, 208, 1);
+    border: 4px solid rgba(0, 49, 208, 1);
     border-radius: 10px;
     z-index: 1;
     display: flex;
@@ -312,7 +312,7 @@ td {
     background-color: #fff;
     height: 100%;
     width: 49%;
-    border: 6px solid rgba(0, 49, 208, 1);
+    border: 4px solid rgba(0, 49, 208, 1);
     border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
