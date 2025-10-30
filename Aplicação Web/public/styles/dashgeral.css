@@ -7,10 +7,6 @@
     font-family: "Noto Sans", sans-serif;
 }
 
-.logo {
-    height: 60px;
-}
-
 .user {
     height: 40px;
     cursor: pointer;
@@ -109,7 +105,7 @@
 }
 
 .title .logo{
-    height: 40px;
+    height: 60px;
 }
 
 .title-main {
@@ -125,7 +121,7 @@
 
 /* KPIS da Pagina */
 .kpis {
-    height: 14%;
+    height: 12%;
     width: 97%;
     border-radius: 10px;
     display: flex;

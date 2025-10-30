@@ -18,11 +18,11 @@ a {
 }
 
 img {
-    margin-top: 14px;
     height: 60px;
 }
+
 .navbar img:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     opacity: 0.8;
     cursor: pointer;
 }
