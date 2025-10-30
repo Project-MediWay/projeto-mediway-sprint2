@@ -1,4 +1,4 @@
-// importa os bibliotecas necessários
+'// importa os bibliotecas necessários
 const serialport = require('serialport');
 const express = require('express');
 const mysql = require('mysql2');
@@ -26,6 +26,11 @@ const serial = async (
         }
     ).promise();
 
+
+
+
+
+
     // lista as portas seriais disponíveis e procura pelo Arduino
     const portas = await serialport.SerialPort.list();
     const portaArduino = portas.find((porta) => porta.vendorId == 2341 && porta.productId == 43);
@@ -45,6 +50,11 @@ const serial = async (
     arduino.on('open', () => {
         console.log(`A leitura do arduino foi iniciada na porta ${portaArduino.path} utilizando Baud Rate de ${SERIAL_BAUD_RATE}`);
     });
+
+
+
+
+
 
     // processa os dados recebidos do Arduino
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
@@ -74,6 +84,11 @@ const serial = async (
         console.error(`Erro no arduino (Mensagem: ${mensagem}`)
     });
 }
+
+
+
+
+
 
 // função para criar e configurar o servidor web
 const servidor = (
