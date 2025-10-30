@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="styles/dashespecifica.css" />
+</head>
+
+<body>
+   <!-- Inicio estruturação Modal -->
+  <div class="overlay-user" id="overlayUser" onclick="esconderModal()">
+  </div>
+  <div class="user-menu" id="userMenu">
+    <div class="titulo-user-menu">
+      <img src="assets/dashboard/user.png" height="70px">
+      <span>Mediway</span>
+    </div>
+
+    <div class="info-user-menu">
+      <span class="nome-user">Nome: Julia Araripe</span>
+      <span class="email-user">Email: araripe@email.com</span>
+    </div>
+
+    <div class="btn-sair-user-menu">
+      <a href="login.html">Sair</a>
+    </div>
+  </div>
+  <!-- Término estruturação Modal -->
+      
+
+  <!-- Inicio estruturação do corpo da dasboard -->
+  <div class="main">
+
+    <!-- Inicio estruturação Barra de Título -->
+    <div class="title">
+      <img src="assets/dashboard/voltar.png" height="40px" class="btn-voltar" onclick="voltar()">
+      <span class="title-main">Monitoramento de Veículo: LMN4567</span>
+      <img src="assets/dashboard/user.png" onclick="exibirModal()" class="user" />
+    </div>
+    <!-- Término estruturação Barra de Título -->
+
+
+    <!-- Inicio estruturação das KPIS -->
+    <div class="kpis">
+      <div class="metrica">
+        <span class="valor-kpis"> Ideal:</span>
+        <span class="valor-kpis">2°C - 8°C</span>
+      </div>
+      <div class="total-alertas">
+        <span class="valor-kpis">0</span>
+        <span class="texto-kpis"">Total de Alertas</span>
+        <span class="texto-kpis-menor">(Últimas 24 Horas)</span>
+      </div>
+      <div class=" temperatura-atual">
+          <span class="valor-kpis">5°C</span>
+          <span class="texto-kpis">Temperatura atual</span>
+      </div>
+      <div class=" temperatura-minima">
+        <span class="valor-kpis">3°C</span>
+        <span class="texto-kpis">Temperatura Mínima</span>
+        <span class="texto-kpis-menor">(Últimas 24 Horas)</span>
+      </div>
+      <div class=" temperatura-maxima">
+        <span class="valor-kpis">6°C</span>
+        <span class="texto-kpis">Temperatura Máxima</span>
+        <span class="texto-kpis-menor">(Últimas 24 Horas)</span>
+      </div>
+    </div>
+    <!-- Término estruturação das KPIS -->
+
+
+    <!-- Inicio estruturação dos cards de informação e gráficos -->
+    <div class="graficos">
+
+      <div class="grafico-temperatura">
+        <canvas id="grafico_temperatura"></canvas>
+      </div>
+
+      <div class="grafico-alerta">
+        <div class="dados-semanais">
+          <h3>Indicadores dos Últimos 7 Dias</h3>
+          <div class="graficos-kpis-semanais">
+            <div class="grafico-semanal">
+              <canvas id="grafico_alerta_semanal"></canvas>
+            </div>
+            <div class="kpi-semanal">
+              <div class="kpi-semanal-minimo">
+                <span class="texto-kpi-alertas valor-kpis">-5°C</span>
+                <span class="texto-kpi-alertas">Temperatura Mínima</span>
+              </div>
+              <div class="kpi-semanal-maximo">
+                <span class="texto-kpi-alertas valor-kpis">7°C</span>
+                <span class="texto-kpi-alertas">Temperatura Máxima</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dados-mensais">
+          <h3>Indicadores do Último Mês</h3>
+          <div class="graficos-kpis-mensais">
+            <div class="grafico-mensal">
+              <canvas id="grafico_alerta_mensal"></canvas>
+            </div>
+            <div class="kpi-mensal">
+              <div class="kpi-mensal-minimo">
+                <span class="texto-kpi-alertas valor-kpis">-6°C</span>
+                <span class="texto-kpi-alertas">Temperatura Mínima</span>
+               </div>
+              <div class="kpi-mensal-maximo">
+                <span class="texto-kpi-alertas valor-kpis">8°C</span>
+                <span class="texto-kpi-alertas">Temperatura Máxima</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Término estruturação dos cards de informação -->
+
+
+  </div>
+    <!-- Término estruturação do corpo da dashboard -->
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Inicio configuração Modal
+  overlayUser.style.display = 'none';
+  userMenu.style.display = 'none';
+
+  function exibirModal() {
+    overlayUser.style.display = 'block';
+    userMenu.style.display = 'flex';
+  }
+
+  function esconderModal() {
+    overlayUser.style.display = 'none';
+    userMenu.style.display = 'none';
+  }
+  // Término configuração Modal
+
+
+  // Inicio configuração Botão Voltar
+  function voltar() {
+    window.location.href = 'dashgeral.html'
+  }
+  // Término configuração Botão Voltar
+
+  
+  const ctxTemp = document.getElementById('grafico_temperatura');
+  const ctxAlertaMensal = document.getElementById('grafico_alerta_mensal');
+  const ctxAlertaSemanal = document.getElementById('grafico_alerta_semanal');
+
+  new Chart(ctxTemp, {
+    type: 'line',
+    data: {
+      labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+      datasets: [{
+        label: 'Temperatura no Veículo',
+        data: [6, 5, 6, 3, 4, 6, 5, 3, 4, 6, 6, 3, 6, 6, 5, 6, 6, 5, 6, 5, 5, 6, 5, 5],
+        borderWidth: 1,
+        borderColor: '#0031d0',
+        pointBackgroundColor: '#0031d0',
+        backgroundColor: '#0031d0',
+        borderWidth: 3,
+        tension: 0.1,
+
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Temperatura nas Últimas 24 Horas',
+          color: '#111',
+          font: {
+            size: 18,
+            weight: 'bold'
+          }
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          suggestedMax: 10,
+          suggestedMin: -5,
+          ticks: {
+          stepSize: 1
+        }
+        }
+      }
+    }
+  });
+
+  new Chart(ctxAlertaMensal, {
+    type: 'bar',
+    data: {
+      labels: ['05/10 A 11/10', '12/10 A 18/10', '19/10 A 25/10', '26/01 A 01/11'],
+      datasets: [{
+        label: 'Alertas',
+        data: [3, 7, 1, 2],
+        borderColor: '#e70000',
+        pointBackgroundColor: '#e70000',
+        backgroundColor: '#e70000'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          suggestedMax: 20
+        }
+      }
+    }
+  });
+
+  new Chart(ctxAlertaSemanal, {
+    type: 'bar',
+    data: {
+      labels: ['22/10', '23/10', '24/10', '25/10', '26/10', '27/10', '28/10'],
+      datasets: [{
+        label: 'Alertas',
+        data: [1, 0, 1, 4, 1, 2, 1],
+        borderColor: '#e70000',
+        pointBackgroundColor: '#e70000',
+        backgroundColor: '#e70000'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          suggestedMax:10
+        }
+      }
+    }
+  });
+</script>

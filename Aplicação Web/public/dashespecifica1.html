@@ -9,6 +9,7 @@
 </head>
 
 <body>
+   <!-- Inicio estruturação Modal -->
   <div class="overlay-user" id="overlayUser" onclick="esconderModal()">
   </div>
   <div class="user-menu" id="userMenu">
@@ -25,15 +26,23 @@
     <div class="btn-sair-user-menu">
       <a href="login.html">Sair</a>
     </div>
-  </div>    
+  </div>
+  <!-- Término estruturação Modal -->
       
-      <div class="main">
-        <div class="title">
-          <img src="assets/dashboard/voltar.png" height="40px" class="btn-voltar" onclick="voltar()">
-          <span class="title-main">Monitoramento de Veículo: IDH1233</span>
-          <img src="assets/dashboard/user.png" onclick="exibirModal()" class="user" />
-    </div>
 
+  <!-- Inicio estruturação do corpo da dasboard -->
+  <div class="main">
+
+    <!-- Inicio estruturação Barra de Título -->
+    <div class="title">
+      <img src="assets/dashboard/voltar.png" height="40px" class="btn-voltar" onclick="voltar()">
+      <span class="title-main">Monitoramento de Veículo: VWX1234</span>
+      <img src="assets/dashboard/user.png" onclick="exibirModal()" class="user" />
+    </div>
+    <!-- Término estruturação Barra de Título -->
+
+
+    <!-- Inicio estruturação das KPIS -->
     <div class="kpis">
       <div class="metrica">
         <span class="valor-kpis"> Ideal:</span>
@@ -45,21 +54,24 @@
         <span class="texto-kpis-menor">(Últimas 24 Horas)</span>
       </div>
       <div class=" temperatura-atual">
-          <span class="valor-kpis">3°C</span>
+          <span class="valor-kpis">-3°C</span>
           <span class="texto-kpis">Temperatura atual</span>
       </div>
       <div class=" temperatura-minima">
-        <span class="valor-kpis">3°C</span>
+        <span class="valor-kpis">-3°C</span>
         <span class="texto-kpis">Temperatura Mínima</span>
         <span class="texto-kpis-menor">(Últimas 24 Horas)</span>
       </div>
       <div class=" temperatura-maxima">
-        <span class="valor-kpis">9°C</span>
+        <span class="valor-kpis">8°C</span>
         <span class="texto-kpis">Temperatura Máxima</span>
         <span class="texto-kpis-menor">(Últimas 24 Horas)</span>
       </div>
     </div>
+    <!-- Término estruturação das KPIS -->
 
+
+    <!-- Inicio estruturação dos cards de informação e gráficos -->
     <div class="graficos">
 
       <div class="grafico-temperatura">
@@ -105,12 +117,17 @@
         </div>
       </div>
     </div>
+    <!-- Término estruturação dos cards de informação -->
+
+
   </div>
+    <!-- Término estruturação do corpo da dashboard -->
 </body>
 
 </html>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+  // Inicio configuração Modal
   overlayUser.style.display = 'none';
   userMenu.style.display = 'none';
 
@@ -123,11 +140,16 @@
     overlayUser.style.display = 'none';
     userMenu.style.display = 'none';
   }
+  // Término configuração Modal
 
+
+  // Inicio configuração Botão Voltar
   function voltar() {
     window.location.href = 'dashgeral.html'
   }
+  // Término configuração Botão Voltar
 
+  
   const ctxTemp = document.getElementById('grafico_temperatura');
   const ctxAlertaMensal = document.getElementById('grafico_alerta_mensal');
   const ctxAlertaSemanal = document.getElementById('grafico_alerta_semanal');
@@ -138,7 +160,7 @@
       labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
       datasets: [{
         label: 'Temperatura no Veículo',
-        data: [6, 5, 6, 3, 4, 3, 5, 6, 4, 6, 3, 5, 6, 3, 5, 3, 9, 5, 6, 5, 5, 3, 5, 4],
+        data: [6, 5, 6, 3, 4, 3, 5, 6, 4, 6, 3, 5, 6, 3, 5, 3, 8, 5, 6, 5, 5, 3, 5, -3],
         borderWidth: 1,
         borderColor: '#0031d0',
         pointBackgroundColor: '#0031d0',
@@ -164,8 +186,12 @@
       },
       scales: {
         y: {
-          beginAtZero: true
-        }
+          beginAtZero: true,
+          suggestedMax: 10,
+          suggestedMin: -5,
+          ticks: {
+          stepSize: 1
+        }}
       }
     }
   });

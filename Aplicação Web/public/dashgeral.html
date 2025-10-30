@@ -10,6 +10,7 @@
 
 <body>
 
+  <!-- Inicio estruturação Modal -->
   <div class="overlay-user" id="overlayUser" onclick="esconderModal()">
   </div>
   <div class="user-menu" id="userMenu">
@@ -27,14 +28,18 @@
       <a href="login.html">Sair</a>
     </div>
   </div>
+  <!-- Término estruturação Modal -->
 
+  <!-- Inicio estruturação do corpo da dasboard -->
   <div class="main">
     <div class="title">
-        <img src="assets/imagens/footer-img.png" class="logo" />
+      <img src="assets/imagens/footer-img.png" class="logo" />
       <span class="title-main">Monitoramento de Veículos</span>
-        <img src="assets/dashboard/user.png" onclick="exibirModal()" class="user" />
+      <img src="assets/dashboard/user.png" onclick="exibirModal()" class="user" />
     </div>
 
+
+    <!-- Inicio estruturação das KPIS -->
     <div class="kpis">
       <div class="metrica">
         <span class="texto-kpis" style="font-size: 20px">Ideal:</span>
@@ -57,8 +62,13 @@
         <span class="texto-kpis">1</span>
       </div>
     </div>
+    <!-- Término estruturação das KPIS -->
 
+    <!-- Inicio estruturação dos cards de informação e gráficos -->
     <div class="informacoes">
+
+
+      <!-- Inicio estruturação do card de histórico de alertas -->
       <div class="historico">
         <div class="titulo-historico">Historico de Alertas</div>
         <div class="tabela-historico">
@@ -130,9 +140,13 @@
           </table>
         </div>
       </div>
+      <!-- Término estruturação do card de histórico de alertas -->
 
+
+
+      <!-- Inicio estruturação do card de monitoramento dos véiculos -->
       <div class="monitoramento">
-        <div onclick="ir()" id="veiculo_1" class="card card-alerta">
+        <div onclick="ir1()" id="veiculo_1" class="card card-alerta">
           <img class="img-caminhao" src="assets/dashboard/caminhao-atencao.png" />
 
           <div class="id-caminhao">
@@ -152,7 +166,7 @@
           </div>
         </div>
 
-                <div onclick="ir()" class="card card-normal">
+        <div onclick="ir2()" class="card card-normal">
           <img class="img-caminhao" src="assets/dashboard/caminhao-ok.png" />
 
           <div class="id-caminhao">
@@ -172,7 +186,7 @@
           </div>
         </div>
 
-        <div onclick="ir()" class="card card-no-limite">
+        <div onclick="ir3()" class="card card-no-limite">
           <img class="img-caminhao" src="assets/dashboard/caminhao-cuidado.png" />
 
           <div class="id-caminhao">
@@ -192,12 +206,12 @@
           </div>
         </div>
 
-        <div onclick="ir()" class="card card-normal">
+        <div onclick="ir4()" class="card card-normal">
           <img class="img-caminhao" src="assets/dashboard/caminhao-ok.png" />
 
           <div class="id-caminhao">
             <span class="texto-card texto-placa">Placa:</span>
-            <span class="texto-card">GHI2345</span>
+            <span class="texto-card">DEF6789</span>
           </div>
 
           <div class="temp-caminhao">
@@ -212,7 +226,7 @@
           </div>
         </div>
 
-        <div onclick="ir()" class="card card card-normal">
+        <div onclick="ir5()" class="card card card-normal">
           <img class="img-caminhao" src="assets/dashboard/caminhao-ok.png" />
 
           <div class="id-caminhao">
@@ -233,26 +247,51 @@
         </div>
 
       </div>
+      <!-- Término estruturação do card de monitoramento dos véiculos -->
+
+
     </div>
+    <!-- Término estruturação dos cards de informação -->
+
+
   </div>
+  <!-- Término estruturação do corpo da dashboard -->
 </body>
 
 </html>
 <script>
+  // Inicio configuração Modal
   overlayUser.style.display = 'none';
   userMenu.style.display = 'none';
-  
-  function ir() {
-    window.location.href = 'dashespecifica.html'
+
+  function ir1() {
+    window.location.href = 'dashespecifica1.html'
   }
 
-  function exibirModal(){
-  overlayUser.style.display = 'block';
-  userMenu.style.display = 'flex';
+  function ir2() {
+    window.location.href = 'dashespecifica2.html'
   }
 
-  function esconderModal(){
-  overlayUser.style.display = 'none';
-  userMenu.style.display = 'none';
+  function ir3() {
+    window.location.href = 'dashespecifica3.html'
   }
+
+  function ir4() {
+    window.location.href = 'dashespecifica4.html'
+  }
+
+  function ir5() {
+    window.location.href = 'dashespecifica5.html'
+  }
+
+  function exibirModal() {
+    overlayUser.style.display = 'block';
+    userMenu.style.display = 'flex';
+  }
+
+  function esconderModal() {
+    overlayUser.style.display = 'none';
+    userMenu.style.display = 'none';
+  }
+  // Término configuração Modal
 </script>
