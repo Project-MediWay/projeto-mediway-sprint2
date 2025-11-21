@@ -1,15 +1,6 @@
 CREATE DATABASE Mediway;
 USE Mediway;
 
--- CRIAÇÃO DA TABELA CONTATO
-CREATE TABLE contato(
-idContato INT PRIMARY KEY AUTO_INCREMENT,
-nome VARCHAR(45) NOT NULL,
-telefone CHAR (11),
-email VARCHAR(45) NOT NULL,
-mensagem VARCHAR(500) NOT NULL
-);
-
 -- CRIAÇÃO DA TABELA EMPRESA
 CREATE TABLE empresa(
 idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
@@ -40,6 +31,28 @@ fkEmpresa INT,
 CONSTRAINT FkVeiculoEmpresa FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa)
 );
 
+-- CRIAÇÃO DA TABELA VACINA
+CREATE TABLE vacina(
+idVacina INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(45)
+);
+
+-- CRIAÇÃO DA TABELA VIAGEM
+CREATE TABLE viagem(
+idViagem INT,
+empresaFinal VARCHAR(45) NOT NULL,
+fkVeiculo INT,
+fkVacina INT,
+CONSTRAINT fkVeiculoViagem
+	FOREIGN KEY (fkVeiculo)
+		REFERENCES veiculo(idVeiculo),
+CONSTRAINT fkVacinaViagem
+	FOREIGN KEY (fkVacina)
+		REFERENCES vacina(idVacina),
+CONSTRAINT pkComposta
+	PRIMARY KEY (idViagem, fkVeiculo, fkVacina)
+);
+
 -- CRIAÇÃO DA TABELA SENSOR
 CREATE TABLE sensor(
 idSensor INT PRIMARY KEY AUTO_INCREMENT,
@@ -57,13 +70,6 @@ fkSensor INT,
 CONSTRAINT pkComposta PRIMARY KEY (idRegistroSensor, fkSensor),
 CONSTRAINT fkSensorRegistroSensor FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor)
 );
-
--- INSERÇÃO DE DADOS NA TABELA CONTATO
-INSERT INTO contato (nome, telefone, email, mensagem) VALUES
-	('Vinícius de Santana Gama','11986379200','vinicius@gmail.com','Olá, gostaria de contratar os serviços da empresa Mediway'),
-	('Paulo Afonso dos Santos','11986549200','paulo@gmail.com','Olá, gostaria de saber mais sobre os serviços da empresa Mediway'),
-	('João Tobin Almeida','1198668790','joao@gmail.com','Olá, gostaria de saber como funcionas os serviços da empresa Mediway'),
-	('Maria Almeida Veríssimo','11986347632','maria@gmail.com','Olá, gostaria de contratar os serviços da empresa Mediway');
 
 -- INSERÇÃO DE DADOS NA TABELA EMPRESA
 INSERT INTO empresa (nome, CNPJ, token) VALUES 
@@ -89,6 +95,26 @@ INSERT INTO veiculo (modelo, marca, placa, fkEmpresa) VALUES
 	('Stralis 440', 'Iveco', 'GHI2345', 1),
 	('Atego 2426', 'Mercedes-Benz', 'LMN4567', 2);
 
+-- INSERÇÃO DE DADOS NA TABELA VACINA
+INSERT INTO vacina (nome) VALUES 
+	('BCG'),
+	('Hepatite B'),
+	('Febre tifoide'),
+	('Poliomelite 2'),
+	('Influenza inativada'),
+	('Raiva inativada'),
+	('Tríplice viral');
+    
+-- INSERÇÃO DE DADOS NA TABELA VIAGEM
+INSERT INTO viagem VALUES 
+	(1, 'Hospital Amparo Maternal', 1, 1),
+	(2, 'Rede DOR São Luiz', 2, 2),
+	(3, 'Lavoisier', 3, 3),
+	(4, 'Fleury Medicina e Saúde', 4, 4),
+	(5, 'Drogaria São Paulo,', 5, 5),
+	(6, 'MSD Saúde Animal', 6, 6),
+	(7, 'Laboratório Oswaldo Cruz', 7, 7);
+    
 -- INSERÇÃO DE DADOS NA TABELA SENSOR
 INSERT INTO sensor (nome, fkVeiculo) VALUES
 	('sensor_001', 1),
@@ -171,14 +197,30 @@ SELECT empresa.nome AS Nome_Empresa,
 		FROM empresa JOIN veiculo ON fkEmpresa = idEmpresa
         JOIN sensor ON fkVeiculo = idVeiculo JOIN registroSensor ON fkSensor = idSensor WHERE sensor.nome = 'sensor_001';
         
+-- VEICULO, VACINA E VIAGEM
+SELECT veiculo.placa AS Placa_Veiculo,
+	viagem.fkVeiculo AS fkVeiculo,
+	veiculo.fkEmpresa AS fkEmpresa,
+    empresa.nome AS Empresa,
+    viagem.fkVacina AS fkVacina,
+    vacina.nome AS Vacina,
+    viagem.empresaFinal AS Empresa_Final
+    FROM empresa join veiculo on veiculo.fkEmpresa = empresa.idEmpresa
+    join viagem on viagem.fkVeiculo = veiculo.idVeiculo
+    join vacina on vacina.idVacina = viagem.fkVacina;
+
 SELECT * FROM usuario;
 SELECT * FROM empresa;
 SELECT * FROM veiculo;
 SELECT * FROM sensor;
 SELECT * FROM registroSensor;
+SELECT * FROM vacina;
+SELECT * FROM viagem;
 DESCRIBE usuario;
 DESCRIBE empresa;
 DESCRIBE veiculo;
 DESCRIBE sensor;
 DESCRIBE registroSensor;
+DESCRIBE vacina;
+DESCRIBE viagem;
 SHOW TABLES;
