@@ -18,7 +18,8 @@ email VARCHAR(60) UNIQUE NOT NULL,
 senha VARCHAR(45) NOT NULL,
 telefone CHAR(11),
 fkEmpresa INT,
-CONSTRAINT fkUsuarioEmpresa FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa)
+CONSTRAINT fkUsuarioEmpresa FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa),
+suporteTecnico TINYINT
 );
 
 -- CRIAÇÃO DA TABELA VEICULO
@@ -78,10 +79,10 @@ INSERT INTO empresa (nome, CNPJ, token) VALUES
     ('Saúde+ Distribuidora ME', '11223344000177', 'ZYRJDOVgpacZOwKhxjtTOECcMOiKdPVTuzmsMPmBKslXalYklDakZhZxcuULmHcd');
 	
 -- INSERÇÃO DE DADOS NA TABELA USUARIO
-INSERT INTO usuario(nome, cpf, email, senha, telefone, fkEmpresa) VALUES
-	('João Silva','52598742411','joao@gmail.com','123456', '11985378011', 1),
-    ('Ana Silva', '12345678901', 'ana.silva@email.com', 'senha123', '11987654321', 2),
-    ('Carlos Souza', '98765432100', 'carlos.souza@email.com', 'minhaSenha', '21999887766', 3);
+INSERT INTO usuario(nome, cpf, email, senha, telefone, fkEmpresa, suporteTecnico) VALUES
+	('João Silva','52598742411','joao@gmail.com','123456', '11985378011', 1, TRUE),
+    ('Ana Silva', '12345678901', 'ana.silva@email.com', 'senha123', '11987654321', 2, FALSE),
+    ('Carlos Souza', '98765432100', 'carlos.souza@email.com', 'minhaSenha', '21999887766', 3, FALSE);
 
 -- INSERÇÃO DE DADOS NA TABELA VEICULO
 INSERT INTO veiculo (modelo, marca, placa, fkEmpresa) VALUES
