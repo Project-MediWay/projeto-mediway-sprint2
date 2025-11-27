@@ -1,75 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="stylesheet" href="styles/style_cadastro.css">
 </head>
+
 <body>
-<div class="header">
-    <div class="img"><a href="siteInstitucional.html"><img src="assets/imagens/logo_mediway.png" alt="Logo Mediway"></div></a>
-</div>
-<div class="titulo">
-    <h1>Bem vindo!</h1>
-</div>
-<div class="container">
-            <div class="input-group">
-                <div class="input-box esquerda" >
-                    Nome Completo:
-                    <input placeholder="Nome Completo" type="text" id="input_nomeCompleto">
-                </div>
-
-                <div class="input-box direita">
-                    CPF: 
-                    <input oninput="analisarCPF()" placeholder="Insira seu CPF" type="text" id="input_cpf">
-                    <div id="div_cpf"></div>
-                </div>
-
-                <div class="input-box esquerda">
-                    Email: 
-                    <input oninput="analisarEmail()" placeholder="Insira seu email" type="email" id="input_email">
-                    <div id="div_email"></div>
-                </div>
-
-                <div class="input-box direita">
-                    Telefone: 
-                    <input oninput="analisarTelefone()" placeholder="Insira seu telefone" type="tel" id="input_telefone">
-                    <div id="div_telefone"></div>
-                </div>
-
-                <div class="input-box esquerda">
-                    Senha:
-                    <input oninput="validarSenha()" placeholder="Insira sua senha" type="password" id="input_senha">
-                    <div class="validarSenha" id="div_senha"></div>
-                </div>
-
-                <div class="input-box direita">
-                    Confirmar Senha: 
-                    <input oninput="confirmarSenha()" placeholder="Confirme sua senha" type="password" id="input_confirmSenha">
-                    <div id="div_confirmSenha"></div>
-                </div>
-
-                <div class="input-box">
-
-                    Token da Empresa:
-                    <input placeholder="Insira o token" type="text" id="input_token"> <br><br>
-                </div>
+    <div class="header">
+        <div class="img"><a href="siteInstitucional.html"><img src="assets/imagens/logo_mediway.png" alt="Logo Mediway">
+        </div></a>
+    </div>
+    <div class="titulo">
+        <h1>Bem vindo!</h1>
+    </div>
+    <div class="container">
+        <div class="input-group">
+            <div class="input-box esquerda">
+                Nome Completo:
+                <input placeholder="Nome Completo" type="text" id="input_nomeCompleto">
             </div>
-            <div class="button">
-                <button class="login" onclick="cadastrar()" type="submit">Cadastre-se</button> 
-                <p>Já tem cadastro?<a href="../public/login.html"> Entre na sua conta</a></p>
+
+            <div class="input-box direita">
+                CPF:
+                <input oninput="analisarCPF()" placeholder="Insira seu CPF" type="text" id="input_cpf">
+                <div id="div_cpf"></div>
             </div>
-</div>
+
+            <div class="input-box esquerda">
+                Email:
+                <input oninput="analisarEmail()" placeholder="Insira seu email" type="email" id="input_email">
+                <div id="div_email"></div>
+            </div>
+
+            <div class="input-box direita">
+                Telefone:
+                <input oninput="analisarTelefone()" placeholder="Insira seu telefone" type="tel" id="input_telefone">
+                <div id="div_telefone"></div>
+            </div>
+
+            <div class="input-box esquerda">
+                Senha:
+                <input oninput="validarSenha()" placeholder="Insira sua senha" type="password" id="input_senha">
+                <div class="validarSenha" id="div_senha"></div>
+            </div>
+
+            <div class="input-box direita">
+                Confirmar Senha:
+                <input oninput="confirmarSenha()" placeholder="Confirme sua senha" type="password"
+                    id="input_confirmSenha">
+                <div id="div_confirmSenha"></div>
+            </div>
+
+            <div class="input-box">
+
+                Token da Empresa:
+                <input placeholder="Insira o token" type="text" id="input_token"> <br><br>
+            </div>
+        </div>
+        <div class="button">
+            <button class="login" onclick="validarCampos()" type="submit">Cadastre-se</button>
+            <div id="msg_cadastro"></div>
+            <p>Já tem cadastro?<a href="../public/login.html"> Entre na sua conta</a></p>
+        </div>
+    </div>
 </body>
+
 </html>
 <script>
     // Listas dos parâmetros
-    var listaCaracteres = ['!','@','#','$', '%', '&', '*'];
-    var listaNumeros = ['1','2','3','4','5','6','7','8','9','0'];
-    var listaToken = ['OEXL2RBY6mYaSTbPoF22xLK6m8TIk8kRcAQgRkJCSGZQDJIiik6YteYyY7reo7CR', 
-    'UqFbqaEGsPzrSIuc6mQxKUqib2qqGfgWjg0YHar98b1C2B9dixxWBQVIptiVCOLf', 
-    'ZYRJDOVgpacZOwKhxjtTOECcMOiKdPVTuzmsMPmBKslXalYklDakZhZxcuULmHcd' ];
+    var listaCaracteres = ['!', '@', '#', '$', '%', '&', '*'];
+    var listaNumeros = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
     // Variáveis de validação de cadastro
     var cpfValido = false;
@@ -77,28 +80,96 @@
     var telefoneValido = false;
     var senhaValida = false;
     var confirmValido = false;
+    var empresaVar = '';
 
-        function cadastrar() {
-    // Variavel do campo token
-    var token = input_token.value;
+    function validarCampos() {
+        if (senhaValida && confirmValido && cpfValido && emailValido && telefoneValido) {
+            validarEmpresa()
+        } else {
+            alert('Cadastro Inválido! Confira os campos');
+            return
+        }
+    }
+function validarEmpresa() {
+    var token = input_token.value.trim();
 
-    // Validação dos tokens cadastrados no Banco de Dados + validações dos campos preechidos para efetuar cadastro
-        if ((token == listaToken[0] || token == listaToken[1] || token == listaToken[2]) && 
-        senhaValida && confirmValido && cpfValido && emailValido && telefoneValido) {
-                alert('Cadastro Efetuado!');
-                window.location.href ='login.html';
-            } else {
-                alert('Cadastro Inválido! Confira os campos');
-            } 
-        } 
+    if (!token) {
+        msg_cadastro.innerHTML = `<span style="color:red">Informe o token da empresa</span>`;
+        return;
+    }
+
+    fetch(`/empresa/obter/${token}`, { cache: "no-store" })
+        .then(response => {
+            if (!response.ok) {
+                 Error("Token inválido ou empresa não encontrada.");
+            }
+            return response.json();
+        })
+        .then(resposta => {
+            if (!resposta || resposta.length === 0) {
+             Error("Token inválido.");
+            }
+
+            empresaVar = resposta[0].idEmpresa;
+            cadastrar();
+        })
+        .catch(err => {
+            msg_cadastro.innerHTML = `<span style="color:red">${err.message}</span>`;
+
+           window.location.href = 'login.html';
+        });
+    }
+
+    function cadastrar() {
+        var nomeVar = input_nomeCompleto.value;
+        var cpfVar = input_cpf.value;
+        var emailVar = input_email.value;
+        var senhaVar = input_confirmSenha.value;
+        var telefoneVar = input_telefone.value;
+
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                cpfServer: cpfVar,
+                telefoneServer: telefoneVar,
+                idEmpresaServer: empresaVar
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    msg_cadastro.innerHTML = `<br><span style="color: green;">Cadastro realizado.. redirecionando para login.</span>`
+                    setTimeout(() => {
+                        transicao('login');
+                        msg_cadastro.innerHTML = ``;
+                    }, "2000");
+
+                } else {
+                    resposta.text().then(texto => {
+                        msg_cadastro.innerHTML = `<br><span style="color: red;">${texto}</span>`;
+                    });
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
 
     function analisarCPF() {
-    // Variáveis do campo cpf
+        // Variáveis do campo cpf
         var cpf = input_cpf.value;
         var tamanhoCPF = cpf.length;
 
-    // Validção da quantidade de dígitos do cpf e se o valor digitado é um número;
-        if (tamanhoCPF != 11 || isNaN(cpf)){
+        // Validção da quantidade de dígitos do cpf e se o valor digitado é um número;
+        if (tamanhoCPF != 11 || isNaN(cpf)) {
             div_cpf.innerHTML = '<span style="color:red"> 11 dígitos numéricos</span>';
         } else {
             cpfValido = true;
@@ -106,14 +177,14 @@
         }
 
         if (cpf == '') {
-            div_cpf.innerHTML= '';
+            div_cpf.innerHTML = '';
         }
     }
 
     function analisarEmail() {
-    // Variável do campo email
+        // Variável do campo email
         var email = input_email.value;
-        
+
         if (!email.includes('@')) {
             div_email.innerHTML = '<span style="color:red">Incluir @</span>'
         } else {
@@ -122,16 +193,16 @@
         }
 
         if (email == '') {
-            div_email.innerHTML= '';  
+            div_email.innerHTML = '';
         }
     }
 
     function analisarTelefone() {
-    // Variável do campo telefone
+        // Variável do campo telefone
         var tel = input_telefone.value;
         var tamanhoTel = tel.length;
 
-       if (isNaN(tel) || tamanhoTel > 11) {
+        if (isNaN(tel) || tamanhoTel > 11) {
             div_telefone.innerHTML = '<span style="color:red">Digite um telefone válido</span>'
         } else {
             telefoneValido = true;
@@ -139,49 +210,50 @@
         }
 
         if (tel == '') {
-            div_telefone.innerHTML= '';  
-        } 
+            div_telefone.innerHTML = '';
+        }
     }
 
-    function validarSenha () {
-    // Variável do campo senha
+    function validarSenha() {
+        // Variável do campo senha
         var senha = input_senha.value;
+        senhaValida = false;
 
-    // Variáveis de configuração
+        // Variáveis de configuração
         var tamanhoSenha = senha.length;
         var cont1 = 0;
         var cont2 = 0;
         var mensagem = "";
 
-    // Valores booleanos com padrões de senha
+        // Valores booleanos com padrões de senha
         var tamanhoValido = false;
-        var caractereValido = false;  
-        var numeroValido = false; 
+        var caractereValido = false;
+        var numeroValido = false;
         var minusculoValido = false;
         var maiusculoValido = false;
 
-    // Mínimo 8 caracteres - validação quando o padrão é atingido
+        // Mínimo 8 caracteres - validação quando o padrão é atingido
         if (tamanhoSenha < 8) {
             mensagem += `<span style="color:red"> 8 caracteres </span>, `;
         } else {
             tamanhoValido = true;
         }
-        
-    // Mínimo um caractere especial - validação quando o padrão é atingido
-    // Usando while até o includes validar todos os caracteres da Lista de Caracteres Especiais
+
+        // Mínimo um caractere especial - validação quando o padrão é atingido
+        // Usando while até o includes validar todos os caracteres da Lista de Caracteres Especiais
         while (cont1 < listaCaracteres.length) {
             if (senha.includes(listaCaracteres[cont1])) {
                 caractereValido = true;
             }
             cont1++;
         } if (!caractereValido) {
-        mensagem += `<span style="color:red"> 1 caractere especial </span>, `;
+            mensagem += `<span style="color:red"> 1 caractere especial </span>, `;
         }
-        
-    // Mínimo um número - validação quando o padrão é atingido
-    // Usando while até o includes validar todos os número da Lista de Números
+
+        // Mínimo um número - validação quando o padrão é atingido
+        // Usando while até o includes validar todos os número da Lista de Números
         while (cont2 < listaNumeros.length) {
-            if (senha.includes(listaNumeros[cont2])){
+            if (senha.includes(listaNumeros[cont2])) {
                 numeroValido = true;
             }
             cont2++;
@@ -189,35 +261,35 @@
             mensagem += `<span style="color:red"> 1 número</span>, `;
         }
 
-    // Mínimo uma letra maiúscula - validação quando o padrão é atingido
+        // Mínimo uma letra maiúscula - validação quando o padrão é atingido
         if (senha == senha.toLowerCase()) {
-           mensagem += '<span style="color:red"> 1 Letra Maiúscula</span>, '; 
+            mensagem += '<span style="color:red"> 1 Letra Maiúscula</span>, ';
         } else {
             maiusculoValido = true;
         }
 
-    // Mínimo uma letra minúscula - validação quando o padrão é atingido
+        // Mínimo uma letra minúscula - validação quando o padrão é atingido
         if (senha == senha.toUpperCase()) {
             mensagem += '<span style="color:red">1 Letra Minúscula</span>';
         } else {
             minusculoValido = true;
         }
-        
+
         div_senha.innerHTML = mensagem;
 
-    // Validação geral 
-    if (tamanhoValido && caractereValido && numeroValido && maiusculoValido && minusculoValido) {
-        senhaValida = true;
+        // Validação geral 
+        if (tamanhoValido && caractereValido && numeroValido && maiusculoValido && minusculoValido) {
+            senhaValida = true;
         }
     }
 
     function confirmarSenha() {
-    // Variáveis do campo confirmar senha
-    var senha = input_senha.value;
-    var confirmSenha = input_confirmSenha.value;
-    
-    // Variável de configuração
-    var validacao = "";
+        // Variáveis do campo confirmar senha
+        var senha = input_senha.value;
+        var confirmSenha = input_confirmSenha.value;
+
+        // Variável de configuração
+        var validacao = "";
 
         if (senha != confirmSenha) {
             validacao = '<span style="color:red">Senha Incorreta</span>';

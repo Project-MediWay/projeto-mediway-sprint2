@@ -1,4 +1,4 @@
-DROP TABLE Mediway;
+DROP DATABASE Mediway;
 CREATE DATABASE Mediway;
 USE Mediway;
 
@@ -210,6 +210,8 @@ SELECT veiculo.placa AS Placa_Veiculo,
     FROM empresa join veiculo on veiculo.fkEmpresa = empresa.idEmpresa
     join viagem on viagem.fkVeiculo = veiculo.idVeiculo
     join vacina on vacina.idVacina = viagem.fkVacina;
+    
+SELECT idEmpresa, token FROM empresa;
 
 SELECT * FROM usuario;
 SELECT * FROM empresa;
