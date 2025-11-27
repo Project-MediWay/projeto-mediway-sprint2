@@ -236,14 +236,13 @@ JOIN Sensor s ON v.idVeiculo = s.fkVeiculo
 JOIN RegistroSensor rs ON rs.fkSensor = s.idSensor
 WHERE temperatura_atual>2 AND temperatura_atual<8;
 
--- NO LIMITE: ERRADO
-SELECT COUNT(idVeiculo)
+-- NO LIMITE: 
+SELECT COUNT(DISTINCT v.idVeiculo) AS 'Qtd de veículos NO LIMITE'
 FROM Veiculo v
-JOIN Sensor s ON v.idVeiculo = s.fkVeiculo
+JOIN Sensor s ON s.fkVeiculo = v.idVeiculo
 JOIN RegistroSensor rs ON rs.fkSensor = s.idSensor
-WHERE temperatura_atual BETWEEN 
-(SELECT temperatura_atual  FROM RegistroSensor WHERE temperatura_atual >= 2.00 AND temperatura_atual <3) AND 
-(SELECT temperatura_atual FROM RegistroSensor WHERE temperatura_atual < 9 and temperatura_atual >= 8);
+WHERE (rs.temperatura_atual BETWEEN 2.00 AND 2.99)
+OR (rs.temperatura_atual BETWEEN 8.00 AND 8.99);
 
 -- ALERTA
 SELECT COUNT(idVeiculo) AS 'Qtd de veículos Alerta'
@@ -254,14 +253,4 @@ WHERE temperatura_atual>8 OR temperatura_atual<2;
 
 -- TABELA
 SELECT DATE(rs.dtRegistro) AS 'DATA', TIME(rs.dtRegistro) AS 'HORA', v.placa as 'Veículo'
-
--- DATA
-SELECT DATE(dtRegistro) AS 'DATA' FROM RegistroSensor 
-ORDER BY dtRegistro DESC; 
-
--- HORA
-SELECT TIME(dtRegistro) AS 'HORA' FROM RegistroSensor 
-ORDER BY dtRegistro DESC; 
-
--- 
 
