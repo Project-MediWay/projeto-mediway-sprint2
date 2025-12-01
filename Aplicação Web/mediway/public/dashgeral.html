@@ -16,12 +16,12 @@
   <div class="user-menu" id="userMenu">
     <div class="titulo-user-menu">
       <img src="assets/dashboard/user.png" height="70px" alt="">
-      <span>Mediway</span>
+      <span id="modal_nome_empresa"></span>
     </div>
 
     <div class="info-user-menu">
-      <span class="nome-user">Julia Araripe</span>
-      <span class="email-user">araripe@email.com</span>
+      <span class="nome-user" id="modal_nome_usuario">Julia Araripe</span>
+      <span class="email-user" id="modal_email_usuario">araripe@email.com</span>
     </div>
 
     <div class="btn-sair-user-menu">
@@ -187,26 +187,7 @@
   // Inicio configuração Modal
   overlayUser.style.display = 'none';
   userMenu.style.display = 'none';
-
-  function ir1() {
-    window.location.href = 'dashespecifica1.html'
-  }
-
-  function ir2() {
-    window.location.href = 'dashespecifica2.html'
-  }
-
-  function ir3() {
-    window.location.href = 'dashespecifica3.html'
-  }
-
-  function ir4() {
-    window.location.href = 'dashespecifica4.html'
-  }
-
-  function ir5() {
-    window.location.href = 'dashespecifica5.html'
-  }
+  exibirNoModal();
 
   function exibirModal() {
     overlayUser.style.display = 'block';
@@ -218,4 +199,30 @@
     userMenu.style.display = 'none';
   }
   // Término configuração Modal
+
+
+  function exibirNoModal(){
+    document.getElementById("modal_nome_empresa").innerHTML = sessionStorage.NOME_EMPRESA
+    document.getElementById("modal_nome_usuario").innerHTML = sessionStorage.NOME_USUARIO
+    document.getElementById("modal_email_usuario").innerHTML = sessionStorage.EMAIL_USUARIO
+  }
+
+
+
+  // function montarTabela(){
+  //       let tabela = document.getElementById("tabela-dados")
+
+  //       for(let i = 0; i < valor_tabela.length; i++){
+  //           let posicao = i+1
+  //           let nickname = valor_tabela[i].nickname
+  //           let pontuacao = valor_tabela[i].pontuacao * 7;
+
+  //           tabela.innerHTML += `
+  //           <tr>
+  //               <td>${posicao}</td>
+  //               <td>${nickname}</td>
+  //               <td>${pontuacao}</td>
+  //           </tr>`
+  //       }
+  // }
 </script>

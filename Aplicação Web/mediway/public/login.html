@@ -36,7 +36,8 @@
                 <i class="bx bxs-lock-alt"></i>
             </div>
 
-            <button type="submit" class="login" onclick="autenticacao()">Entrar</button>
+            <button type="submit" class="login" onclick="entrar()">Entrar</button>
+            <div id="msg_login"></div>
 
             <div class="registre">
                 <p>Não tem um cadastro? <b><a href="cadastro.html"> Registre-se</a></b></p>
@@ -49,21 +50,65 @@
 
 
 <script>
-       
-    function autenticacao() {
-        var email = ipt_email.value;
-        var senha = ipt_senha.value; 
+        // funções de login ---------------------------------------------------------------------------------------------------    
+    function entrar() {
+        var emailVar = ipt_email.value;
+        var senhaVar = ipt_senha.value;
 
-        if ((email == 'julia.araripe@gmail.com' && senha == '*Juli@1#') ||
-         (email == 'claudio.frizza@gmail.com' && senha == '*Fr1zz@#')) {
-            alert("Usuário autenticado")
-            window.location.href ='dashgeral.html'
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
 
-        } else {
-            alert("Falha na autenticação")
-           
-        }
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
 
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.NOME_USUARIO = json.nomeUsuario;
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.ID_EMPRESA = json.fkEmpresa;
+                    sessionStorage.NOME_EMPRESA = json.nomeEmpresa;
+
+                    msg_login.style.display = 'flex';
+                    msg_login.innerHTML = `<br><span style="color: green; font-size:1.3em;">Login realizado.. redirecionando...</span>`;
+                    
+                    setTimeout(function () {
+                        window.location = "dashgeral.html";
+                        msg_login.innerHTML = ``;
+
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+                resposta.text().then(texto => {
+                    msg_login.innerHTML = `<br><span style="color: red;">${texto}</span>`;
+                });
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
     }
-
+    // funções de login ---------------------------------------------------------------------------------------------------    
 </script>
