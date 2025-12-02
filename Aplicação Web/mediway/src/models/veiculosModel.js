@@ -14,8 +14,21 @@ function obterdadosKPI(temperatura_atual) {
     return database.executar(instrucaoSql);
 }
 
-
+function obterVeiculos(empresa){
+    var instrucaoSql = `
+    SELECT  veiculo.placa, 
+			registroSensor.temperatura_atual,
+			registroSensor.dtRegistro
+	FROM veiculo
+	JOIN sensor ON idVeiculo = fkVeiculo
+	JOIN registroSensor ON idSensor = fkSensor
+	where fkEmpresa = ${empresa};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
-    obterdadosKPI
+    obterdadosKPI,
+    obterVeiculos
 };

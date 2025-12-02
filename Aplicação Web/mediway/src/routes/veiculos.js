@@ -1,11 +1,14 @@
 var express = require("express");
 var router = express.Router();
 
-var dashespecificaController = require("../controllers/dashespecificaController");
+var veiculosController = require("../controllers/veiculosController");
 
-//Recebendo os dados do html e direcionando para a função cadastrar de dashespecificaController.js
 router.get("/obter/:fkempresa", function (req, res) {
-    dashespecificaController.obterdadosKPI(req, res);
+    veiculosController.obterdadosKPI(req, res);
+})
+
+router.get("/obterVeiculos/:fkempresa", function (req, res) {
+    veiculosController.obterVeiculos(req, res);
 })
 
 module.exports = router;

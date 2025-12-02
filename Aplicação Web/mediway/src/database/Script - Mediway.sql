@@ -211,6 +211,15 @@ SELECT veiculo.placa AS Placa_Veiculo,
     join viagem on viagem.fkVeiculo = veiculo.idVeiculo
     join vacina on vacina.idVacina = viagem.fkVacina;
     
+
+SELECT  veiculo.placa, 
+		registroSensor.temperatura_atual,
+        registroSensor.dtRegistro
+FROM veiculo
+JOIN sensor ON idVeiculo = fkVeiculo
+JOIN registroSensor ON idSensor = fkSensor;
+        
+    
 SELECT idEmpresa, token FROM empresa;
 
 SELECT * FROM usuario;
@@ -228,3 +237,5 @@ DESCRIBE registroSensor;
 DESCRIBE vacina;
 DESCRIBE viagem;
 SHOW TABLES;
+
+

@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard</title>
+  <script src="js/sessao.js"></script>
   <link rel="stylesheet" href="styles/dashgeral.css" />
 </head>
 
@@ -25,7 +26,7 @@
     </div>
 
     <div class="btn-sair-user-menu">
-      <a href="login.html">Sair</a>
+      <a href="login.html" onclick="limparSessao()">Sair</a>
     </div>
   </div>
   <!-- Término estruturação Modal -->
@@ -85,61 +86,19 @@
                 <th>Temperatura</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
+            <tbody id="tabela-dados">
+              <!-- <tr>
                 <td>05/10/2025</td>
                 <td>21:05</td>
                 <td>VWX1234</td>
                 <td>-3°C</td>
               </tr>
               <tr>
-                <td>05/10/2025</td>
-                <td>21:00</td>
-                <td>VWX1234</td>
-                <td>-1°C</td>
-              </tr>
-              <tr>
-                <td>05/10/2025</td>
-                <td>20:55</td>
-                <td>VWX1234</td>
-                <td>-4°C</td>
-              </tr>
-              <tr>
-                <td>01/10/2025</td>
-                <td>13:39</td>
-                <td>GHI2345</td>
-                <td>9.5°C</td>
-              </tr>
-              <tr>
-                <td>01/10/2025</td>
-                <td>13:34</td>
-                <td>GHI2345</td>
-                <td>11°C</td>
-              </tr>
-              <tr>
-                <td>05/09/2025</td>
-                <td>17:45</td>
-                <td>MNO3456</td>
-                <td>9.1°C</td>
-              </tr>
-              <tr>
-                <td>05/09/2025</td>
-                <td>17:35</td>
-                <td>MNO3456</td>
-                <td>9.8°C</td>
-              </tr>
-              <tr>
-                <td>05/09/2025</td>
-                <td>17:15</td>
-                <td>MNO3456</td>
-                <td>11°C</td>
-              </tr>
-              <tr>
-                <td>05/09/2025</td>
-                <td>17:05</td>
-                <td>MNO3456</td>
-                <td>10,7°C</td>
-              </tr>
+                <td>data05/10/2025</td>
+                <td>hora21:00</td>
+                <td>placa</td>
+                <td>temp°C</td>
+              </tr>  -->
             </tbody>
           </table>
         </div>
@@ -149,7 +108,7 @@
 
 
       <!-- Inicio estruturação do card de monitoramento dos véiculos -->
-      <div class="monitoramento">
+      <div class="monitoramento" id="monitoramento">
         <div onclick="ir1()" id="veiculo_1" class="card card-alerta">
           <img class="img-caminhao" src="assets/dashboard/caminhao-atencao.png" />
 
@@ -184,6 +143,14 @@
 
 </html>
 <script>
+  // Declaração de variaveis
+  var listaVeiculos;
+
+
+
+  validarSessao()
+  obterVeiculos()
+
   // Inicio configuração Modal
   overlayUser.style.display = 'none';
   userMenu.style.display = 'none';
@@ -219,10 +186,68 @@
 
   //           tabela.innerHTML += `
   //           <tr>
-  //               <td>${posicao}</td>
-  //               <td>${nickname}</td>
-  //               <td>${pontuacao}</td>
+  //               <td>${data}</td>
+  //               <td>${hora}</td>
+  //               <td>${veiculo}</td>
+  //               <td>${temperatura}</td>
   //           </tr>`
   //       }
   // }
+
+
+function obterVeiculos(){
+  var empresa = sessionStorage.ID_EMPRESA;
+  fetch(`/veiculo/obterVeiculos/${empresa}`, { cache: "no-store" })
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          resposta.reverse();
+
+          listaVeiculos = resposta;
+
+          montarPainelVeiculos();
+        });
+      } else {
+        console.error("Nenhum dado encontrado ou erro na API");
+      }
+    })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+}
+    
+
+
+    function montarPainelVeiculos(){
+        let painelVeiculos = document.getElementById("monitoramento")
+
+        for(let i = 0; i < listaVeiculos.length; i++){
+            let placa = listaVeiculos[i].placa;
+            let temperatura = listaVeiculos[i].temperatura_atual;
+
+            mensagem += `
+               <div onclick="ir1()" id="veiculo_1" class="card card-alerta">
+                  <img class="img-caminhao" src="assets/dashboard/caminhao-atencao.png" />
+
+                  <div class="id-caminhao">
+                    <span class="texto-card texto-placa">Placa:</span>
+                    <span class="texto-card">${placa}</span>
+                  </div>
+
+                  <div class="temp-caminhao">
+                    <span class="texto-card texto-placa">Temperatura:</span>
+                    <span class="texto-card">${temperatura}</span>
+                  </div>
+
+                  <div class="status-caminhao">
+                    <img src="assets/dashboard/atencao.png" class="status-atencao">
+                    <span class="texto-card texto-placa">Status:&nbsp;</span>
+                    <span class="texto-card">Alerta</span>
+                  </div>
+                </div>
+                `
+        }
+
+        painelVeiculos.innerHTML = mensagem;
+  }
 </script>
