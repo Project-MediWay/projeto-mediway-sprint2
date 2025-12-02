@@ -147,7 +147,7 @@ function validarEmpresa() {
                 if (resposta.ok) {
                     msg_cadastro.innerHTML = `<br><span style="color: green;">Cadastro realizado.. redirecionando para login.</span>`
                     setTimeout(() => {
-                        transicao('login');
+                        window.location = 'login.html';
                         msg_cadastro.innerHTML = ``;
                     }, "2000");
 
