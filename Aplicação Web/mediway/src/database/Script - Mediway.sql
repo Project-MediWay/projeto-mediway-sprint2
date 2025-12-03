@@ -95,7 +95,8 @@ INSERT INTO veiculo (modelo, marca, placa, fkEmpresa) VALUES
 	('FH 460', 'Volvo', 'MNO3456', 1),
 	('Actros 2651', 'Mercedes-Benz', 'DEF6789', 3),
 	('Stralis 440', 'Iveco', 'GHI2345', 1),
-	('Atego 2426', 'Mercedes-Benz', 'LMN4567', 2);
+	('Atego 2426', 'Mercedes-Benz', 'LMN4567', 2),
+    ('Atego 2426', 'Mercedes-Benz', 'ABC1456', 2);
 
 -- INSERÇÃO DE DADOS NA TABELA VACINA
 INSERT INTO vacina (nome) VALUES 
@@ -127,7 +128,8 @@ INSERT INTO sensor (nome, fkVeiculo) VALUES
 	('sensor_006', 6),
 	('sensor_007', 7),
 	('sensor_008', 8),
-	('sensor_009', 9);
+	('sensor_009', 9),
+    ('sensor_010', 10);
     
 INSERT INTO registroSensor (dtRegistro, temperatura_atual, fkSensor) VALUES
 	('2025-08-26 10:00:00', 05.02, 1),
@@ -138,7 +140,8 @@ INSERT INTO registroSensor (dtRegistro, temperatura_atual, fkSensor) VALUES
 	('2025-01-26 11:00:00', 08.00, 6),
 	('2025-03-22 15:00:00', 08.00, 7),
 	('2025-07-20 08:00:00', 08.00, 8),
-	('2025-05-26 11:00:00', 08.00, 9);
+	('2025-05-26 11:00:00', 08.00, 9),
+    ('2025-05-26 11:00:00', -01.00, 10);
     
 -- COMANDOS:
 -- SELECIONANDO TODOS OS DADOS DA TABELA USUARIO E EMPRESA
@@ -211,14 +214,33 @@ SELECT veiculo.placa AS Placa_Veiculo,
     join viagem on viagem.fkVeiculo = veiculo.idVeiculo
     join vacina on vacina.idVacina = viagem.fkVacina;
     
-
-SELECT  veiculo.placa, 
-		registroSensor.temperatura_atual,
-        registroSensor.dtRegistro
+-- PUXAR OS VEICULOS DE DETERMINADA EMPRESA PARA O PAINEL DE VEICULOS
+CREATE VIEW painelVeiculos AS
+SELECT  fkEmpresa,
+		idVeiculo,
+		veiculo.placa,
+		temperatura_atual,
+        dtRegistro
 FROM veiculo
 JOIN sensor ON idVeiculo = fkVeiculo
 JOIN registroSensor ON idSensor = fkSensor;
+
+SELECT * FROM painelVeiculos
+WHERE fkEmpresa = 2;
+
+-- PUXAR O HISTORICO DE ALERTAS
+CREATE VIEW historicoAlertas AS
+SELECT  fkEmpresa,
+		veiculo.placa,
+		temperatura_atual,
+        dtRegistro
+FROM veiculo
+JOIN sensor ON idVeiculo = fkVeiculo
+JOIN registroSensor ON idSensor = fkSensor
+WHERE (temperatura_atual < 2 OR temperatura_atual > 8);
         
+SELECT * FROM historicoAlertas
+WHERE fkEmpresa = 2;
     
 SELECT idEmpresa, token FROM empresa;
 

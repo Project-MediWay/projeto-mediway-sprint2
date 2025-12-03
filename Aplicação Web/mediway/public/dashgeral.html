@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
   <!-- Inicio estruturação Modal -->
   <div class="overlay-user" id="overlayUser" onclick="esconderModal()">
   </div>
@@ -65,10 +64,10 @@
     </div>
     <!-- Término estruturação das KPIS -->
 
-    
+
     <!-- Inicio estruturação dos cards de informação e gráficos -->
     <div class="informacoes">
-      
+
 
       <!-- Inicio estruturação do card de histórico de alertas -->
       <div class="historico">
@@ -145,11 +144,8 @@
 <script>
   // Declaração de variaveis
   var listaVeiculos;
+  var listaHistorico;
 
-
-
-  validarSessao()
-  obterVeiculos()
 
   // Inicio configuração Modal
   overlayUser.style.display = 'none';
@@ -168,86 +164,160 @@
   // Término configuração Modal
 
 
-  function exibirNoModal(){
+  function exibirNoModal() {
     document.getElementById("modal_nome_empresa").innerHTML = sessionStorage.NOME_EMPRESA
     document.getElementById("modal_nome_usuario").innerHTML = sessionStorage.NOME_USUARIO
     document.getElementById("modal_email_usuario").innerHTML = sessionStorage.EMAIL_USUARIO
   }
 
 
+  function obterVeiculos() {
+    var empresa = sessionStorage.ID_EMPRESA;
+    fetch(`/veiculo/obterVeiculos/${empresa}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            resposta.reverse();
 
-  // function montarTabela(){
-  //       let tabela = document.getElementById("tabela-dados")
+            listaVeiculos = resposta;
 
-  //       for(let i = 0; i < valor_tabela.length; i++){
-  //           let posicao = i+1
-  //           let nickname = valor_tabela[i].nickname
-  //           let pontuacao = valor_tabela[i].pontuacao * 7;
-
-  //           tabela.innerHTML += `
-  //           <tr>
-  //               <td>${data}</td>
-  //               <td>${hora}</td>
-  //               <td>${veiculo}</td>
-  //               <td>${temperatura}</td>
-  //           </tr>`
-  //       }
-  // }
-
-
-function obterVeiculos(){
-  var empresa = sessionStorage.ID_EMPRESA;
-  fetch(`/veiculo/obterVeiculos/${empresa}`, { cache: "no-store" })
-    .then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta) {
-          resposta.reverse();
-
-          listaVeiculos = resposta;
-
-          montarPainelVeiculos();
-        });
-      } else {
-        console.error("Nenhum dado encontrado ou erro na API");
-      }
-    })
-    .catch(function (error) {
-      console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
-}
-    
-
-
-    function montarPainelVeiculos(){
-        let painelVeiculos = document.getElementById("monitoramento")
-
-        for(let i = 0; i < listaVeiculos.length; i++){
-            let placa = listaVeiculos[i].placa;
-            let temperatura = listaVeiculos[i].temperatura_atual;
-
-            mensagem += `
-               <div onclick="ir1()" id="veiculo_1" class="card card-alerta">
-                  <img class="img-caminhao" src="assets/dashboard/caminhao-atencao.png" />
-
-                  <div class="id-caminhao">
-                    <span class="texto-card texto-placa">Placa:</span>
-                    <span class="texto-card">${placa}</span>
-                  </div>
-
-                  <div class="temp-caminhao">
-                    <span class="texto-card texto-placa">Temperatura:</span>
-                    <span class="texto-card">${temperatura}</span>
-                  </div>
-
-                  <div class="status-caminhao">
-                    <img src="assets/dashboard/atencao.png" class="status-atencao">
-                    <span class="texto-card texto-placa">Status:&nbsp;</span>
-                    <span class="texto-card">Alerta</span>
-                  </div>
-                </div>
-                `
+            montarPainelVeiculos();
+          });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
         }
-
-        painelVeiculos.innerHTML = mensagem;
+      })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
   }
+
+
+
+  function montarPainelVeiculos() {
+    let painelVeiculos = document.getElementById("monitoramento")
+    let mensagem = ``;
+
+    for (let i = 0; i < listaVeiculos.length; i++) {
+      let placa = listaVeiculos[i].placa;
+      let temperatura = Number(listaVeiculos[i].temperatura_atual).toFixed();
+      let id_veiculo = Number(listaVeiculos[i].idVeiculo);
+
+      if (temperatura < 2 || temperatura > 8) {
+        mensagem += `
+            <div onclick="ir(${id_veiculo})" id="veiculo_${id_veiculo}" class="card card-alerta">
+              <img class="img-caminhao" src="assets/dashboard/caminhao-atencao.png" />
+              
+              <div class="id-caminhao">
+                <span class="texto-card texto-placa">Placa:</span>
+                <span class="texto-card">${placa}</span>
+              </div>
+                
+              <div class="temp-caminhao">
+                  <span class="texto-card texto-placa">Temperatura:</span>
+                  <span class="texto-card">${temperatura}°C</span>
+              </div>
+                  
+              <div class="status-caminhao">
+                  <img src="assets/dashboard/atencao.png" class="status-atencao">
+                  <span class="texto-card texto-placa">Status:&nbsp;</span>
+                  <span class="texto-card">Alerta</span>
+              </div>
+            </div>
+        `
+      } else if (temperatura == 8 || temperatura == 2) {
+        mensagem += `
+            <div onclick="ir(${id_veiculo})" id="veiculo_${id_veiculo}" class="card card-no-limite">
+              <img class="img-caminhao" src="assets/dashboard/caminhao-cuidado.png" />
+              
+              <div class="id-caminhao">
+                <span class="texto-card texto-placa">Placa:</span>
+                <span class="texto-card">${placa}</span>
+              </div>
+                
+              <div class="temp-caminhao">
+                  <span class="texto-card texto-placa">Temperatura:</span>
+                  <span class="texto-card">${temperatura}°C</span>
+              </div>
+                  
+              <div class="status-caminhao">
+                  <img src="assets/dashboard/cuidado.png" class="status-atencao">
+                  <span class="texto-card texto-placa">Status:&nbsp;</span>
+                  <span class="texto-card">Alerta</span>
+              </div>
+            </div>
+        `
+      } else {
+        mensagem += `
+            <div onclick="ir(${id_veiculo})" id="veiculo_${id_veiculo}" class="card card-normal">
+              <img class="img-caminhao" src="assets/dashboard/caminhao-ok.png" />
+              
+              <div class="id-caminhao">
+                <span class="texto-card texto-placa">Placa:</span>
+                <span class="texto-card">${placa}</span>
+              </div>
+                
+              <div class="temp-caminhao">
+                  <span class="texto-card texto-placa">Temperatura:</span>
+                  <span class="texto-card">${temperatura}°C</span>
+              </div>
+                  
+              <div class="status-caminhao">
+                  <img src="assets/dashboard/ok.png" class="status-atencao">
+                  <span class="texto-card texto-placa">Status:&nbsp;</span>
+                  <span class="texto-card">Alerta</span>
+              </div>
+            </div>
+        `
+      }
+
+    }
+
+    painelVeiculos.innerHTML = mensagem;
+  }
+
+    function obterHistorico() {
+    var empresa = sessionStorage.ID_EMPRESA;
+    fetch(`/veiculo/obterHistorico/${empresa}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            resposta.reverse();
+
+            listaHistorico = resposta;
+
+            montarHistorico();
+          });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+  }
+
+  function montarHistorico(){
+        let tabela = document.getElementById("tabela-dados")
+        let mensagem = ``;
+
+        for(let i = 0; i < listaHistorico.length; i++){
+            let data = listaHistorico[i].dtRegistro.slice(0, 10);
+            let hora = listaHistorico[i].dtRegistro.slice(11, 19);
+            let veiculo = listaHistorico[i].placa;
+            let temperatura = listaHistorico[i].temperatura_atual;
+            mensagem += `
+            <tr>
+                <td>${data}</td>
+                <td>${hora}</td>
+                <td>${veiculo}</td>
+                <td>${temperatura}°C</td>
+            </tr>`
+        }
+        tabela.innerHTML = mensagem;
+  }
+
+  validarSessao()
+  obterVeiculos()
+  obterHistorico()
 </script>

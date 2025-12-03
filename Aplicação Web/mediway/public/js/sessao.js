@@ -6,7 +6,7 @@ function validarSessao() {
     var b_usuario = document.getElementById("b_usuario");
 
     if (email != null && nome != null) {
-        b_usuario.innerHTML = nome;
+       console.log(`User logged`)
     } else {
         window.location = "../login.html";
     }
