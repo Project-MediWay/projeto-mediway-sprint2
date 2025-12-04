@@ -340,7 +340,7 @@ function obterAlertas(){
     resposta.json()
     .then(function (respostaConversao){
       Alerta.innerHTML = `
-      ${respostaConversao[0].total_alertas}
+      ${respostaConversao[0].total_alerta}
       `
     }).catch(function (erroConversao){
       console.log(erroConversao)
@@ -416,7 +416,7 @@ function obterQtd(){
     resposta.json()
     .then(function (respostaConversao){
       Geral.innerHTML = `
-      ${respostaConversao[0].total_registros}
+      ${respostaConversao[0].quantidadeVeiculo}
       `
     }).catch(function (erroConversao){
       console.log(erroConversao)

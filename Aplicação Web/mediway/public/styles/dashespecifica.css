@@ -113,6 +113,9 @@
     color: white;
     font-size: 25px;
     font-weight: bold;
+    width: 70%;
+    display: flex;
+    justify-content: center ;
 }
 
 .btn-voltar {

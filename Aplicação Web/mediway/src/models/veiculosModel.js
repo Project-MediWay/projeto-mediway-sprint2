@@ -29,12 +29,12 @@ function obterPlaca(veiculo) {
 
 function alertasEspec(veiculo) {
     var instrucaoSql = `
- SELECT COUNT(*) as total_alertas_4h
-FROM registroSensor rs
-JOIN sensor s ON rs.fkSensor = s.idSensor
-WHERE s.fkVeiculo = ${veiculo}
-AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 4 HOUR)
-AND (rs.temperatura_atual < 2 OR rs.temperatura_atual > 8);
+        SELECT COUNT(*) as total_alertas_4h
+        FROM registroSensor rs
+        JOIN sensor s ON rs.fkSensor = s.idSensor
+        WHERE s.fkVeiculo = ${veiculo}
+        AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 24 HOUR)
+        AND (rs.temperatura_atual < 2 OR rs.temperatura_atual > 8);
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

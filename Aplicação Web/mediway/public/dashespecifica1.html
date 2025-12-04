@@ -1,441 +1,493 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+  <!DOCTYPE html>
+  <html lang="pt-br">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="styles/dashespecifica.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles/dashespecifica.css" />
+  </head>
 
-<body>
-  <!-- Inicio estruturação Modal -->
-  <div class="overlay-user" id="overlayUser" onclick="esconderModal()">
-  </div>
-  <div class="user-menu" id="userMenu">
-    <div class="titulo-user-menu">
-      <img src="assets/dashboard/user.png" height="70px">
-      <span>Mediway</span>
+  <body>
+    <!-- Inicio estruturação Modal -->
+    <div class="overlay-user" id="overlayUser" onclick="esconderModal()">
     </div>
-
-    <div class="info-user-menu">
-      <span class="nome-user">Nome: Julia Araripe</span>
-      <span class="email-user">Email: araripe@email.com</span>
-    </div>
-
-    <div class="btn-sair-user-menu">
-      <a href="login.html">Sair</a>
-    </div>
-  </div>
-  <!-- Término estruturação Modal -->
-
-
-  <!-- Inicio estruturação do corpo da dasboard -->
-  <div class="main">
-
-    <!-- Inicio estruturação Barra de Título -->
-    <div class="title">
-      <img src="assets/dashboard/voltar.png" height="40px" class="btn-voltar" onclick="voltar()">
-      <span class="title-main">Monitoramento de Veículo: <p id="placa"></p></span>
-      <img src="assets/dashboard/user.png" onclick="exibirModal()" class="user" />
-    </div>
-    <!-- Término estruturação Barra de Título -->
-
-
-    <!-- Inicio estruturação das KPIS -->
-    <div class="kpis">
-      <div class="metrica">
-        <span class="valor-kpis"> Ideal:</span>
-        <span class="valor-kpis">2°C - 8°C</span>
+    <div class="user-menu" id="userMenu">
+      <div class="titulo-user-menu">
+        <img src="assets/dashboard/user.png" height="70px">
+        <span>Mediway</span>
       </div>
-      <div class="total-alertas">
-        <span class="valor-kpis" id="totalAlertas"></span>
-        <span class="texto-kpis">Total de Alertas</span>
-        <span class="texto-kpis-menor">(Últimas 4 Horas)</span>
+
+      <div class="info-user-menu">
+        <span class="nome-user">Nome: Julia Araripe</span>
+        <span class="email-user">Email: araripe@email.com</span>
       </div>
-      <div class="kpi_vermelha">
-        <span class="valor-kpis" id="temperaturaAtual"></span>
-        <span class="texto-kpis">Temperatura atual</span>
-      </div>
-      <div class="kpi_vermelha">
-        <span class="valor-kpis" id="temperaturaMinima"></span>
-        <span class="texto-kpis">Temperatura Mínima</span>
-        <span class="texto-kpis-menor">(Últimas 4 Horas)</span>
-      </div>
-      <div class=" temperatura-maxima">
-        <span class="valor-kpis" id="temperaturaMaxima"></span>
-        <span class="texto-kpis">Temperatura Máxima</span>
-        <span class="texto-kpis-menor">(Últimas 4 Horas)</span>
+
+      <div class="btn-sair-user-menu">
+        <a href="login.html">Sair</a>
       </div>
     </div>
-    <!-- Término estruturação das KPIS -->
+    <!-- Término estruturação Modal -->
 
 
-    <!-- Inicio estruturação dos cards de informação e gráficos -->
-    <div class="graficos">
-      <div class="grafico_metrica">
+    <!-- Inicio estruturação do corpo da dasboard -->
+    <div class="main">
 
-        <div class="imagem_metrica">
-          <img src="assets/imagens/kpi metrica.png" alt="">
+      <!-- Inicio estruturação Barra de Título -->
+      <div class="title">
+        <img src="assets/dashboard/voltar.png" height="40px" class="btn-voltar" onclick="voltar()">
+        <span class="title-main">Monitoramento de Veículo: <p id="placa"></p></span>
+        <img src="assets/dashboard/user.png" onclick="exibirModal()" class="user" />
+      </div>
+      <!-- Término estruturação Barra de Título -->
+
+
+      <!-- Inicio estruturação das KPIS -->
+      <div class="kpis">
+        <div class="metrica">
+          <span class="valor-kpis"> Ideal:</span>
+          <span class="valor-kpis">2°C - 8°C</span>
         </div>
-        <div class="grafico-temperatura">
-          <canvas id="grafico_temperatura"></canvas>
+        <div class="total-alertas">
+          <span class="valor-kpis" id="totalAlertas"></span>
+          <span class="texto-kpis">Total de Alertas</span>
+          <span class="texto-kpis-menor">(Últimas 4 Horas)</span>
+        </div>
+        <div class="kpi_vermelha">
+          <span class="valor-kpis" id="temperaturaAtual"></span>
+          <span class="texto-kpis">Temperatura atual</span>
+        </div>
+        <div class="kpi_vermelha">
+          <span class="valor-kpis" id="temperaturaMinima"></span>
+          <span class="texto-kpis">Temperatura Mínima</span>
+          <span class="texto-kpis-menor">(Últimas 4 Horas)</span>
+        </div>
+        <div class=" temperatura-maxima">
+          <span class="valor-kpis" id="temperaturaMaxima"></span>
+          <span class="texto-kpis">Temperatura Máxima</span>
+          <span class="texto-kpis-menor">(Últimas 4 Horas)</span>
+        </div>
+      </div>
+      <!-- Término estruturação das KPIS -->
+
+
+      <!-- Inicio estruturação dos cards de informação e gráficos -->
+      <div class="graficos">
+        <div class="grafico_metrica">
+
+          <div class="imagem_metrica">
+            <img src="assets/imagens/kpi metrica.png" alt="">
+          </div>
+          <div class="grafico-temperatura">
+            <canvas id="grafico_temperatura"></canvas>
+          </div>
+
+
         </div>
 
+        <div class="grafico-alerta">
+          <div class="dados-semanais">
+            <h3>Indicadores dos Últimos 7 Dias</h3>
+            <div class="graficos-kpis-semanais">
 
-      </div>
-
-      <div class="grafico-alerta">
-        <div class="dados-semanais">
-          <h3>Indicadores dos Últimos 7 Dias</h3>
-          <div class="graficos-kpis-semanais">
-
-            <div class="grafico-semanal">
-              <canvas id="grafico_alerta_semanal"></canvas>
-            </div>
-
-            <div class="kpi-semanal">
-              <div class="kpi-semanal-minimo">
-                <span class="texto-kpi-alertas valor-kpis">-5°C</span>
-                <span class="texto-kpi-alertas">Temperatura Mínima</span>
+              <div class="grafico-semanal">
+                <canvas id="grafico_alerta_semanal"></canvas>
               </div>
-              <div class="kpi-semanal-maximo">
-                <span class="texto-kpi-alertas valor-kpis">7°C</span>
-                <span class="texto-kpi-alertas">Temperatura Máxima</span>
+
+              <div class="kpi-semanal">
+                <div class="kpi-semanal-minimo">
+                  <span class="texto-kpi-alertas valor-kpis">-5°C</span>
+                  <span class="texto-kpi-alertas">Temperatura Mínima</span>
+                </div>
+                <div class="kpi-semanal-maximo">
+                  <span class="texto-kpi-alertas valor-kpis">7°C</span>
+                  <span class="texto-kpi-alertas">Temperatura Máxima</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dados-mensais">
+            <h3>Indicadores do Último Mês</h3>
+            <div class="graficos-kpis-mensais">
+
+              <div class="grafico-mensal">
+                <canvas id="grafico_alerta_mensal"></canvas>
+              </div>
+              <div class="kpi-mensal">
+                <div class="kpi-mensal-minimo">
+                  <span class="texto-kpi-alertas valor-kpis">-6°C</span>
+                  <span class="texto-kpi-alertas">Temperatura Mínima</span>
+                </div>
+                <div class="kpi-mensal-maximo">
+                  <span class="texto-kpi-alertas valor-kpis">8°C</span>
+                  <span class="texto-kpi-alertas">Temperatura Máxima</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="dados-mensais">
-          <h3>Indicadores do Último Mês</h3>
-          <div class="graficos-kpis-mensais">
-
-            <div class="grafico-mensal">
-              <canvas id="grafico_alerta_mensal"></canvas>
-            </div>
-            <div class="kpi-mensal">
-              <div class="kpi-mensal-minimo">
-                <span class="texto-kpi-alertas valor-kpis">-6°C</span>
-                <span class="texto-kpi-alertas">Temperatura Mínima</span>
-              </div>
-              <div class="kpi-mensal-maximo">
-                <span class="texto-kpi-alertas valor-kpis">8°C</span>
-                <span class="texto-kpi-alertas">Temperatura Máxima</span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
+      <!-- Término estruturação dos cards de informação -->
+
+
     </div>
-    <!-- Término estruturação dos cards de informação -->
+    <!-- Término estruturação do corpo da dashboard -->
+  </body>
 
-
-  </div>
-  <!-- Término estruturação do corpo da dashboard -->
-</body>
-
-</html>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  // Inicio configuração Modal
-  overlayUser.style.display = 'none';
-  userMenu.style.display = 'none';
-
-  function exibirModal() {
-    overlayUser.style.display = 'block';
-    userMenu.style.display = 'flex';
-  }
-
-  function esconderModal() {
+  </html>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Inicio configuração Modal
     overlayUser.style.display = 'none';
     userMenu.style.display = 'none';
-  }
-  // Término configuração Modal
+
+    function exibirModal() {
+      overlayUser.style.display = 'block';
+      userMenu.style.display = 'flex';
+    }
+
+    function esconderModal() {
+      overlayUser.style.display = 'none';
+      userMenu.style.display = 'none';
+    }
+    // Término configuração Modal
 
 
-  // Inicio configuração Botão Voltar
-  function voltar() {
-    window.location.href = 'dashgeral.html'
-  }
-  // Término configuração Botão Voltar
+    // Inicio configuração Botão Voltar
+    function voltar() {
+      window.location.href = 'dashgeral.html'
+    }
+    // Término configuração Botão Voltar
 
-  function obterPlaca() {
-    var veiculo = sessionStorage.ID_VEICULO;
-    var Placa = document.getElementById('placa');
-    fetch(`/veiculo/obterPlaca/${veiculo}`, { cache: "no-store" })
-      .then(function (resposta) {
-        resposta.json()
-          .then(function (respostaConversao) {
-            console.log(respostaConversao[0].Placa_Veiculo)
-            Placa.innerHTML = `
-      ${respostaConversao[0].Placa_Veiculo}
-      `
-          }).catch(function (erroConversao) {
-            console.log(erroConversao)
-          })
-      }).catch(function (erro) {
-        console.log(erro)
-      })
-  }
+    function obterPlaca() {
+      var veiculo = sessionStorage.ID_VEICULO;
+      var Placa = document.getElementById('placa');
+      fetch(`/veiculo/obterPlaca/${veiculo}`, { cache: "no-store" })
+        .then(function (resposta) {
+          resposta.json()
+            .then(function (respostaConversao) {
+              console.log(respostaConversao[0].Placa_Veiculo)
+              Placa.innerHTML = `
+        ${respostaConversao[0].Placa_Veiculo}
+        `
+            }).catch(function (erroConversao) {
+              console.log(erroConversao)
+            })
+        }).catch(function (erro) {
+          console.log(erro)
+        })
+    }
 
-  function alertasEspec() {
-    var veiculo = sessionStorage.ID_VEICULO;
-    var Alerta = document.getElementById('totalAlertas');
-    fetch(`/veiculo/alertasEspec/${veiculo}`, { cache: "no-store" })
-      .then(function (resposta) {
-        resposta.json()
-          .then(function (respostaConversao) {
-            console.log(respostaConversao[0].total_alertas_4h)
-            Alerta.innerHTML = `
-      ${respostaConversao[0].total_alertas_4h}
-      `
-          }).catch(function (erroConversao) {
-            console.log(erroConversao)
-          })
-      }).catch(function (erro) {
-        console.log(erro)
-      })
-  }
-
-
-  function tempAtual() {
-    var veiculo = sessionStorage.ID_VEICULO;
-    var temperAtual = document.getElementById('temperaturaAtual');
-    fetch(`/veiculo/tempAtual/${veiculo}`, { cache: "no-store" })
-      .then(function (resposta) {
-        resposta.json()
-          .then(function (respostaConversao) {
-            console.log(respostaConversao[0].temperatura_atual)
-            temperAtual.innerHTML = `
-      ${respostaConversao[0].temperatura_atual}
-      `
-          }).catch(function (erroConversao) {
-            console.log(erroConversao)
-          })
-      }).catch(function (erro) {
-        console.log(erro)
-      })
-  }
-
-  function tempMin() {
-    var veiculo = sessionStorage.ID_VEICULO;
-    var tempMinima = document.getElementById('temperaturaMinima');
-    fetch(`/veiculo/tempMin/${veiculo}`, { cache: "no-store" })
-      .then(function (resposta) {
-        resposta.json()
-          .then(function (respostaConversao) {
-            console.log(respostaConversao[0].temp_min_4h)
-            tempMinima.innerHTML = `
-      ${respostaConversao[0].temp_min_4h}
-      `
-          }).catch(function (erroConversao) {
-            console.log(erroConversao)
-          })
-      }).catch(function (erro) {
-        console.log(erro)
-      })
-  }
+    function alertasEspec() {
+      var veiculo = sessionStorage.ID_VEICULO;
+      var Alerta = document.getElementById('totalAlertas');
+      fetch(`/veiculo/alertasEspec/${veiculo}`, { cache: "no-store" })
+        .then(function (resposta) {
+          resposta.json()
+            .then(function (respostaConversao) {
+              console.log(respostaConversao[0].total_alertas_4h)
+              Alerta.innerHTML = `
+        ${respostaConversao[0].total_alertas_4h}
+        `
+            }).catch(function (erroConversao) {
+              console.log(erroConversao)
+            })
+        }).catch(function (erro) {
+          console.log(erro)
+        })
+    }
 
 
-  function tempMax() {
-    var veiculo = sessionStorage.ID_VEICULO;
-    var tempMaxima = document.getElementById('temperaturaMaxima');
-    fetch(`/veiculo/tempMax/${veiculo}`, { cache: "no-store" })
-      .then(function (resposta) {
-        resposta.json()
-          .then(function (respostaConversao) {
-            console.log(respostaConversao[0].temp_max_4h)
-            tempMaxima.innerHTML = `
-      ${respostaConversao[0].temp_max_4h}
-      `
-          }).catch(function (erroConversao) {
-            console.log(erroConversao)
-          })
-      }).catch(function (erro) {
-        console.log(erro)
-      })
-  }
+    function tempAtual() {
+      var veiculo = sessionStorage.ID_VEICULO;
+      var temperAtual = document.getElementById('temperaturaAtual');
+      fetch(`/veiculo/tempAtual/${veiculo}`, { cache: "no-store" })
+        .then(function (resposta) {
+          resposta.json()
+            .then(function (respostaConversao) {
+              console.log(respostaConversao[0].temperatura_atual)
+              temperAtual.innerHTML = `
+        ${respostaConversao[0].temperatura_atual}
+        `
+            }).catch(function (erroConversao) {
+              console.log(erroConversao)
+            })
+        }).catch(function (erro) {
+          console.log(erro)
+        })
+    }
+
+    function tempMin() {
+      var veiculo = sessionStorage.ID_VEICULO;
+      var tempMinima = document.getElementById('temperaturaMinima');
+      fetch(`/veiculo/tempMin/${veiculo}`, { cache: "no-store" })
+        .then(function (resposta) {
+          resposta.json()
+            .then(function (respostaConversao) {
+              console.log(respostaConversao[0].temp_min_4h)
+              tempMinima.innerHTML = `
+        ${respostaConversao[0].temp_min_4h}
+        `
+            }).catch(function (erroConversao) {
+              console.log(erroConversao)
+            })
+        }).catch(function (erro) {
+          console.log(erro)
+        })
+    }
 
 
-  function  obterGrafico4Horas() {
+    function tempMax() {
+      var veiculo = sessionStorage.ID_VEICULO;
+      var tempMaxima = document.getElementById('temperaturaMaxima');
+      fetch(`/veiculo/tempMax/${veiculo}`, { cache: "no-store" })
+        .then(function (resposta) {
+          resposta.json()
+            .then(function (respostaConversao) {
+              console.log(respostaConversao[0].temp_max_4h)
+              tempMaxima.innerHTML = `
+        ${respostaConversao[0].temp_max_4h}
+        `
+            }).catch(function (erroConversao) {
+              console.log(erroConversao)
+            })
+        }).catch(function (erro) {
+          console.log(erro)
+        })
+    }
+
+// 1. Variável global para o gráfico
+var graficoGlobal = null;
+
+// 2. Modifique sua função obterGrafico4Horas para salvar o gráfico
+function obterGrafico4Horas() {
     var veiculo = sessionStorage.ID_VEICULO;
     var ctx = document.getElementById('grafico_temperatura');
 
     fetch(`/veiculo/obterGrafico4Horas/${veiculo}`, { cache: "no-store" })
-      .then(function (resposta) {
-        return resposta.json();
-      })
-      .then(function (respostaConversao) {
-        console.log('Dados gráfico temperatura:', respostaConversao);
+        .then(function (resposta) {
+            return resposta.json();
+        })
+        .then(function (respostaConversao) {
+            console.log('Dados gráfico temperatura:', respostaConversao);
 
-       
-        // Prepara dados
-        var labels = [];
-        var temperaturas = [];
+            // Prepara dados
+            var labels = [];
+            var temperaturas = [];
 
-        for (var i = 0; i < respostaConversao.length; i++) {
-          labels.push(respostaConversao[i].hora);
-          temperaturas.push(respostaConversao[i].temperatura_atual);
-        }
-
-        // Se não tiver dados, usa valores padrão
-        if (respostaConversao.length === 0) {
-          labels = ['Sem dados'];
-          temperaturas = [0];
-        }
-
-        // Cria o gráfico
-       var myChart = new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: labels,
-            datasets: [{
-              label: 'Temperatura (°C)',
-              data: temperaturas,
-              borderColor: '#0031d0',
-              backgroundColor: 'rgba(0, 49, 208, 0.1)',
-              borderWidth: 3,
-              tension: 0.1,
-              fill: true
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              title: {
-                display: true,
-                text: 'Temperatura nas Últimas 4 Horas',
-                color: '#111',
-                font: { size: 18, weight: 'bold' }
-              }
-            },
-            scales: {
-              y: {
-                beginAtZero: false,
-                ticks: { stepSize: 1 }
-              }
+            for (var i = 0; i < respostaConversao.length; i++) {
+                labels.push(respostaConversao[i].hora);
+                temperaturas.push(respostaConversao[i].temperatura_atual);
             }
-          }
+
+            // Se não tiver dados, usa valores padrão
+            if (respostaConversao.length === 0) {
+                labels = ['Sem dados'];
+                temperaturas = [0];
+            }
+
+            // Cria o gráfico e salva na variável global
+            graficoGlobal = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Temperatura (°C)',
+                        data: temperaturas,
+                        borderColor: '#0031d0',
+                        backgroundColor: 'rgba(0, 49, 208, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.1,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Temperatura nas Últimas 4 Horas',
+                            color: '#111',
+                            font: { size: 18, weight: 'bold' }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            ticks: { stepSize: 1 }
+                        }
+                    }
+                }
+            });
+
+            // INICIA A ATUALIZAÇÃO AUTOMÁTICA
+            iniciarAtualizacaoGrafico();
+        })
+        .catch(function (erro) {
+            console.log('Erro ao carregar gráfico temperatura:', erro);
         });
-      })
-      .catch(function (erro) {
-        console.log('Erro ao carregar gráfico temperatura:', erro);
-      });
-  }
+}
 
-  // 2. Função para carregar gráfico semanal (7 dias)
-  function obterGrafico7Dias() {
-    var veiculo = sessionStorage.ID_VEICULO;
-    var ctx = document.getElementById('grafico_alerta_semanal');
-
-    fetch(`/veiculo/obterGrafico7Dias/${veiculo}`, { cache: "no-store" })
-      .then(function (resposta) {
-        return resposta.json();
-      })
-      .then(function (respostaConversao) {
-        console.log('Dados gráfico 7 dias:', respostaConversao);
-
-        var labels = [];
-        var alertas = [];
-
-        for (var i = 0; i < respostaConversao.length; i++) {
-          var data = new Date(respostaConversao[i].data);
-          var dataFormatada = data.getDate().toString().padStart(2, '0') + '/' +
-            (data.getMonth() + 1).toString().padStart(2, '0');
-          labels.push(dataFormatada);
-          alertas.push(respostaConversao[i].alertas);
-        }
-
-        if (respostaConversao.length === 0) {
-          labels = ['Sem dados'];
-          alertas = [0];
-        }
-
-         
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: labels,
-              datasets: [{
-                label: 'Alertas',
-                data: alertas,
-                backgroundColor: '#e70000',
-                borderColor: '#e70000'
-              }]
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              scales: {
-                y: { beginAtZero: true }
-              }
+// 3. Função para ATUALIZAR o gráfico automaticamente (SIMPLES!)
+function iniciarAtualizacaoGrafico() {
+    console.log('Iniciando atualização automática do gráfico...');
+    
+    // Atualiza a cada 5 segundos
+    setInterval(function() {
+        if (!graficoGlobal) return;
+        
+        var veiculo = sessionStorage.ID_VEICULO;
+        
+        // Busca novos dados
+        fetch(`/veiculo/obterGrafico4Horas/${veiculo}`, { 
+            cache: "no-store",
+            headers: {
+                'Cache-Control': 'no-cache'
             }
-          });
-      })
-      .catch(function (erro) {
-        console.log('Erro ao carregar gráfico 7 dias:', erro);
-      });
-  }
+        })
+        .then(function (resposta) {
+            return resposta.json();
+        })
+        .then(function (novosDados) {
+            console.log('Atualizando gráfico com', novosDados.length, 'pontos');
+            
+            // Prepara novos dados
+            var labels = [];
+            var temperaturas = [];
 
-  // 3. Função para carregar gráfico mensal
-  function obterGraficoMensal() {
-    var veiculo = sessionStorage.ID_VEICULO;
-    var ctx = document.getElementById('grafico_alerta_mensal');
+            for (var i = 0; i < novosDados.length; i++) {
+                labels.push(novosDados[i].hora);
+                temperaturas.push(novosDados[i].temperatura_atual);
+            }
 
-    fetch(`/veiculo/obterGraficoMensal/${veiculo}`, { cache: "no-store" })
-      .then(function (resposta) {
-        return resposta.json();
-      })
-      .then(function (respostaConversao) {
-        console.log('Dados gráfico mensal:', respostaConversao);
+            graficoGlobal.data.labels = labels;
+            graficoGlobal.data.datasets[0].data = temperaturas;
+            
+            // Atualiza o gráfico
+            graficoGlobal.update();
+        })
+        .catch(function (erro) {
+            console.log('Erro ao atualizar:', erro);
+        });
+        
+    }, 1000); // 5000ms = 5 segundos
+}
 
-        var labels = [];
-        var alertas = [];
 
-        for (var i = 0; i < respostaConversao.length; i++) {
-          labels.push(respostaConversao[i].semana);
-          alertas.push(respostaConversao[i].alertas);
-        }
+    // 2. Função para carregar gráfico semanal (7 dias)
+    function obterGrafico7Dias() {
+      var veiculo = sessionStorage.ID_VEICULO;
+      var ctx = document.getElementById('grafico_alerta_semanal');
 
-        if (respostaConversao.length === 0) {
-          labels = ['Sem dados'];
-          alertas = [0];
-        }
+      fetch(`/veiculo/obterGrafico7Dias/${veiculo}`, { cache: "no-store" })
+        .then(function (resposta) {
+          return resposta.json();
+        })
+        .then(function (respostaConversao) {
+          console.log('Dados gráfico 7 dias:', respostaConversao);
 
+          var labels = [];
+          var alertas = [];
+
+          for (var i = 0; i < respostaConversao.length; i++) {
+            var data = new Date(respostaConversao[i].data);
+            var dataFormatada = data.getDate().toString().padStart(2, '0') + '/' +
+              (data.getMonth() + 1).toString().padStart(2, '0');
+            labels.push(dataFormatada);
+            alertas.push(respostaConversao[i].alertas);
+          }
+
+          if (respostaConversao.length === 0) {
+            labels = ['Sem dados'];
+            alertas = [0];
+          }
+
+          
           var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: labels,
-              datasets: [{
-                label: 'Alertas',
-                data: alertas,
-                backgroundColor: '#e70000',
-                borderColor: '#e70000'
-              }]
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              scales: {
-                y: { beginAtZero: true }
+              type: 'bar',
+              data: {
+                labels: labels,
+                datasets: [{
+                  label: 'Alertas',
+                  data: alertas,
+                  backgroundColor: '#e70000',
+                  borderColor: '#e70000'
+                }]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  y: { beginAtZero: true }
+                }
               }
-            }
-          });
-      })
-      .catch(function (erro) {
-        console.log('Erro ao carregar gráfico mensal:', erro);
-      });
-  }
+            });
+        })
+        .catch(function (erro) {
+          console.log('Erro ao carregar gráfico 7 dias:', erro);
+        });
+    }
 
-  window.onload =
-    obterPlaca(),
-    alertasEspec(),
-    tempAtual(),
-    tempMin(),
-    tempMax(),
-    obterGrafico4Horas ()
-    obterGrafico7Dias(),
-    obterGraficoMensal()
+    // 3. Função para carregar gráfico mensal
+    function obterGraficoMensal() {
+      var veiculo = sessionStorage.ID_VEICULO;
+      var ctx = document.getElementById('grafico_alerta_mensal');
 
-</script>
+      fetch(`/veiculo/obterGraficoMensal/${veiculo}`, { cache: "no-store" })
+        .then(function (resposta) {
+          return resposta.json();
+        })
+        .then(function (respostaConversao) {
+          console.log('Dados gráfico mensal:', respostaConversao);
+      
+          var labels = [];
+          var alertas = [];
+
+          for (var i = 0; i < respostaConversao.length; i++) {
+            labels.push(respostaConversao[i].semana);
+            alertas.push(respostaConversao[i].alertas);
+          }
+
+          if (respostaConversao.length === 0) {
+            labels = ['Sem dados'];
+            alertas = [0];
+          }
+
+            var myChart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: labels,
+                datasets: [{
+                  label: 'Alertas',
+                  data: alertas,
+                  backgroundColor: '#e70000',
+                  borderColor: '#e70000'
+                }]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  y: { beginAtZero: true }
+                }
+              }
+            });
+        })
+        .catch(function (erro) {
+          console.log('Erro ao carregar gráfico mensal:', erro);
+        });
+    }
+
+    window.onload = function() {
+    obterPlaca();
+    alertasEspec();
+    tempAtual();
+    tempMin();
+    tempMax();
+    obterGrafico4Horas();
+    obterGrafico7Dias();
+    obterGraficoMensal();
+};
+
+  </script>

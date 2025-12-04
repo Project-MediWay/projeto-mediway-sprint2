@@ -4,24 +4,41 @@
 
     function obterAlertas(empresa) {
         var instrucaoSql =
-            ` SELECT COUNT(*) AS total_alertas
+            ` SELECT COUNT(DISTINCT v.idVeiculo) as total_alerta
+FROM Veiculo v
+WHERE v.fkEmpresa = ${empresa}
+AND (
+    SELECT rs.temperatura_atual
     FROM registroSensor rs
-    JOIN sensor s ON rs.fkSensor = s.idSensor
-    JOIN veiculo v ON s.fkVeiculo = v.idVeiculo
-    WHERE v.fkEmpresa = ${empresa}
-    AND (rs.temperatura_atual > 8 OR rs.temperatura_atual < 2);`
-
+    JOIN Sensor s ON rs.fkSensor = s.idSensor
+    WHERE s.fkVeiculo = v.idVeiculo
+    ORDER BY rs.dtRegistro DESC
+    LIMIT 1
+) < 2 OR (
+    SELECT rs.temperatura_atual
+    FROM registroSensor rs
+    JOIN Sensor s ON rs.fkSensor = s.idSensor
+    WHERE s.fkVeiculo = v.idVeiculo
+    ORDER BY rs.dtRegistro DESC
+    LIMIT 1
+) > 8;`
         console.log("Executando a instrução SQL: \n" + instrucaoSql);
         return database.executar(instrucaoSql);
     }
+
     function obterAtencao(empresa) {
         var instrucaoSql =
-            ` SELECT COUNT(*) AS total_limite
+            `SELECT COUNT(DISTINCT v.idVeiculo) as total_limite
+FROM Veiculo v
+WHERE v.fkEmpresa = ${empresa}
+AND (
+    SELECT rs.temperatura_atual
     FROM registroSensor rs
-    JOIN sensor s ON rs.fkSensor = s.idSensor
-    JOIN veiculo v ON s.fkVeiculo = v.idVeiculo
-    WHERE v.fkEmpresa = ${empresa}
-    AND (rs.temperatura_atual = 2 OR rs.temperatura_atual = 8);`
+    JOIN Sensor s ON rs.fkSensor = s.idSensor
+    WHERE s.fkVeiculo = v.idVeiculo
+    ORDER BY rs.dtRegistro DESC
+    LIMIT 1
+) IN (2, 8);`
 
         console.log("Executando a instrução SQL: \n" + instrucaoSql);
         return database.executar(instrucaoSql);
@@ -29,23 +46,32 @@
 
     function obterNormal(empresa) {
         var instrucaoSql =
-            `SELECT COUNT(*) AS total_ideal
+            `SELECT COUNT(DISTINCT v.idVeiculo) as total_ideal
+FROM Veiculo v
+WHERE v.fkEmpresa = ${empresa}
+AND (
+    SELECT rs.temperatura_atual
     FROM registroSensor rs
-    JOIN sensor s ON rs.fkSensor = s.idSensor
-    JOIN veiculo v ON s.fkVeiculo = v.idVeiculo
-    WHERE v.fkEmpresa = ${empresa}
-    AND rs.temperatura_atual > 2 AND rs.temperatura_atual < 8;`
+    JOIN Sensor s ON rs.fkSensor = s.idSensor
+    WHERE s.fkVeiculo = v.idVeiculo
+    ORDER BY rs.dtRegistro DESC
+    LIMIT 1
+) > 2 AND (
+    SELECT rs.temperatura_atual
+    FROM registroSensor rs
+    JOIN Sensor s ON rs.fkSensor = s.idSensor
+    WHERE s.fkVeiculo = v.idVeiculo
+    ORDER BY rs.dtRegistro DESC
+    LIMIT 1
+) < 8;`
 
         console.log("Executando a instrução SQL: \n" + instrucaoSql);
         return database.executar(instrucaoSql);
     }
     function obterQtd(empresa) {
         var instrucaoSql =
-            `SELECT COUNT(*) AS total_registros
-    FROM registroSensor rs
-    JOIN sensor s ON rs.fkSensor = s.idSensor
-    JOIN veiculo v ON s.fkVeiculo = v.idVeiculo
-    WHERE v.fkEmpresa = ${empresa}`
+            `SELECT * FROM quantidadeVeiculos
+            WHERE fkEmpresa = ${empresa};`
 
         console.log("Executando a instrução SQL: \n" + instrucaoSql);
         return database.executar(instrucaoSql);
