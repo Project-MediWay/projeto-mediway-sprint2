@@ -21,6 +21,8 @@ var empresaRouter = require("./src/routes/empresa");
 var veiculoRouter = require("./src/routes/veiculos");
 var kpiRouter = require("./src/routes/kpi");
 
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));

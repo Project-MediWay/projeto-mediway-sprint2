@@ -261,3 +261,66 @@ DESCRIBE viagem;
 SHOW TABLES;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- -- function tempMinSemana(veiculo) {
+--     var instrucaoSql = `
+--         SELECT MIN(temperatura_atual) as temp_min_semana
+--         FROM registroSensor rs
+--         INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+--         WHERE s.fkVeiculo = ${veiculo}
+--         AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+--     `;
+--     console.log("Executando a instrução SQL: \n" + instrucaoSql);
+--     return database.executar(instrucaoSql);
+-- }
+
+-- function tempMaxSemana(veiculo) {
+--     var instrucaoSql = `
+--         SELECT MAX(temperatura_atual) as temp_max_semana
+--         FROM registroSensor rs
+--         INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+--         WHERE s.fkVeiculo = ${veiculo}
+--         AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+--     `;
+--     console.log("Executando a instrução SQL: \n" + instrucaoSql);
+--     return database.executar(instrucaoSql);
+-- }
+
+-- function tempMinMes(veiculo) {
+--     var instrucaoSql = `
+--         SELECT MIN(temperatura_atual) as temp_min_mes
+--         FROM registroSensor rs
+--         INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+--         WHERE s.fkVeiculo = ${veiculo}
+--         AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+--     `;
+--     console.log("Executando a instrução SQL: \n" + instrucaoSql);
+--     return database.executar(instrucaoSql);
+-- }
+
+-- function tempMaxMes(veiculo) {
+--     var instrucaoSql = `
+--         SELECT MAX(temperatura_atual) as temp_max_mes
+--         FROM registroSensor rs
+--         INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+--         WHERE s.fkVeiculo = ${veiculo}
+--         AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+--     `;
+--     console.log("Executando a instrução SQL: \n" + instrucaoSql);
+--     return database.executar(instrucaoSql);
+-- }

@@ -152,6 +152,12 @@
   userMenu.style.display = 'none';
   exibirNoModal();
 
+  function ir(idVeiculo) {
+    // Salva o ID na sessão e redireciona
+    sessionStorage.ID_VEICULO = idVeiculo;
+    window.location.href = 'dashespecifica1.html';
+}
+
   function exibirModal() {
     overlayUser.style.display = 'block';
     userMenu.style.display = 'flex';
@@ -345,7 +351,7 @@ function obterAlertas(){
 }
 
 function obterAtencao(){
-  var Alerta = document.getElementById('qtd_limite');
+  var Atencao = document.getElementById('qtd_limite');
   fetch('/kpi/obterAtencao', {
     method: "POST",
     headers: {
@@ -359,7 +365,7 @@ function obterAtencao(){
   .then(function (resposta){
     resposta.json()
     .then(function (respostaConversao){
-      Alerta.innerHTML = `
+      Atencao.innerHTML = `
       ${respostaConversao[0].total_limite}
       `
     }).catch(function (erroConversao){
@@ -370,7 +376,7 @@ function obterAtencao(){
   })
 }
 function obterNormal(){
-  var Alerta = document.getElementById('qtd_normal');
+  var Normal = document.getElementById('qtd_normal');
   fetch('/kpi/obterNormal', {
     method: "POST",
     headers: {
@@ -384,7 +390,7 @@ function obterNormal(){
   .then(function (resposta){
     resposta.json()
     .then(function (respostaConversao){
-      Alerta.innerHTML = `
+      Normal.innerHTML = `
       ${respostaConversao[0].total_ideal}
       `
     }).catch(function (erroConversao){
@@ -395,7 +401,7 @@ function obterNormal(){
   })
 }
 function obterQtd(){
-  var Alerta = document.getElementById('qtd_geral');
+  var Geral = document.getElementById('qtd_geral');
   fetch('/kpi/obterQtd', {
     method: "POST",
     headers: {
@@ -409,7 +415,7 @@ function obterQtd(){
   .then(function (resposta){
     resposta.json()
     .then(function (respostaConversao){
-      Alerta.innerHTML = `
+      Geral.innerHTML = `
       ${respostaConversao[0].total_registros}
       `
     }).catch(function (erroConversao){
