@@ -47,19 +47,19 @@
       </div>
       <div class="qtd-veiculos">
         <span class="texto-kpis" style="margin-right: 10px">Quantidade de Veículos:</span>
-        <span class="texto-kpis">1</span>
+        <span class="texto-kpis" id="qtd_geral"></span>
       </div>
       <div class="qtd-normal">
         <span class="texto-kpis" style="margin-right: 10px">Normal:</span>
-        <span class="texto-kpis">0</span>
+        <span class="texto-kpis" id="qtd_normal"></span>
       </div>
       <div class="qtd-no-limite">
         <span class="texto-kpis" style="margin-right: 10px">No limite:</span>
-        <span class="texto-kpis">0</span>
+        <span class="texto-kpis" id="qtd_limite"></span>
       </div>
-      <div class="qtd-alerta">
+      <div class="qtd-alerta" >
         <span class="texto-kpis" style="margin-right: 10px">Em alerta:</span>
-        <span class="texto-kpis">1</span>
+        <span class="texto-kpis"><div id="qtd_alerta"></div></span>
       </div>
     </div>
     <!-- Término estruturação das KPIS -->
@@ -317,7 +317,119 @@
         tabela.innerHTML = mensagem;
   }
 
-  validarSessao()
-  obterVeiculos()
-  obterHistorico()
+  var empresa = sessionStorage.ID_EMPRESA;
+function obterAlertas(){
+  var Alerta = document.getElementById('qtd_alerta');
+  fetch('/kpi/obterAlertas', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: 
+    JSON.stringify({
+      fkempresa: empresa
+    })
+  })
+  .then(function (resposta){
+    resposta.json()
+    .then(function (respostaConversao){
+      Alerta.innerHTML = `
+      ${respostaConversao[0].total_alertas}
+      `
+    }).catch(function (erroConversao){
+      console.log(erroConversao)
+    })
+  }).catch(function (erro){
+    console.log(erro)
+  })
+}
+
+function obterAtencao(){
+  var Alerta = document.getElementById('qtd_limite');
+  fetch('/kpi/obterAtencao', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: 
+    JSON.stringify({
+      fkempresa: empresa
+    })
+  })
+  .then(function (resposta){
+    resposta.json()
+    .then(function (respostaConversao){
+      Alerta.innerHTML = `
+      ${respostaConversao[0].total_limite}
+      `
+    }).catch(function (erroConversao){
+      console.log(erroConversao)
+    })
+  }).catch(function (erro){
+    console.log(erro)
+  })
+}
+function obterNormal(){
+  var Alerta = document.getElementById('qtd_normal');
+  fetch('/kpi/obterNormal', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: 
+    JSON.stringify({
+      fkempresa: empresa
+    })
+  })
+  .then(function (resposta){
+    resposta.json()
+    .then(function (respostaConversao){
+      Alerta.innerHTML = `
+      ${respostaConversao[0].total_ideal}
+      `
+    }).catch(function (erroConversao){
+      console.log(erroConversao)
+    })
+  }).catch(function (erro){
+    console.log(erro)
+  })
+}
+function obterQtd(){
+  var Alerta = document.getElementById('qtd_geral');
+  fetch('/kpi/obterQtd', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: 
+    JSON.stringify({
+      fkempresa: empresa
+    })
+  })
+  .then(function (resposta){
+    resposta.json()
+    .then(function (respostaConversao){
+      Alerta.innerHTML = `
+      ${respostaConversao[0].total_registros}
+      `
+    }).catch(function (erroConversao){
+      console.log(erroConversao)
+    })
+  }).catch(function (erro){
+    console.log(erro)
+  })
+}
+  window.onload = 
+  validarSessao(),
+  obterVeiculos(),
+  obterHistorico(),
+  obterAlertas(),
+  obterAtencao(), 
+  obterNormal(), 
+  obterQtd()
+
+
+
+
 </script>
+
