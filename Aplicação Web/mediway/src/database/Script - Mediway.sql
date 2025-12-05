@@ -131,9 +131,9 @@ INSERT INTO sensor (nome, fkVeiculo) VALUES
 	('sensor_009', 9),
     ('sensor_010', 10);
     
--- INSERTS para o sensor 4 (21:00 até 00:00 - dia 05/12)
+
 INSERT INTO registroSensor (dtRegistro, temperatura_atual, fkSensor) VALUES
-('2025-12-04 21:00:00', 4.80, 4),    -- Dentro da faixa (3-7)
+('2025-12-04 21:00:00', 4.80, 4),    
 ('2025-12-04 21:10:00', 6.20, 4),    -- Dentro da faixa (3-7)
 ('2025-12-04 21:20:00', 5.50, 4),    -- Dentro da faixa (3-7)
 ('2025-12-04 21:30:00', 8.00, 4),    -- Exatamente 8°C (10%)
@@ -219,25 +219,15 @@ INSERT INTO registroSensor (dtRegistro, temperatura_atual, fkSensor) VALUES
 ('2025-12-04 23:50:00', 9.80, 10),   -- Fora da faixa mas dentro do limite (10%)
 ('2025-12-05 00:00:00', 4.50, 10);   -- Dentro da faixa (3-7)
     
-	select * from sensor;
-    
-    select * from veiculo;
 INSERT INTO registroSensor (dtRegistro, temperatura_atual, fkSensor) VALUES
-('2025-12-11 10:40:00', 8.00, 2);  -- Dentro da faixa (3-7)
- 
+('2025-12-05 12:00:00', -9.00, 2);  -- insert de testes
 
-    
-    SELECT MAX(temperatura_atual) as temp_max_4h
-FROM registroSensor rs
- JOIN sensor s ON rs.fkSensor = s.idSensor
-WHERE s.fkVeiculo = 10
-AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 4 HOUR);
+select * from registroSensor where fkSensor = 2;
 
 
     
     
-    
-    
+
 -- COMANDOS:
 -- SELECIONANDO TODOS OS DADOS DA TABELA USUARIO E EMPRESA
 SELECT * FROM usuario JOIN empresa ON fkEmpresa = idEmpresa;
@@ -368,7 +358,7 @@ SELECT * FROM historicoAlertas
 WHERE fkEmpresa = 2;
 
 
--- PUXAR KPI QUANTIDADE DE VEICULOS
+-- PUXAR KPI GERAL QUANTIDADE DE VEICULOS
 CREATE VIEW quantidadeVeiculos AS
 SELECT COUNT(*) AS quantidadeVeiculo,
 	fkEmpresa
@@ -378,176 +368,172 @@ group by fkEmpresa;
 SELECT * FROM quantidadeVeiculos
 WHERE fkEmpresa = 2;
 
+select * from usuario;
 
 
-
-
-
-
--- PUXAR KPI VEICULOS COM TEMPERATURA NORMAL
--- CREATE VIEW quantidadeVeiculos AS
-SELECT COUNT(*) AS quantidadeNormal,
-	fkEmpresa,
-    temperatura_atual
-FROM veiculo
-JOIN sensor ON fkVeiculo = idVeiculo
-JOIN registroSensor ON fkSensor = idSensor
-group by fkEmpresa, temperatura_atual
-HAVING (temperatura_atual < 8 OR temperatura_atual > 2) AND fkEmpresa = 2;
-
-
-
-SELECT fkEmpresa, COUNT(*) AS quantidadeDentroPadrao
-FROM veiculo
-JOIN sensor ON fkVeiculo = idVeiculo
-JOIN registroSensor ON fkSensor = idSensor
-WHERE temperatura_atual >= 2 AND temperatura_atual <= 8
-GROUP BY fkEmpresa;
-
-SELECT * FROM quantidadeVeiculos
-WHERE fkEmpresa = 2;
-
-
-
-
-
-
-
-
-
--- PUXAR KPI ALERTAS
-SELECT COUNT(*) AS total_alertas
-FROM registroSensor rs
-JOIN sensor s ON rs.fkSensor = s.idSensor
-JOIN veiculo v ON s.fkVeiculo = v.idVeiculo
-WHERE v.fkEmpresa = 2 AND rs.temperatura_atual > 8 OR rs.temperatura_atual < 2;
-
--- KPI ATENCAO
-SELECT COUNT(*) AS total_limite
-            FROM registroSensor rs
-            JOIN sensor s ON rs.fkSensor = s.idSensor
-            JOIN veiculo v ON s.fkVeiculo = v.idVeiculo
-            WHERE v.fkEmpresa = 2
-            AND (rs.temperatura_atual = 2 OR rs.temperatura_atual = 8);
-            
--- kpi normal
-SELECT COUNT(*) AS total_ideal
+-- PUXAR KPI GERAL VEICULOS COM TEMPERATURA NORMAL
+SELECT COUNT(DISTINCT v.idVeiculo) as total_ideal
+FROM veiculo v
+WHERE v.fkEmpresa = 2
+AND (
+    SELECT rs.temperatura_atual
     FROM registroSensor rs
     JOIN sensor s ON rs.fkSensor = s.idSensor
-    JOIN veiculo v ON s.fkVeiculo = v.idVeiculo
-    WHERE v.fkEmpresa = 2
-    AND rs.temperatura_atual > 2 AND rs.temperatura_atual < 8;
-    
-SELECT idEmpresa, token FROM empresa;
-
-SELECT * FROM usuario;
-SELECT * FROM empresa;
-SELECT * FROM veiculo;
-SELECT * FROM sensor;
-SELECT * FROM registroSensor;
-SELECT * FROM vacina;
-SELECT * FROM viagem;
-DESCRIBE usuario;
-DESCRIBE empresa;
-DESCRIBE veiculo;
-DESCRIBE sensor;
-DESCRIBE registroSensor;
-DESCRIBE vacina;
-DESCRIBE viagem;
-SHOW TABLES;
+    WHERE s.fkVeiculo = v.idVeiculo
+    ORDER BY rs.dtRegistro DESC
+    LIMIT 1
+) > 2 AND (
+    SELECT rs.temperatura_atual
+    FROM registroSensor rs
+    JOIN sensor s ON rs.fkSensor = s.idSensor
+    WHERE s.fkVeiculo = v.idVeiculo
+    ORDER BY rs.dtRegistro DESC
+    LIMIT 1
+) < 8;
 
 
-
-
-
-
-SELECT 
-    COUNT(idRegistroSensor) as total_alertas_4h
-FROM registroSensor r
-JOIN sensor se ON r.fkSensor = se.idSensor
-JOIN veiculo ve ON se.fkVeiculo = ve.idVeiculo
-WHERE ve.idVeiculo = 1
-    AND r.dtRegistro >= NOW() - INTERVAL 4 HOUR
-    AND (r.temperatura_atual < 2 OR r.temperatura_atual > 8);
-
-
-
-
-
-
-
-
-
-
-
-
--- -- function tempMinSemana(veiculo) {
---     var instrucaoSql = `
---         SELECT MIN(temperatura_atual) as temp_min_semana
---         FROM registroSensor rs
---         INNER JOIN sensor s ON rs.fkSensor = s.idSensor
---         WHERE s.fkVeiculo = ${veiculo}
---         AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 7 DAY)
---     `;
---     console.log("Executando a instrução SQL: \n" + instrucaoSql);
---     return database.executar(instrucaoSql);
--- }
-
--- function tempMaxSemana(veiculo) {
---     var instrucaoSql = `
---         SELECT MAX(temperatura_atual) as temp_max_semana
---         FROM registroSensor rs
---         INNER JOIN sensor s ON rs.fkSensor = s.idSensor
---         WHERE s.fkVeiculo = ${veiculo}
---         AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 7 DAY)
---     `;
---     console.log("Executando a instrução SQL: \n" + instrucaoSql);
---     return database.executar(instrucaoSql);
--- }
-
--- function tempMinMes(veiculo) {
---     var instrucaoSql = `
---         SELECT MIN(temperatura_atual) as temp_min_mes
---         FROM registroSensor rs
---         INNER JOIN sensor s ON rs.fkSensor = s.idSensor
---         WHERE s.fkVeiculo = ${veiculo}
---         AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 30 DAY)
---     `;
---     console.log("Executando a instrução SQL: \n" + instrucaoSql);
---     return database.executar(instrucaoSql);
--- }
-
-
-as model da kpi ta aq, das 4 q falta
-
--- function tempMaxMes(veiculo) {
---     var instrucaoSql = `
---         SELECT MAX(temperatura_atual) as temp_max_mes
---         FROM registroSensor rs
---         INNER JOIN sensor s ON rs.fkSensor = s.idSensor
---         WHERE s.fkVeiculo = ${veiculo}
---         AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 30 DAY)
---     `;
---     console.log("Executando a instrução SQL: \n" + instrucaoSql);
---     return database.executar(instrucaoSql);
--- }
-SELECT fkEmpresa, COUNT(DISTINCT v.idVeiculo) AS quantidadeDentroPadrao
+-- PUXAR KPI GERAL VEICULOS COM TEMPERATURA NO LIMITE
+SELECT COUNT(DISTINCT v.idVeiculo) as total_limite
 FROM veiculo v
-JOIN sensor ON fkVeiculo = idVeiculo
-JOIN registroSensor ON fkSensor = idSensor
-WHERE (temperatura_atual > 2 AND temperatura_atual < 8) AND v.fkEmpresa = 2 
-GROUP BY fkEmpresa;
+WHERE v.fkEmpresa = 2
+AND (
+    SELECT rs.temperatura_atual
+    FROM registroSensor rs
+    JOIN sensor s ON rs.fkSensor = s.idSensor
+    WHERE s.fkVeiculo = v.idVeiculo
+    ORDER BY rs.dtRegistro DESC
+    LIMIT 1
+) IN (2, 8);
 
 
+-- PUXAR KPI GERAL VEICULOS COM TEMPERATURA NO LIMITE
+SELECT COUNT(DISTINCT v.idVeiculo) as total_alerta
+FROM veiculo v
+WHERE v.fkEmpresa = 2
+AND (
+    SELECT rs.temperatura_atual
+    FROM registroSensor rs
+    JOIN sensor s ON rs.fkSensor = s.idSensor
+    WHERE s.fkVeiculo = v.idVeiculo
+    ORDER BY rs.dtRegistro DESC
+    LIMIT 1
+) < 2 OR (
+    SELECT rs.temperatura_atual
+    FROM registroSensor rs
+    JOIN sensor s ON rs.fkSensor = s.idSensor
+    WHERE s.fkVeiculo = v.idVeiculo
+    ORDER BY rs.dtRegistro DESC
+    LIMIT 1
+) > 8;
 
--- Use COALESCE para evitar NULL
-SELECT COALESCE(COUNT(*), 0) as total_alertas_4h
+
+-- PUXAR KPI ESPECIFICA TOTAL ALERTAS 
+SELECT COUNT(*) as total_alertas_4h
+        FROM registroSensor rs
+        JOIN sensor s ON rs.fkSensor = s.idSensor
+        WHERE s.fkVeiculo = 2
+        AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 4 HOUR)
+        AND (rs.temperatura_atual < 2 OR rs.temperatura_atual > 8);
+
+
+-- PUXAR KPI ESPECIFICA TOTAL ALERTAS
+SELECT temperatura_atual 
+FROM registroSensor 
+WHERE fkSensor = (SELECT idSensor FROM sensor WHERE fkVeiculo = 2)
+ORDER BY dtRegistro DESC 
+LIMIT 1;
+
+
+-- PUXAR KPI ESPECIFICA TEMPERATURA MINIMA
+SELECT MIN(temperatura_atual) as temp_min_4h
 FROM registroSensor rs
-JOIN sensor s ON rs.fkSensor = s.idSensor
-WHERE s.fkVeiculo = 10 -- Substitua pelo ID real do veículo
-AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 4 HOUR)
-AND (rs.temperatura_atual < 2 OR rs.temperatura_atual > 8);
+INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+WHERE s.fkVeiculo = 2
+AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 4 HOUR);
 
-obvio q nao, nao
-       
-        
+
+-- PUXAR KPI ESPECIFICA TEMPERATURA MAXIMA
+SELECT MAX(temperatura_atual) as temp_max_4h
+FROM registroSensor rs
+INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+WHERE s.fkVeiculo = 2
+AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 4 HOUR);
+
+-- PUXAR GRAFICO ESPECIFICO 4 HORAS
+SELECT	temperatura_atual,
+		DATE_FORMAT(dtRegistro, '%H:%i') as hora
+FROM registroSensor rs
+INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+WHERE s.fkVeiculo = 2
+AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 4 HOUR)
+ORDER BY rs.dtRegistro ASC;
+
+
+-- PUXAR GRAFICO ESPECIFICO 7 DIAS
+SELECT 	DATE(dtRegistro) as data,
+		COUNT(CASE WHEN temperatura_atual < 2 OR temperatura_atual > 8 THEN 1 END) as alertas
+FROM registroSensor rs
+INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+WHERE s.fkVeiculo = 2
+AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+GROUP BY DATE(dtRegistro)
+ORDER BY data ASC;
+
+
+-- PUXAR GRAFICO ESPECIFICO ULTIMO MES
+SELECT 
+    CONCAT('Semana ', semana_num) as semana,
+    COUNT(*) as alertas
+FROM (
+    SELECT 
+        CASE 
+            WHEN DAY(dtRegistro) BETWEEN 1 AND 7 THEN 1
+            WHEN DAY(dtRegistro) BETWEEN 8 AND 14 THEN 2
+            WHEN DAY(dtRegistro) BETWEEN 15 AND 21 THEN 3
+            ELSE 4
+        END as semana_num
+    FROM registroSensor rs
+    INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+    WHERE s.fkVeiculo = 2
+        AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+        AND (rs.temperatura_atual < 2 OR rs.temperatura_atual > 8)
+) as subquery
+GROUP BY semana_num
+ORDER BY semana_num;
+
+
+-- tempMinSemana
+SELECT MIN(temperatura_atual) as temp_min_semana
+FROM registroSensor rs
+INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+WHERE s.fkVeiculo = 2
+AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 7 DAY);
+
+
+-- tempMaxSemana
+SELECT MAX(temperatura_atual) as temp_max_semana
+FROM registroSensor rs
+INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+WHERE s.fkVeiculo = 2
+AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 7 DAY);
+
+
+-- tempMinMes
+SELECT MIN(temperatura_atual) as temp_min_mes
+FROM registroSensor rs
+INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+WHERE s.fkVeiculo = 2
+AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 30 DAY);
+
+
+-- tempMaxMes
+SELECT MAX(temperatura_atual) as temp_max_mes
+FROM registroSensor rs
+INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+WHERE s.fkVeiculo = 2
+AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 30 DAY);
+
+
+
+
+

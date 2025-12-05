@@ -170,11 +170,11 @@
   // Término configuração Modal
 
 
-  function exibirNoModal() {
-    document.getElementById("modal_nome_empresa").innerHTML = sessionStorage.NOME_EMPRESA
-    document.getElementById("modal_nome_usuario").innerHTML = sessionStorage.NOME_USUARIO
-    document.getElementById("modal_email_usuario").innerHTML = sessionStorage.EMAIL_USUARIO
-  }
+    function exibirNoModal() {
+      document.getElementById("modal_nome_empresa").innerHTML = sessionStorage.NOME_EMPRESA
+      document.getElementById("modal_nome_usuario").innerHTML = `Nome: ${sessionStorage.NOME_USUARIO}`
+      document.getElementById("modal_email_usuario").innerHTML = `Email: ${sessionStorage.EMAIL_USUARIO}`
+    }
 
 
   function obterVeiculos() {

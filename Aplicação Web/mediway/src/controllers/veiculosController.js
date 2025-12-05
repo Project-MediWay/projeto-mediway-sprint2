@@ -129,6 +129,7 @@ function tempMax(req, res) {
       res.status(500).json(erro.sqlMessage);
     });
 }
+
 function obterGrafico4Horas(req, res) {
   var veiculo = req.params.idVeiculo;
 
@@ -166,6 +167,88 @@ function obterGraficoMensal(req, res) {
 }
 
 
+
+
+
+
+
+function tempMaxSem(req, res) {
+  var veiculo = req.params.idVeiculo;
+
+  veiculosModel
+    .tempMaxSem(veiculo)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).json([]);
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function tempMinSem(req, res) {
+  var veiculo = req.params.idVeiculo;
+
+  veiculosModel
+    .tempMinSem(veiculo)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).json([]);
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function tempMaxMen(req, res) {
+  var veiculo = req.params.idVeiculo;
+
+  veiculosModel
+    .tempMaxMen(veiculo)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).json([]);
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function tempMinMen(req, res) {
+  var veiculo = req.params.idVeiculo;
+
+  veiculosModel
+    .tempMinMen(veiculo)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).json([]);
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 module.exports = {
   obterVeiculos,
   obterHistorico,
@@ -174,6 +257,10 @@ module.exports = {
   tempAtual,
   tempMin,
   tempMax,
+  tempMaxSem,
+  tempMinSem,
+  tempMinMen,
+  tempMaxMen,
   obterGrafico4Horas,
   obterGrafico7Dias,
   obterGraficoMensal

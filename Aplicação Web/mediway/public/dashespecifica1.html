@@ -15,12 +15,12 @@
     <div class="user-menu" id="userMenu">
       <div class="titulo-user-menu">
         <img src="assets/dashboard/user.png" height="70px">
-        <span>Mediway</span>
+        <span id="modal_nome_empresa"></span>
       </div>
 
       <div class="info-user-menu">
-        <span class="nome-user">Nome: Julia Araripe</span>
-        <span class="email-user">Email: araripe@email.com</span>
+        <span class="nome-user" id="modal_nome_usuario"></span>
+        <span class="email-user" id="modal_email_usuario"></span>
       </div>
 
       <div class="btn-sair-user-menu">
@@ -96,11 +96,11 @@
 
               <div class="kpi-semanal">
                 <div class="kpi-semanal-minimo">
-                  <span class="texto-kpi-alertas valor-kpis">-5°C</span>
+                  <span class="texto-kpi-alertas valor-kpis" id="temperaturaMinimaSem"></span>
                   <span class="texto-kpi-alertas">Temperatura Mínima</span>
                 </div>
                 <div class="kpi-semanal-maximo">
-                  <span class="texto-kpi-alertas valor-kpis">7°C</span>
+                  <span class="texto-kpi-alertas valor-kpis" id="temperaturaMaximaSem"></span>
                   <span class="texto-kpi-alertas">Temperatura Máxima</span>
                 </div>
               </div>
@@ -115,11 +115,11 @@
               </div>
               <div class="kpi-mensal">
                 <div class="kpi-mensal-minimo">
-                  <span class="texto-kpi-alertas valor-kpis">-6°C</span>
+                  <span class="texto-kpi-alertas valor-kpis" id="temperaturaMinimaMen"></span>
                   <span class="texto-kpi-alertas">Temperatura Mínima</span>
                 </div>
                 <div class="kpi-mensal-maximo">
-                  <span class="texto-kpi-alertas valor-kpis">8°C</span>
+                  <span class="texto-kpi-alertas valor-kpis" id="temperaturaMaximaMen"></span>
                   <span class="texto-kpi-alertas">Temperatura Máxima</span>
                 </div>
               </div>
@@ -140,7 +140,7 @@
 
     var kpiAtual = document.getElementById("tempAtual");
 
-
+    
     // Inicio configuração Modal
     overlayUser.style.display = 'none';
     userMenu.style.display = 'none';
@@ -154,6 +154,13 @@
       overlayUser.style.display = 'none';
       userMenu.style.display = 'none';
     }
+
+    function exibirNoModal() {
+    document.getElementById("modal_nome_empresa").innerHTML = sessionStorage.NOME_EMPRESA
+    document.getElementById("modal_nome_usuario").innerHTML = `Nome: ${sessionStorage.NOME_USUARIO}`
+    document.getElementById("modal_email_usuario").innerHTML = `Email: ${sessionStorage.EMAIL_USUARIO}`
+    }
+  exibirNoModal()
     // Término configuração Modal
 
 
@@ -227,7 +234,7 @@
                 
               }
               temperAtual.innerHTML = `
-        ${respostaConversao[0].temperatura_atual}
+        ${respostaConversao[0].temperatura_atual}°C
         `
             }).catch(function (erroConversao) {
               console.log(erroConversao)
@@ -246,7 +253,7 @@
             .then(function (respostaConversao) {
               console.log(respostaConversao[0].temp_min_4h)
               tempMinima.innerHTML = `
-        ${respostaConversao[0].temp_min_4h}
+        ${respostaConversao[0].temp_min_4h}°C
         `
             }).catch(function (erroConversao) {
               console.log(erroConversao)
@@ -256,6 +263,81 @@
         })
     }
 
+    function tempMinSem() {
+      var veiculo = sessionStorage.ID_VEICULO;
+      var tempMinima = document.getElementById('temperaturaMinimaSem');
+      fetch(`/veiculo/tempMinSem/${veiculo}`, { cache: "no-store" })
+        .then(function (resposta) {
+          resposta.json()
+            .then(function (respostaConversao) {
+              console.log(respostaConversao[0].temp_min_4h)
+              tempMinima.innerHTML = `
+        ${respostaConversao[0].temp_min_semana}°C
+        `
+            }).catch(function (erroConversao) {
+              console.log(erroConversao)
+            })
+        }).catch(function (erro) {
+          console.log(erro)
+        })
+    }
+
+    function tempMaxSem() {
+      var veiculo = sessionStorage.ID_VEICULO;
+      var tempMaxima = document.getElementById('temperaturaMaximaSem');
+      fetch(`/veiculo/tempMaxSem/${veiculo}`, { cache: "no-store" })
+        .then(function (resposta) {
+          resposta.json()
+            .then(function (respostaConversao) {
+              console.log(respostaConversao[0].temp_max_semana)
+              tempMaxima.innerHTML = `
+        ${respostaConversao[0].temp_max_semana}°C
+        `
+            }).catch(function (erroConversao) {
+              console.log(erroConversao)
+            })
+        }).catch(function (erro) {
+          console.log(erro)
+        })
+    }  
+
+    function tempMaxMen() {
+      var veiculo = sessionStorage.ID_VEICULO;
+      var tempMaxima = document.getElementById('temperaturaMaximaMen');
+      fetch(`/veiculo/tempMaxMen/${veiculo}`, { cache: "no-store" })
+        .then(function (resposta) {
+          resposta.json()
+            .then(function (respostaConversao) {
+              console.log(respostaConversao[0].temp_max_mes)
+              tempMaxima.innerHTML = `
+        ${respostaConversao[0].temp_max_mes}°C
+        `
+            }).catch(function (erroConversao) {
+              console.log(erroConversao)
+            })
+        }).catch(function (erro) {
+          console.log(erro)
+        })
+    }  
+
+    function tempMinMen() {
+      var veiculo = sessionStorage.ID_VEICULO;
+      var tempMinima = document.getElementById('temperaturaMinimaMen');
+      fetch(`/veiculo/tempMinMen/${veiculo}`, { cache: "no-store" })
+        .then(function (resposta) {
+          resposta.json()
+            .then(function (respostaConversao) {
+              console.log(respostaConversao[0].temp_min_mes)
+              tempMinima.innerHTML = `
+        ${respostaConversao[0].temp_min_mes}°C
+        `
+            }).catch(function (erroConversao) {
+              console.log(erroConversao)
+            })
+        }).catch(function (erro) {
+          console.log(erro)
+        })
+    } 
 
     function tempMax() {
       var veiculo = sessionStorage.ID_VEICULO;
@@ -266,7 +348,7 @@
             .then(function (respostaConversao) {
               console.log(respostaConversao[0].temp_max_4h)
               tempMaxima.innerHTML = `
-        ${respostaConversao[0].temp_max_4h}
+        ${respostaConversao[0].temp_max_4h}°C
         `
             }).catch(function (erroConversao) {
               console.log(erroConversao)
@@ -548,10 +630,29 @@ function iniciarAtualizacaoGrafico() {
     obterGrafico4Horas()
     obterGrafico7Dias()
     obterGraficoMensal()
+    tempMaxSem()
+    tempMinSem()
+    tempMaxMen()
+    tempMinMen()
 };
 
+    function atualizar(){
+      setTimeout(()=>{
+        alertasEspec()
+        tempAtual()
+        tempMin()
+        tempMax()
+        obterGrafico4Horas()
+        obterGrafico7Dias()
+        obterGraficoMensal()
+        tempMaxSem()
+        tempMinSem()
+        tempMaxMen()
+        tempMinMen()
+        atualizar()
+    },5000)
+  }
+
+  atualizar()
+
   </script>
-
-grupinho desse tb 
-
- 

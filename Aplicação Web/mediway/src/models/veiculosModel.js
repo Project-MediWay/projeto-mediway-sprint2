@@ -139,6 +139,57 @@ ORDER BY semana_num;`
 
 
 
+function tempMaxSem(veiculo) {
+    var instrucaoSql = `
+SELECT MAX(temperatura_atual) as temp_max_semana
+FROM registroSensor rs
+INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+WHERE s.fkVeiculo = ${veiculo}
+AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 7 DAY);
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function tempMinSem(veiculo) {
+    var instrucaoSql = `
+SELECT MIN(temperatura_atual) as temp_min_semana
+FROM registroSensor rs
+INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+WHERE s.fkVeiculo = ${veiculo}
+AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 7 DAY);
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function tempMinMen(veiculo) {
+    var instrucaoSql = `
+SELECT MIN(temperatura_atual) as temp_min_mes
+FROM registroSensor rs
+INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+WHERE s.fkVeiculo = ${veiculo}
+AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 30 DAY);
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function tempMaxMen(veiculo) {
+    var instrucaoSql = `
+SELECT MAX(temperatura_atual) as temp_max_mes
+FROM registroSensor rs
+INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+WHERE s.fkVeiculo = ${veiculo}
+AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 30 DAY);
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
+
+
 module.exports = {
     obterVeiculos,
     obterHistorico,
@@ -147,6 +198,10 @@ module.exports = {
     tempAtual,
     tempMin,
     tempMax,
+    tempMaxSem,
+    tempMinSem,
+    tempMinMen,
+    tempMaxMen,
     obterGrafico4Horas,
     obterGrafico7Dias,
     obterGraficoMensal

@@ -23,9 +23,11 @@ router.get("/tempAtual/:idVeiculo", function (req, res) {
 router.get("/tempMin/:idVeiculo", function (req, res) {
     veiculosController.tempMin(req, res);
 })
+
 router.get("/tempMax/:idVeiculo", function (req, res) {
     veiculosController.tempMax(req, res);
 })
+
 router.get("/obterGrafico4Horas/:idVeiculo", function (req, res) {
     veiculosController.obterGrafico4Horas(req, res);
 });
@@ -33,11 +35,32 @@ router.get("/obterGrafico4Horas/:idVeiculo", function (req, res) {
 router.get("/obterGrafico7Dias/:idVeiculo", function (req, res) {
     veiculosController.obterGrafico7Dias(req, res);
 });
+
 router.get("/obterGraficoMensal/:idVeiculo", function (req, res) {
     veiculosController.obterGraficoMensal(req, res);
 });
 
 
+
+
+
+
+
+router.get("/tempMaxSem/:idVeiculo", function (req, res) {
+    veiculosController.tempMaxSem(req, res);
+})
+
+router.get("/tempMinSem/:idVeiculo", function (req, res) {
+    veiculosController.tempMinSem(req, res);
+})
+
+router.get("/tempMaxMen/:idVeiculo", function (req, res) {
+    veiculosController.tempMaxMen(req, res);
+})
+
+router.get("/tempMinMen/:idVeiculo", function (req, res) {
+    veiculosController.tempMinMen(req, res);
+})
 
 
 module.exports = router;
