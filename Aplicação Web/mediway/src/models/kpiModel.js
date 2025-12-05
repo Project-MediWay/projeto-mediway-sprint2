@@ -5,19 +5,19 @@
     function obterAlertas(empresa) {
         var instrucaoSql =
             ` SELECT COUNT(DISTINCT v.idVeiculo) as total_alerta
-FROM Veiculo v
+FROM veiculo v
 WHERE v.fkEmpresa = ${empresa}
 AND (
     SELECT rs.temperatura_atual
     FROM registroSensor rs
-    JOIN Sensor s ON rs.fkSensor = s.idSensor
+    JOIN sensor s ON rs.fkSensor = s.idSensor
     WHERE s.fkVeiculo = v.idVeiculo
     ORDER BY rs.dtRegistro DESC
     LIMIT 1
 ) < 2 OR (
     SELECT rs.temperatura_atual
     FROM registroSensor rs
-    JOIN Sensor s ON rs.fkSensor = s.idSensor
+    JOIN sensor s ON rs.fkSensor = s.idSensor
     WHERE s.fkVeiculo = v.idVeiculo
     ORDER BY rs.dtRegistro DESC
     LIMIT 1
@@ -29,12 +29,12 @@ AND (
     function obterAtencao(empresa) {
         var instrucaoSql =
             `SELECT COUNT(DISTINCT v.idVeiculo) as total_limite
-FROM Veiculo v
+FROM veiculo v
 WHERE v.fkEmpresa = ${empresa}
 AND (
     SELECT rs.temperatura_atual
     FROM registroSensor rs
-    JOIN Sensor s ON rs.fkSensor = s.idSensor
+    JOIN sensor s ON rs.fkSensor = s.idSensor
     WHERE s.fkVeiculo = v.idVeiculo
     ORDER BY rs.dtRegistro DESC
     LIMIT 1
@@ -47,19 +47,19 @@ AND (
     function obterNormal(empresa) {
         var instrucaoSql =
             `SELECT COUNT(DISTINCT v.idVeiculo) as total_ideal
-FROM Veiculo v
+FROM veiculo v
 WHERE v.fkEmpresa = ${empresa}
 AND (
     SELECT rs.temperatura_atual
     FROM registroSensor rs
-    JOIN Sensor s ON rs.fkSensor = s.idSensor
+    JOIN sensor s ON rs.fkSensor = s.idSensor
     WHERE s.fkVeiculo = v.idVeiculo
     ORDER BY rs.dtRegistro DESC
     LIMIT 1
 ) > 2 AND (
     SELECT rs.temperatura_atual
     FROM registroSensor rs
-    JOIN Sensor s ON rs.fkSensor = s.idSensor
+    JOIN sensor s ON rs.fkSensor = s.idSensor
     WHERE s.fkVeiculo = v.idVeiculo
     ORDER BY rs.dtRegistro DESC
     LIMIT 1

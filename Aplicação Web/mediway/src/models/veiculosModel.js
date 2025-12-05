@@ -21,7 +21,7 @@ function obterHistorico(empresa) {
 
 function obterPlaca(veiculo) {
     var instrucaoSql = `
-   SELECT placa as Placa_Veiculo FROM Veiculo where idVeiculo   = ${veiculo};
+   SELECT placa as Placa_Veiculo FROM veiculo where idVeiculo   = ${veiculo};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

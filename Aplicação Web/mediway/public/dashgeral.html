@@ -249,7 +249,7 @@
               <div class="status-caminhao">
                   <img src="assets/dashboard/cuidado.png" class="status-atencao">
                   <span class="texto-card texto-placa">Status:&nbsp;</span>
-                  <span class="texto-card">Alerta</span>
+                  <span class="texto-card">Atenção</span>
               </div>
             </div>
         `
@@ -271,7 +271,7 @@
               <div class="status-caminhao">
                   <img src="assets/dashboard/ok.png" class="status-atencao">
                   <span class="texto-card texto-placa">Status:&nbsp;</span>
-                  <span class="texto-card">Alerta</span>
+                  <span class="texto-card">Normal</span>
               </div>
             </div>
         `
@@ -281,6 +281,8 @@
 
     painelVeiculos.innerHTML = mensagem;
   }
+
+  
 
     function obterHistorico() {
     var empresa = sessionStorage.ID_EMPRESA;
@@ -433,9 +435,20 @@ function obterQtd(){
   obterAtencao(), 
   obterNormal(), 
   obterQtd()
+  
+  function atualizar(){
+    setTimeout(()=>{
+      obterVeiculos(),
+      obterHistorico(),
+      obterAlertas(),
+      obterAtencao(), 
+      obterNormal(), 
+      obterQtd(),
+      console.log('att'),
+      atualizar()
+    },5000)
+  }
 
-
-
-
+  atualizar()
 </script>
 
