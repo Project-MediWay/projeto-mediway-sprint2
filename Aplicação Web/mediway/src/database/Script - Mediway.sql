@@ -131,17 +131,112 @@ INSERT INTO sensor (nome, fkVeiculo) VALUES
 	('sensor_009', 9),
     ('sensor_010', 10);
     
+-- INSERTS para o sensor 4 (21:00 até 00:00 - dia 05/12)
 INSERT INTO registroSensor (dtRegistro, temperatura_atual, fkSensor) VALUES
-	('2025-08-26 10:00:00', 05.02, 1),
-	('2025-08-26 10:15:00', 06.05, 2),
-	('2025-08-26 11:00:00', 08.00, 3),
-	('2025-06-26 12:00:00', 04.00, 4),
-	('2025-04-26 01:00:00', 08.00, 5),
-	('2025-01-26 11:00:00', 08.00, 6),
-	('2025-03-22 15:00:00', 08.00, 7),
-	('2025-07-20 08:00:00', 08.00, 8),
-	('2025-05-26 11:00:00', 08.00, 9),
-    ('2025-05-26 11:00:00', -01.00, 10);
+('2025-12-04 21:00:00', 4.80, 4),    -- Dentro da faixa (3-7)
+('2025-12-04 21:10:00', 6.20, 4),    -- Dentro da faixa (3-7)
+('2025-12-04 21:20:00', 5.50, 4),    -- Dentro da faixa (3-7)
+('2025-12-04 21:30:00', 8.00, 4),    -- Exatamente 8°C (10%)
+('2025-12-04 21:40:00', 3.80, 4),    -- Dentro da faixa (3-7)
+('2025-12-04 21:50:00', 6.70, 4),    -- Dentro da faixa (3-7)
+('2025-12-04 22:00:00', 4.20, 4),    -- Dentro da faixa (3-7)
+('2025-12-04 22:10:00', 2.00, 4),    -- Exatamente 2°C (10%)
+('2025-12-04 22:20:00', 5.90, 4),    -- Dentro da faixa (3-7)
+('2025-12-04 22:30:00', 3.50, 4),    -- Dentro da faixa (3-7)
+('2025-12-04 22:40:00', 6.80, 4),    -- Dentro da faixa (3-7)
+('2025-12-04 22:50:00', 4.60, 4),    -- Dentro da faixa (3-7)
+('2025-12-04 23:00:00', 7.20, 4),    -- Dentro da faixa (3-7)
+('2025-12-04 23:10:00', 11.50, 4),   -- Fora da faixa mas dentro do limite (10%)
+('2025-12-04 23:20:00', 5.30, 4),    -- Dentro da faixa (3-7)
+('2025-12-04 23:30:00', 3.20, 4),    -- Dentro da faixa (3-7)
+('2025-12-04 23:40:00', 6.40, 4),    -- Dentro da faixa (3-7)
+('2025-12-04 23:50:00', -2.50, 4),   -- Fora da faixa mas dentro do limite (10%)
+('2025-12-05 00:00:00', 4.90, 4);    -- Dentro da faixa (3-7)
+
+-- INSERTS para o sensor 2 (21:00 até 00:00 - dia 05/12)
+INSERT INTO registroSensor (dtRegistro, temperatura_atual, fkSensor) VALUES
+('2025-12-04 21:00:00', 3.70, 2),    -- Dentro da faixa (3-7)
+('2025-12-04 21:10:00', 6.80, 2),    -- Dentro da faixa (3-7)
+('2025-12-04 21:20:00', 8.00, 2),    -- Exatamente 8°C (10%)
+('2025-12-04 21:30:00', 4.50, 2),    -- Dentro da faixa (3-7)
+('2025-12-04 21:40:00', 5.90, 2),    -- Dentro da faixa (3-7)
+('2025-12-04 21:50:00', 3.20, 2),    -- Dentro da faixa (3-7)
+('2025-12-04 22:00:00', 6.50, 2),    -- Dentro da faixa (3-7)
+('2025-12-04 22:10:00', 4.80, 2),    -- Dentro da faixa (3-7)
+('2025-12-04 22:20:00', 2.00, 2),    -- Exatamente 2°C (10%)
+('2025-12-04 22:30:00', 7.10, 2),    -- Dentro da faixa (3-7)
+('2025-12-04 22:40:00', 5.40, 2),    -- Dentro da faixa (3-7)
+('2025-12-04 22:50:00', 3.60, 2),    -- Dentro da faixa (3-7)
+('2025-12-04 23:00:00', 6.20, 2),    -- Dentro da faixa (3-7)
+('2025-12-04 23:10:00', -3.20, 2),   -- Fora da faixa mas dentro do limite (10%)
+('2025-12-04 23:20:00', 4.90, 2),    -- Dentro da faixa (3-7)
+('2025-12-04 23:30:00', 5.70, 2),    -- Dentro da faixa (3-7)
+('2025-12-04 23:40:00', 3.40, 2),    -- Dentro da faixa (3-7)
+('2025-12-04 23:50:00', 10.80, 2),   -- Fora da faixa mas dentro do limite (10%)
+('2025-12-05 00:00:00', 6.10, 2);    -- Dentro da faixa (3-7)
+
+-- INSERTS para o sensor 9 (21:00 até 00:00 - dia 05/12)
+INSERT INTO registroSensor (dtRegistro, temperatura_atual, fkSensor) VALUES
+('2025-12-04 21:00:00', 5.50, 9),    -- Dentro da faixa (3-7)
+('2025-12-04 21:10:00', 3.80, 9),    -- Dentro da faixa (3-7)
+('2025-12-04 21:20:00', 6.70, 9),    -- Dentro da faixa (3-7)
+('2025-12-04 21:30:00', 4.20, 9),    -- Dentro da faixa (3-7)
+('2025-12-04 21:40:00', 2.00, 9),    -- Exatamente 2°C (10%)
+('2025-12-04 21:50:00', 5.90, 9),    -- Dentro da faixa (3-7)
+('2025-12-04 22:00:00', 7.10, 9),    -- Dentro da faixa (3-7)
+('2025-12-04 22:10:00', 4.50, 9),    -- Dentro da faixa (3-7)
+('2025-12-04 22:20:00', 6.30, 9),    -- Dentro da faixa (3-7)
+('2025-12-04 22:30:00', 3.70, 9),    -- Dentro da faixa (3-7)
+('2025-12-04 22:40:00', 8.00, 9),    -- Exatamente 8°C (10%)
+('2025-12-04 22:50:00', 5.20, 9),    -- Dentro da faixa (3-7)
+('2025-12-04 23:00:00', 4.80, 9),    -- Dentro da faixa (3-7)
+('2025-12-04 23:10:00', 6.60, 9),    -- Dentro da faixa (3-7)
+('2025-12-04 23:20:00', 11.20, 9),   -- Fora da faixa mas dentro do limite (10%)
+('2025-12-04 23:30:00', 3.90, 9),    -- Dentro da faixa (3-7)
+('2025-12-04 23:40:00', 5.40, 9),    -- Dentro da faixa (3-7)
+('2025-12-04 23:50:00', -1.80, 9),   -- Fora da faixa mas dentro do limite (10%)
+('2025-12-05 00:00:00', 6.80, 9);    -- Dentro da faixa (3-7)
+
+-- INSERTS para o sensor 10 (21:00 até 00:00 - dia 05/12)
+INSERT INTO registroSensor (dtRegistro, temperatura_atual, fkSensor) VALUES
+('2025-12-04 21:00:00', 4.60, 10),   -- Dentro da faixa (3-7)
+('2025-12-04 21:10:00', 6.90, 10),   -- Dentro da faixa (3-7)
+('2025-12-04 21:20:00', 3.50, 10),   -- Dentro da faixa (3-7)
+('2025-12-04 21:30:00', 5.70, 10),   -- Dentro da faixa (3-7)
+('2025-12-04 21:40:00', 7.20, 10),   -- Dentro da faixa (3-7)
+('2025-12-04 21:50:00', 4.30, 10),   -- Dentro da faixa (3-7)
+('2025-12-04 22:00:00', 2.00, 10),   -- Exatamente 2°C (10%)
+('2025-12-04 22:10:00', 6.10, 10),   -- Dentro da faixa (3-7)
+('2025-12-04 22:20:00', 3.80, 10),   -- Dentro da faixa (3-7)
+('2025-12-04 22:30:00', 5.40, 10),   -- Dentro da faixa (3-7)
+('2025-12-04 22:40:00', 8.00, 10),   -- Exatamente 8°C (10%)
+('2025-12-04 22:50:00', 6.50, 10),   -- Dentro da faixa (3-7)
+('2025-12-04 23:00:00', 4.20, 10),   -- Dentro da faixa (3-7)
+('2025-12-04 23:10:00', -3.50, 10),  -- Fora da faixa mas dentro do limite (10%)
+('2025-12-04 23:20:00', 5.80, 10),   -- Dentro da faixa (3-7)
+('2025-12-04 23:30:00', 3.90, 10),   -- Dentro da faixa (3-7)
+('2025-12-04 23:40:00', 6.70, 10),   -- Dentro da faixa (3-7)
+('2025-12-04 23:50:00', 9.80, 10),   -- Fora da faixa mas dentro do limite (10%)
+('2025-12-05 00:00:00', 4.50, 10);   -- Dentro da faixa (3-7)
+    
+	select * from sensor;
+    
+    select * from veiculo;
+INSERT INTO registroSensor (dtRegistro, temperatura_atual, fkSensor) VALUES
+('2025-12-11 10:40:00', 8.00, 2);  -- Dentro da faixa (3-7)
+ 
+
+    
+    SELECT MAX(temperatura_atual) as temp_max_4h
+FROM registroSensor rs
+ JOIN sensor s ON rs.fkSensor = s.idSensor
+WHERE s.fkVeiculo = 10
+AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 4 HOUR);
+
+
+    
+    
+    
     
 -- COMANDOS:
 -- SELECIONANDO TODOS OS DADOS DA TABELA USUARIO E EMPRESA
@@ -171,16 +266,20 @@ SELECT veiculo.modelo AS Modelo_Veículo,
         registroSensor.dtRegistro AS Data_e_Hora_Sensor,
         registroSensor.temperatura_atual AS Temperatura_Atual_Sensor
         FROM veiculo JOIN sensor ON fkVeiculo = idVeiculo
-        JOIN registroSensor ON fkSensor = idSensor;
+        JOIN registroSensor ON fkSensor = idSensor
+        where fkempresa = 2;
         
 -- VEICULO, SENSOR, REGISTROSENSOR
 SELECT veiculo.modelo AS Modelo_Veículo,
         veiculo.placa AS Placa_Veículo,
         sensor.nome AS Nome_Sensor,
+        idSensor as id,
         registroSensor.dtRegistro AS Data_e_Hora_Sensor,
         registroSensor.temperatura_atual AS Temperatura_Atual_Sensor
         FROM veiculo JOIN sensor ON fkVeiculo = idVeiculo
         JOIN registroSensor ON fkSensor = idSensor;
+        
+        
         
 -- EMPRESA, VEICULO, SENSOR, REGISTROSENSOR
 SELECT empresa.nome AS Nome_Empresa,
@@ -213,20 +312,46 @@ SELECT veiculo.placa AS Placa_Veiculo,
     FROM empresa join veiculo on veiculo.fkEmpresa = empresa.idEmpresa
     join viagem on viagem.fkVeiculo = veiculo.idVeiculo
     join vacina on vacina.idVacina = viagem.fkVacina;
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- PUXAR OS VEICULOS DE DETERMINADA EMPRESA PARA O PAINEL DE VEICULOS
 CREATE VIEW painelVeiculos AS
-SELECT  fkEmpresa,
-		idVeiculo,
-		veiculo.placa,
-		temperatura_atual,
-        dtRegistro
-FROM veiculo
-JOIN sensor ON idVeiculo = fkVeiculo
-JOIN registroSensor ON idSensor = fkSensor;
+SELECT 
+    v.fkEmpresa,
+    v.idVeiculo,
+    v.placa,
+    rs.temperatura_atual,
+    rs.dtRegistro
+FROM veiculo v
+JOIN sensor s ON v.idVeiculo = s.fkVeiculo
+JOIN registroSensor rs ON s.idSensor = rs.fkSensor
+AND rs.dtRegistro = (
+    SELECT MAX(rs2.dtRegistro)
+    FROM registroSensor rs2
+    JOIN sensor s2 ON rs2.fkSensor = s2.idSensor
+    WHERE s2.fkVeiculo = v.idVeiculo
+);
 
 SELECT * FROM painelVeiculos
 WHERE fkEmpresa = 2;
+
 
 -- PUXAR O HISTORICO DE ALERTAS
 CREATE VIEW historicoAlertas AS
@@ -241,6 +366,77 @@ WHERE (temperatura_atual < 2 OR temperatura_atual > 8);
         
 SELECT * FROM historicoAlertas
 WHERE fkEmpresa = 2;
+
+
+-- PUXAR KPI QUANTIDADE DE VEICULOS
+CREATE VIEW quantidadeVeiculos AS
+SELECT COUNT(*) AS quantidadeVeiculo,
+	fkEmpresa
+FROM veiculo
+group by fkEmpresa;
+
+SELECT * FROM quantidadeVeiculos
+WHERE fkEmpresa = 2;
+
+
+
+
+
+
+
+-- PUXAR KPI VEICULOS COM TEMPERATURA NORMAL
+-- CREATE VIEW quantidadeVeiculos AS
+SELECT COUNT(*) AS quantidadeNormal,
+	fkEmpresa,
+    temperatura_atual
+FROM veiculo
+JOIN sensor ON fkVeiculo = idVeiculo
+JOIN registroSensor ON fkSensor = idSensor
+group by fkEmpresa, temperatura_atual
+HAVING (temperatura_atual < 8 OR temperatura_atual > 2) AND fkEmpresa = 2;
+
+
+
+SELECT fkEmpresa, COUNT(*) AS quantidadeDentroPadrao
+FROM veiculo
+JOIN sensor ON fkVeiculo = idVeiculo
+JOIN registroSensor ON fkSensor = idSensor
+WHERE temperatura_atual >= 2 AND temperatura_atual <= 8
+GROUP BY fkEmpresa;
+
+SELECT * FROM quantidadeVeiculos
+WHERE fkEmpresa = 2;
+
+
+
+
+
+
+
+
+
+-- PUXAR KPI ALERTAS
+SELECT COUNT(*) AS total_alertas
+FROM registroSensor rs
+JOIN sensor s ON rs.fkSensor = s.idSensor
+JOIN veiculo v ON s.fkVeiculo = v.idVeiculo
+WHERE v.fkEmpresa = 2 AND rs.temperatura_atual > 8 OR rs.temperatura_atual < 2;
+
+-- KPI ATENCAO
+SELECT COUNT(*) AS total_limite
+            FROM registroSensor rs
+            JOIN sensor s ON rs.fkSensor = s.idSensor
+            JOIN veiculo v ON s.fkVeiculo = v.idVeiculo
+            WHERE v.fkEmpresa = 2
+            AND (rs.temperatura_atual = 2 OR rs.temperatura_atual = 8);
+            
+-- kpi normal
+SELECT COUNT(*) AS total_ideal
+    FROM registroSensor rs
+    JOIN sensor s ON rs.fkSensor = s.idSensor
+    JOIN veiculo v ON s.fkVeiculo = v.idVeiculo
+    WHERE v.fkEmpresa = 2
+    AND rs.temperatura_atual > 2 AND rs.temperatura_atual < 8;
     
 SELECT idEmpresa, token FROM empresa;
 
@@ -265,6 +461,14 @@ SHOW TABLES;
 
 
 
+SELECT 
+    COUNT(idRegistroSensor) as total_alertas_4h
+FROM registroSensor r
+JOIN sensor se ON r.fkSensor = se.idSensor
+JOIN veiculo ve ON se.fkVeiculo = ve.idVeiculo
+WHERE ve.idVeiculo = 1
+    AND r.dtRegistro >= NOW() - INTERVAL 4 HOUR
+    AND (r.temperatura_atual < 2 OR r.temperatura_atual > 8);
 
 
 
@@ -313,6 +517,9 @@ SHOW TABLES;
 --     return database.executar(instrucaoSql);
 -- }
 
+
+as model da kpi ta aq, das 4 q falta
+
 -- function tempMaxMes(veiculo) {
 --     var instrucaoSql = `
 --         SELECT MAX(temperatura_atual) as temp_max_mes
@@ -324,3 +531,23 @@ SHOW TABLES;
 --     console.log("Executando a instrução SQL: \n" + instrucaoSql);
 --     return database.executar(instrucaoSql);
 -- }
+SELECT fkEmpresa, COUNT(DISTINCT v.idVeiculo) AS quantidadeDentroPadrao
+FROM veiculo v
+JOIN sensor ON fkVeiculo = idVeiculo
+JOIN registroSensor ON fkSensor = idSensor
+WHERE (temperatura_atual > 2 AND temperatura_atual < 8) AND v.fkEmpresa = 2 
+GROUP BY fkEmpresa;
+
+
+
+-- Use COALESCE para evitar NULL
+SELECT COALESCE(COUNT(*), 0) as total_alertas_4h
+FROM registroSensor rs
+JOIN sensor s ON rs.fkSensor = s.idSensor
+WHERE s.fkVeiculo = 10 -- Substitua pelo ID real do veículo
+AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 4 HOUR)
+AND (rs.temperatura_atual < 2 OR rs.temperatura_atual > 8);
+
+obvio q nao, nao
+       
+        

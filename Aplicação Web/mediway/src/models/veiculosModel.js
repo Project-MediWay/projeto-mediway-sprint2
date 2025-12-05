@@ -111,16 +111,25 @@ function obterGrafico7Dias(veiculo) {
 
 function obterGraficoMensal(veiculo) {
     var instrucaoSql = `
-        SELECT 
-             DATE(dtRegistro) as data,
-            COUNT(CASE WHEN temperatura_atual < 2 OR temperatura_atual > 8 THEN 1 END) as alertas
-        FROM registroSensor rs
-        INNER JOIN sensor s ON rs.fkSensor = s.idSensor
-        WHERE s.fkVeiculo = ${veiculo}
-        AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 7 DAY)
-        GROUP BY DATE(dtRegistro)  -- Já está correto, agrupando pela mesma expressão do SELECT
-        ORDER BY data ASC;
-    `;
+  SELECT 
+    CONCAT('Semana ', semana_num) as semana,
+    COUNT(*) as alertas
+FROM (
+    SELECT 
+        CASE 
+            WHEN DAY(dtRegistro) BETWEEN 1 AND 7 THEN 1
+            WHEN DAY(dtRegistro) BETWEEN 8 AND 14 THEN 2
+            WHEN DAY(dtRegistro) BETWEEN 15 AND 21 THEN 3
+            ELSE 4
+        END as semana_num
+    FROM registroSensor rs
+    INNER JOIN sensor s ON rs.fkSensor = s.idSensor
+    WHERE s.fkVeiculo = ${veiculo}
+        AND rs.dtRegistro >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+        AND (rs.temperatura_atual < 2 OR rs.temperatura_atual > 8)
+) as subquery
+GROUP BY semana_num
+ORDER BY semana_num;`
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
 
     return database.executar(instrucaoSql);

@@ -53,7 +53,7 @@
           <span class="texto-kpis">Total de Alertas</span>
           <span class="texto-kpis-menor">(Últimas 4 Horas)</span>
         </div>
-        <div class="kpi_vermelha">
+        <div class="kpi_vermelha" id="tempAtual">
           <span class="valor-kpis" id="temperaturaAtual"></span>
           <span class="texto-kpis">Temperatura atual</span>
         </div>
@@ -137,6 +137,10 @@
   </html>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
+
+    var kpiAtual = document.getElementById("tempAtual");
+
+
     // Inicio configuração Modal
     overlayUser.style.display = 'none';
     userMenu.style.display = 'none';
@@ -201,11 +205,27 @@
     function tempAtual() {
       var veiculo = sessionStorage.ID_VEICULO;
       var temperAtual = document.getElementById('temperaturaAtual');
+      var corKPI = document.getElementById('tempAtual');
       fetch(`/veiculo/tempAtual/${veiculo}`, { cache: "no-store" })
         .then(function (resposta) {
           resposta.json()
             .then(function (respostaConversao) {
               console.log(respostaConversao[0].temperatura_atual)
+              if(respostaConversao[0].temperatura_atual < 2 || respostaConversao[0].temperatura_atual > 8 ){
+                corKPI.classList.add('kpi_vermelha')
+                corKPI.classList.remove('kpi_azul')
+                corKPI.classList.remove('kpi_amarela')
+
+              } else if (respostaConversao[0].temperatura_atual == 2 || respostaConversao[0].temperatura_atual == 8 ){
+                corKPI.classList.add('kpi_amarela')
+                corKPI.classList.remove('kpi_azul')
+                corKPI.classList.remove('kpi_vermelha')
+              } else {
+                corKPI.classList.add('kpi_azul')
+                corKPI.classList.remove('kpi_vermelha')
+                corKPI.classList.remove('kpi_amarela')
+                
+              }
               temperAtual.innerHTML = `
         ${respostaConversao[0].temperatura_atual}
         `
@@ -430,64 +450,108 @@ function iniciarAtualizacaoGrafico() {
     }
 
     // 3. Função para carregar gráfico mensal
-    function obterGraficoMensal() {
-      var veiculo = sessionStorage.ID_VEICULO;
-      var ctx = document.getElementById('grafico_alerta_mensal');
+   function obterGraficoMensal() {
+    var veiculo = sessionStorage.ID_VEICULO;
+    var ctx = document.getElementById('grafico_alerta_mensal');
 
-      fetch(`/veiculo/obterGraficoMensal/${veiculo}`, { cache: "no-store" })
+    fetch(`/veiculo/obterGraficoMensal/${veiculo}`, { cache: "no-store" })
         .then(function (resposta) {
-          return resposta.json();
+            return resposta.json();
         })
         .then(function (respostaConversao) {
-          console.log('Dados gráfico mensal:', respostaConversao);
-      
-          var labels = [];
-          var alertas = [];
+            console.log('Dados gráfico mensal RAW:', respostaConversao);
+        
+            var labels = [];
+            var alertas = [];
 
-          for (var i = 0; i < respostaConversao.length; i++) {
-            labels.push(respostaConversao[i].semana);
-            alertas.push(respostaConversao[i].alertas);
-          }
-
-          if (respostaConversao.length === 0) {
-            labels = ['Sem dados'];
-            alertas = [0];
-          }
-
-            var myChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: labels,
-                datasets: [{
-                  label: 'Alertas',
-                  data: alertas,
-                  backgroundColor: '#e70000',
-                  borderColor: '#e70000'
-                }]
-              },
-              options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                  y: { beginAtZero: true }
+            for (var i = 0; i < respostaConversao.length; i++) {
+                // DEBUG: Verifica a estrutura dos dados
+                console.log('Item mensal:', respostaConversao[i]);
+                
+                // Tenta diferentes formatos
+                if (respostaConversao[i].semana) {
+                    labels.push('Semana ' + respostaConversao[i].semana);
+                } else if (respostaConversao[i].mes) {
+                    labels.push(respostaConversao[i].mes);
+                } else if (respostaConversao[i].periodo) {
+                    labels.push(respostaConversao[i].periodo);
                 }
-              }
+                
+                
+                alertas.push(respostaConversao[i].alertas || respostaConversao[i].total || respostaConversao[i].qtd || 0);
+            }
+  console.log('Labels mensais:', labels);
+            console.log('Alertas mensais:', alertas);
+
+            if (labels.length === 0 || alertas.length === 0) {
+                labels = ['Sem dados'];
+                alertas = [0];
+            }
+
+            // DESTROI gráfico anterior se existir
+            if (typeof graficoMensal !== 'undefined' && graficoMensal) {
+                graficoMensal.destroy();
+            }
+
+            // Cria NOVO gráfico
+            graficoMensal = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Alertas Semanais',
+                        data: alertas,
+                        backgroundColor: '#e70000',
+                        borderColor: '#e70000',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Alertas - Último Mês',
+                            font: { size: 16 }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Quantidade de Alertas'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Período'
+                            }
+                        }
+                    }
+                }
             });
         })
         .catch(function (erro) {
-          console.log('Erro ao carregar gráfico mensal:', erro);
+            console.log('Erro ao carregar gráfico mensal:', erro);
         });
-    }
+}
 
     window.onload = function() {
-    obterPlaca();
-    alertasEspec();
-    tempAtual();
-    tempMin();
-    tempMax();
-    obterGrafico4Horas();
-    obterGrafico7Dias();
-    obterGraficoMensal();
+    obterPlaca()
+    alertasEspec()
+    tempAtual()
+    tempMin()
+    tempMax()
+    obterGrafico4Horas()
+    obterGrafico7Dias()
+    obterGraficoMensal()
 };
 
   </script>
+
+grupinho desse tb 
+
+ 
