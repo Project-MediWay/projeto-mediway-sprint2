@@ -80,14 +80,19 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.ID_EMPRESA = json.fkEmpresa;
                     sessionStorage.NOME_EMPRESA = json.nomeEmpresa;
+                    var suporte_tecnico = json.suporteTecnico;
 
                     msg_login.style.display = 'flex';
                     msg_login.innerHTML = `<br><span style="color: green; font-size:1.3em;">Login realizado.. redirecionando...</span>`;
                     
                     setTimeout(function () {
-                        window.location = "dashgeral.html";
-                        msg_login.innerHTML = ``;
-
+                        if( suporte_tecnico == '1' ){
+                            window.location = "http://localhost:3333/";
+                            msg_login.innerHTML = ``;
+                        }else{
+                            window.location = "dashgeral.html";
+                            msg_login.innerHTML = ``;
+                        }
                     }, 1000); // apenas para exibir o loading
 
                 });

@@ -81,7 +81,7 @@ INSERT INTO empresa (nome, CNPJ, token) VALUES
 	
 -- INSERÇÃO DE DADOS NA TABELA USUARIO
 INSERT INTO usuario(nome, cpf, email, senha, telefone, fkEmpresa, suporteTecnico) VALUES
-	('João Silva','52598742411','joao@gmail.com','123456', '11985378011', 1, TRUE),
+	('João Silva','52598742411','joao@gmail.com','123456', '11985378011', null, TRUE),
     ('Ana Silva', '12345678901', 'ana.silva@email.com', 'senha123', '11987654321', 2, FALSE),
     ('Carlos Souza', '98765432100', 'carlos.souza@email.com', 'minhaSenha', '21999887766', 3, FALSE);
 
